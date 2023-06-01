@@ -15,7 +15,8 @@
 		7D4394562A28B3D700BDAB65 /* TravelAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4394552A28B3D700BDAB65 /* TravelAppUITestsLaunchTests.swift */; };
 		7D4394672A28BB5300BDAB65 /* SlidingTabView in Frameworks */ = {isa = PBXBuildFile; productRef = 7D4394662A28BB5300BDAB65 /* SlidingTabView */; };
 		7D4394692A28BB7300BDAB65 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4394682A28BB7300BDAB65 /* Extension.swift */; };
-		7D43946D2A28C44800BDAB65 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D43946C2A28C44800BDAB65 /* TabBarView.swift */; };
+		7D43946D2A28C44800BDAB65 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D43946C2A28C44800BDAB65 /* HomeView.swift */; };
+		7DD404BF2A28C5EA00F63A00 /* FlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD404BE2A28C5EA00F63A00 /* FlightView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +47,8 @@
 		7D4394532A28B3D700BDAB65 /* TravelAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelAppUITests.swift; sourceTree = "<group>"; };
 		7D4394552A28B3D700BDAB65 /* TravelAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7D4394682A28BB7300BDAB65 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
-		7D43946C2A28C44800BDAB65 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		7D43946C2A28C44800BDAB65 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		7DD404BE2A28C5EA00F63A00 /* FlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +100,8 @@
 		7D4394372A28B3D600BDAB65 /* TravelApp */ = {
 			isa = PBXGroup;
 			children = (
-				7D4394622A28B72E00BDAB65 /* Start */,
+				7DD404BD2A28C5DB00F63A00 /* Flight */,
+				7DD404BC2A28C57E00F63A00 /* Home */,
 				7D4394382A28B3D600BDAB65 /* TravelAppApp.swift */,
 				7D43943C2A28B3D700BDAB65 /* Assets.xcassets */,
 				7D43943E2A28B3D700BDAB65 /* Preview Content */,
@@ -131,13 +134,21 @@
 			path = TravelAppUITests;
 			sourceTree = "<group>";
 		};
-		7D4394622A28B72E00BDAB65 /* Start */ = {
+		7DD404BC2A28C57E00F63A00 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				7D4394682A28BB7300BDAB65 /* Extension.swift */,
-				7D43946C2A28C44800BDAB65 /* TabBarView.swift */,
+				7D43946C2A28C44800BDAB65 /* HomeView.swift */,
 			);
-			path = Start;
+			path = Home;
+			sourceTree = "<group>";
+		};
+		7DD404BD2A28C5DB00F63A00 /* Flight */ = {
+			isa = PBXGroup;
+			children = (
+				7DD404BE2A28C5EA00F63A00 /* FlightView.swift */,
+			);
+			path = Flight;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,8 +287,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DD404BF2A28C5EA00F63A00 /* FlightView.swift in Sources */,
 				7D4394392A28B3D600BDAB65 /* TravelAppApp.swift in Sources */,
-				7D43946D2A28C44800BDAB65 /* TabBarView.swift in Sources */,
+				7D43946D2A28C44800BDAB65 /* HomeView.swift in Sources */,
 				7D4394692A28BB7300BDAB65 /* Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

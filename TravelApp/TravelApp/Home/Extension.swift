@@ -24,7 +24,7 @@ extension View {
         clipShape(RoundedCorner(radius: radius, corners: corners) )
     }
 }
-extension TabBarView {
+extension HomeView {
      var title : some View {
         VStack(spacing:10) {
             Text("TravelApp")
