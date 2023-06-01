@@ -9,135 +9,197 @@ import SwiftUI
 
 struct FlightView: View {
     @State private var selectedButton = 0
-
     var body: some View {
-        VStack(spacing : 30) {
-            button
-            fromTO
-            
-            HStack {
-                depatureDate
-                selectedButton == 0 ? nil :
-                HStack {
-                    Image(systemName: "calender.circle")
-                        .font(.largeTitle)
-                        .foregroundColor(.blue)
-                    retuenDate
+        ScrollView(showsIndicators: false) {
+            VStack {
+                button
+                fromToDesign
+                date
+                selectedButton == 1 ? returnDate : nil
+                HStack(spacing: 5) {
+                    passanger
+                    classType
                 }
-              
+                .padding(.horizontal)
+                searchButton
             }
-            
-            
-           
-     
+            .padding(.bottom)
         }
         
-       
+      
     }
-    // MARK: - Button Design
+    
     var button : some View {
+       
+              HStack(spacing:20) {
+                  Button {
+                      selectedButton = 0
+                  } label: {
+                      Text("On Way")
+                          .foregroundColor(selectedButton == 0 ?
+                              .white : Color.gray)
+                  }.padding()
+                      .background(selectedButton == 0 ? Color.blue : nil)
+                      .cornerRadius(20)
+                  Button {
+                      selectedButton = 1
+                  } label: {
+                      Text("Rounded Trip")
+                          .foregroundColor(selectedButton == 1 ?
+                              .white : Color.gray)
+                  }.padding()
+                      .background(selectedButton == 1 ? Color.blue : nil)
+                      .cornerRadius(20)
+              }.padding(.top)
+          
+      }
+    
+    var fromToDesign : some View {
         VStack {
-            HStack(spacing:20) {
-                Button {
-                    selectedButton = 0
-                } label: {
-                    Text("On Way")
-                        .foregroundColor(selectedButton == 0 ?
-                            .black : Color.gray)
-                }.padding()
-                    .background(selectedButton == 0 ? Color.white : nil)
-                    .cornerRadius(20)
-                Button {
-                    selectedButton = 1
-                } label: {
-                    Text("Rounded Trip")
-                        .foregroundColor(selectedButton == 1 ?
-                            .black : Color.gray)
-                }.padding()
-                    .background(selectedButton == 1 ? Color.white : nil)
-                    .cornerRadius(20)
+            VStack(alignment: .leading) {
+                HStack {
+                    Image(systemName: "airplane.departure")
+                    VStack(alignment:.leading) {
+                        Text("From")
+                            .foregroundColor(Color.gray)
+                        Text("City/Airport")
+                    }
+                    
+                    Spacer()
+                }.padding(.all,10)
+     
+                    .overlay( /// apply a rounded border
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(.blue, lineWidth: 1)
+                )
+            }.padding([.horizontal,.top])
+            
+            Image(systemName: "arrow.up.arrow.down.circle")
+                .font(.title)
+                .foregroundColor(Color.blue)
+            
+            VStack(alignment: .leading) {
+                HStack {
+                    Image(systemName: "airplane.arrival")
+                    VStack(alignment:.leading) {
+                        Text("To")
+                            .foregroundColor(Color.gray)
+                        Text("City/Airport")
+                    }
+                    
+                    Spacer()
+                }.padding(.all,10)
+     
+                    .overlay( /// apply a rounded border
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(.blue, lineWidth: 1)
+                )
+            }.padding(.horizontal)
+                .padding(.top,5)
+        }
+            
+    }
+    
+    var date : some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Image(systemName: "calendar")
+                VStack(alignment:.leading) {
+                    Text("Date")
+                        .foregroundColor(Color.gray)
+                    Text("02 Jun 2023")
+                }
                 
-
-            }.background(Color("backgroundTabbar"))
-        }
+                Spacer()
+            }.padding(.all,10)
+ 
+                .overlay( /// apply a rounded border
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(.blue, lineWidth: 1)
+            )
+        }.padding([.horizontal,.top])
     }
     
-    // MARK: - From To Design
-    var fromTO : some View {
-        HStack {
-            
-            VStack(spacing:3){
-                Text("Please Select")
-                    .font(.callout)
-                Text("From")
-                    .font(.largeTitle)
-                Text("City/Airport")
-                    .font(.callout)
-            }.padding(.all,20)
-            .background(Color.white)
-                .cornerRadius(20)
-            Image(systemName: "airplane.circle")
-                .font(.largeTitle)
-                .foregroundColor(.blue)
-            VStack(spacing:3) {
-                Text("Please Select")
-                    .font(.callout)
-                Text("To")
-                    .font(.largeTitle)
-                Text("City/Airport")
-                    .font(.callout)
-            }
-            .padding(.all,20)
-            .background(Color.white)
-                .cornerRadius(20)
-            
-        }
-    }
-    
-    var depatureDate : some View {
-        HStack {
-            
-            VStack(spacing:3){
-                Text("Departure Date")
-                    .font(.callout)
-                HStack{
-                    Text("2")
-                        .font(.largeTitle)
-                    VStack{
-                        Text("July")
-                        Text("Sunday")
-                    }.font(.caption)
+    var returnDate : some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Image(systemName: "calendar")
+                VStack(alignment:.leading) {
+                    Text("Return Date")
                         .foregroundColor(Color.gray)
+                    Text("02 Jun 2023")
                 }
-            }.padding(.all,20)
-            .background(Color.white)
-                .cornerRadius(20)
-            
-        }
+                
+                Spacer()
+            }.padding(.all,10)
+ 
+                .overlay( /// apply a rounded border
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(.blue, lineWidth: 1)
+            )
+        }.padding([.horizontal,.top])
     }
     
-    var retuenDate : some View {
-        HStack {
-            
-            VStack(spacing:3){
-                Text("Retuen Date")
-                    .font(.callout)
-                HStack{
-                    Text("2")
-                        .font(.largeTitle)
-                    VStack{
-                        Text("July")
-                        Text("Sunday")
-                    }.font(.caption)
+    var passanger : some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Image(systemName: "person.circle")
+                VStack(alignment:.leading) {
+                    Text("Passenger")
                         .foregroundColor(Color.gray)
+                    Text("1 Passenger")
                 }
-            }.padding(.all,20)
-            .background(Color.white)
-                .cornerRadius(20)
-            
-        }
+                
+                Spacer()
+            }.padding(.all,10)
+ 
+                .overlay( /// apply a rounded border
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(.blue, lineWidth: 1)
+            )
+        }.padding(.top)
     }
+    
+    var classType : some View {
+        VStack(alignment: .leading) {
+           
+            HStack {
+                Image(systemName: "gearshape.fill")
+                HStack {
+                    VStack(alignment:.leading) {
+                        Text("Class")
+                            .foregroundColor(Color.gray)
+                        Text("Economy")
+                    }
+                   
+                 
+                }
+                
+                Spacer()
+            }.padding(.all,10)
+ 
+                .overlay( /// apply a rounded border
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(.blue, lineWidth: 1)
+            )
+        }.padding(.top)
+    }
+    
+    var searchButton : some View {
+        Button {
+            
+        } label: {
+            Text("Search Flight")
+                .foregroundColor(Color.white)
+                .font(.title3)
+                .frame(width: UIScreen.main.bounds.width / 2)
+        }.padding()
+            .background(Color.blue)
+            .cornerRadius(20)
+            .padding(.top)
+          
 
+    }
 }
 
 struct FlightView_Previews: PreviewProvider {
@@ -145,15 +207,3 @@ struct FlightView_Previews: PreviewProvider {
         FlightView()
     }
 }
-
-/**
- 
- 
-
- .background(
-     RoundedRectangle(cornerRadius: 25)
-         .fill(Color.white)
-         .shadow(color: .gray, radius: 2, x: 0, y: 2)
-)
-
- */

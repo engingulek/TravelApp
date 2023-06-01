@@ -9,35 +9,89 @@ import SwiftUI
 import SlidingTabView
 struct HomeView: View {
     @State private var tabIndex = 0
+    @State  var showGreeting = true
+    
     var body: some View {
-        ZStack{
-            Color.blue.ignoresSafeArea()
+        ZStack {
+          
             VStack {
-               title
+                Color.blue
+              .frame(height: UIScreen.main.bounds.height / 3)
+              .roundedCorner(30, corners: [.bottomLeft,.bottomRight])
+              .ignoresSafeArea()
+                Spacer()
+            }
+            VStack {
+                title
                 VStack(alignment: .center) {
                           SlidingTabView(selection: self.$tabIndex,
-                                         tabs: ["Flight", "Other"])
-                    if tabIndex == 0 {
-                        FlightView()
-                    }else{
-                        Text("Other")
-                    }
-                    Spacer()
-                }.background(Color("backgroundTabbar"))
+                                         tabs: ["Flight", "Bus"])
+                          .background(Color.white)
+                          .cornerRadius(20)
+                          .padding(.horizontal,5)
                     
-                    .roundedCorner(30, corners: [.topLeft, .topRight])
-                    .ignoresSafeArea()
+                    if tabIndex == 0 {
+                        VStack {
+                         FlightView()
+                            
+                        }.background(Color.white)
+                            .cornerRadius(15)
+                            .padding()
+                    }else {
+                        
+                    }
+                          
+                 
+                          
+                    
+                    Spacer()
+                }
+                    
                    
+                    .ignoresSafeArea()
             }
-        }
+           
+        
+        }.background(Color("backgroundTabbar"))
+        
+
+        
+     
+               
+              
+              
+           
+        
+      
+       
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            
     }
 }
 
 
 
+/*
+ /*  VStack {
+      title
+       VStack(alignment: .center) {
+                 SlidingTabView(selection: self.$tabIndex,
+                                tabs: ["Flight", "Other"])
+           if tabIndex == 0 {
+               FlightView()
+           }else{
+               Text("Other")
+           }
+           Spacer()
+       }.background(Color("backgroundTabbar"))
+           
+           .roundedCorner(30, corners: [.topLeft, .topRight])
+           .ignoresSafeArea()
+          
+   }*/
+ */

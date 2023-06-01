@@ -24,16 +24,16 @@ extension View {
         clipShape(RoundedCorner(radius: radius, corners: corners) )
     }
 }
+
 extension HomeView {
+// MARK: - Title Design
      var title : some View {
-        VStack(spacing:10) {
-            Text("TravelApp")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-            Text("We are with you on every journey")
-                .font(.callout)
-                .fontWeight(.bold)
-        }.foregroundColor(.white)
-            .padding(.vertical)
+                 Text("TravelApp")
+                     .font(.title)
+                     .fontWeight(.bold)
+                     .foregroundColor(.white)
+             .padding(.vertical,10)
     }
+
 }
+
