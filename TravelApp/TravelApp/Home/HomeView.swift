@@ -9,8 +9,6 @@ import SwiftUI
 import SlidingTabView
 struct HomeView: View {
     @State private var tabIndex = 0
-    @State  var showGreeting = true
-    
     var body: some View {
         ZStack {
           
@@ -40,30 +38,11 @@ struct HomeView: View {
                     }else {
                         
                     }
-                          
-                 
-                          
-                    
                     Spacer()
-                }
-                    
-                   
-                    .ignoresSafeArea()
+                }.ignoresSafeArea()
             }
-           
-        
         }.background(Color("backgroundTabbar"))
-        
 
-        
-     
-               
-              
-              
-           
-        
-      
-       
     }
 }
 
@@ -74,24 +53,3 @@ struct HomeView_Previews: PreviewProvider {
     }
 }
 
-
-
-/*
- /*  VStack {
-      title
-       VStack(alignment: .center) {
-                 SlidingTabView(selection: self.$tabIndex,
-                                tabs: ["Flight", "Other"])
-           if tabIndex == 0 {
-               FlightView()
-           }else{
-               Text("Other")
-           }
-           Spacer()
-       }.background(Color("backgroundTabbar"))
-           
-           .roundedCorner(30, corners: [.topLeft, .topRight])
-           .ignoresSafeArea()
-          
-   }*/
- */

@@ -6,14 +6,36 @@
 //
 
 import SwiftUI
+import SwiftUI
 
 struct FlightView: View {
     @State private var selectedButton = 0
+    @State private var isPresentedFrom = false
+    @State private var isPresentedTo = false
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack {
                 button
-                fromToDesign
+                fromCityAirport
+                    .onTapGesture {
+                        self.isPresentedFrom = true
+                    }
+                    .fullScreenCover(isPresented:$isPresentedFrom) {
+                        SelectFromAndToLocationView()
+                    
+                }
+                Image(systemName: "arrow.up.arrow.down.circle")
+                    .font(.title)
+                    .foregroundColor(Color.blue)
+            
+                toCityAirport
+                    .onTapGesture {
+                        self.isPresentedTo = true
+                        
+                    }
+                    .fullScreenCover(isPresented:$isPresentedTo) {
+                        SelectFromAndToLocationView(selectType: false)
+                }
                 date
                 selectedButton == 1 ? returnDate : nil
                 HStack(spacing: 5) {
@@ -24,6 +46,7 @@ struct FlightView: View {
                 searchButton
             }
             .padding(.bottom)
+            
         }
         
       
@@ -54,8 +77,8 @@ struct FlightView: View {
           
       }
     
-    var fromToDesign : some View {
-        VStack {
+    var fromCityAirport : some View {
+    
             VStack(alignment: .leading) {
                 HStack {
                     Image(systemName: "airplane.departure")
@@ -68,37 +91,38 @@ struct FlightView: View {
                     Spacer()
                 }.padding(.all,10)
      
-                    .overlay( /// apply a rounded border
+                    .overlay(
                     RoundedRectangle(cornerRadius: 20)
                         .stroke(.blue, lineWidth: 1)
                 )
             }.padding([.horizontal,.top])
             
-            Image(systemName: "arrow.up.arrow.down.circle")
-                .font(.title)
-                .foregroundColor(Color.blue)
-            
-            VStack(alignment: .leading) {
-                HStack {
-                    Image(systemName: "airplane.arrival")
-                    VStack(alignment:.leading) {
-                        Text("To")
-                            .foregroundColor(Color.gray)
-                        Text("City/Airport")
-                    }
-                    
-                    Spacer()
-                }.padding(.all,10)
-     
-                    .overlay( /// apply a rounded border
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(.blue, lineWidth: 1)
-                )
-            }.padding(.horizontal)
-                .padding(.top,5)
-        }
-            
+        
     }
+    
+    var toCityAirport : some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Image(systemName: "airplane.arrival")
+                VStack(alignment:.leading) {
+                    Text("To")
+                        .foregroundColor(Color.gray)
+                    Text("City/Airport")
+                }
+                
+                Spacer()
+            }.padding(.all,10)
+ 
+                .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(.blue, lineWidth: 1)
+            )
+        }.padding(.horizontal)
+            .padding(.top,5)
+    }
+    
+    
+    
     
     var date : some View {
         VStack(alignment: .leading) {
