@@ -18,6 +18,9 @@
 		7D4394692A28BB7300BDAB65 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4394682A28BB7300BDAB65 /* Extension.swift */; };
 		7D43946D2A28C44800BDAB65 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D43946C2A28C44800BDAB65 /* HomeView.swift */; };
 		7DC85BE22A2A8E3900AB46E3 /* SelectFromAndToLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC85BE12A2A8E3900AB46E3 /* SelectFromAndToLocationView.swift */; };
+		7DC85BE42A2A8F6300AB46E3 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC85BE32A2A8F6300AB46E3 /* PreviewData.swift */; };
+		7DC85BE82A2A913200AB46E3 /* Flight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC85BE72A2A913200AB46E3 /* Flight.swift */; };
+		7DC85BEB2A2A97A200AB46E3 /* FlightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC85BEA2A2A97A200AB46E3 /* FlightViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		7D4394682A28BB7300BDAB65 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		7D43946C2A28C44800BDAB65 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7DC85BE12A2A8E3900AB46E3 /* SelectFromAndToLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFromAndToLocationView.swift; sourceTree = "<group>"; };
+		7DC85BE32A2A8F6300AB46E3 /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PreviewData.swift; path = "../../../../../.Trash/TravelApp/TravelApp/TravelApp/Preview Content/PreviewData.swift"; sourceTree = "<group>"; };
+		7DC85BE72A2A913200AB46E3 /* Flight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flight.swift; sourceTree = "<group>"; };
+		7DC85BEA2A2A97A200AB46E3 /* FlightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +88,9 @@
 		7D39B5C32A292A77006C7A96 /* Flight */ = {
 			isa = PBXGroup;
 			children = (
-				7D39B5C42A292A8E006C7A96 /* FlightView.swift */,
-				7DC85BE12A2A8E3900AB46E3 /* SelectFromAndToLocationView.swift */,
+				7DC85BE92A2A979400AB46E3 /* viewModel */,
+				7DC85BE62A2A911200AB46E3 /* model */,
+				7DC85BE52A2A910A00AB46E3 /* view */,
 			);
 			path = Flight;
 			sourceTree = "<group>";
@@ -124,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				7D43943F2A28B3D700BDAB65 /* Preview Assets.xcassets */,
+				7DC85BE32A2A8F6300AB46E3 /* PreviewData.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -143,6 +151,31 @@
 				7D4394552A28B3D700BDAB65 /* TravelAppUITestsLaunchTests.swift */,
 			);
 			path = TravelAppUITests;
+			sourceTree = "<group>";
+		};
+		7DC85BE52A2A910A00AB46E3 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				7D39B5C42A292A8E006C7A96 /* FlightView.swift */,
+				7DC85BE12A2A8E3900AB46E3 /* SelectFromAndToLocationView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		7DC85BE62A2A911200AB46E3 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				7DC85BE72A2A913200AB46E3 /* Flight.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		7DC85BE92A2A979400AB46E3 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7DC85BEA2A2A97A200AB46E3 /* FlightViewModel.swift */,
+			);
+			path = viewModel;
 			sourceTree = "<group>";
 		};
 		7DD404BC2A28C57E00F63A00 /* Home */ = {
@@ -292,9 +325,12 @@
 			files = (
 				7DC85BE22A2A8E3900AB46E3 /* SelectFromAndToLocationView.swift in Sources */,
 				7D39B5C52A292A8E006C7A96 /* FlightView.swift in Sources */,
+				7DC85BEB2A2A97A200AB46E3 /* FlightViewModel.swift in Sources */,
+				7DC85BE42A2A8F6300AB46E3 /* PreviewData.swift in Sources */,
 				7D4394392A28B3D600BDAB65 /* TravelAppApp.swift in Sources */,
 				7D43946D2A28C44800BDAB65 /* HomeView.swift in Sources */,
 				7D4394692A28BB7300BDAB65 /* Extension.swift in Sources */,
+				7DC85BE82A2A913200AB46E3 /* Flight.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
