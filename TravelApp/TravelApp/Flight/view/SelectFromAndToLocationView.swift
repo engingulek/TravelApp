@@ -8,40 +8,26 @@
 import SwiftUI
 
 struct SelectFromAndToLocationView: View {
-     @ObservedObject private var viewModel = FlightViewModel()
+    @ObservedObject private var viewModel = FlightViewModel()
     @Environment(\.dismiss) var dismiss
-   @State var selectType = true
-   
-   
+    @State var selectType = true
     var body: some View {
-      
         VStack (alignment:.leading){
-            
             VStack(spacing : 10) {
-           
-                Text(selectType  ?
-                     "Select Departure Airport"
-                     :
-                    "Select Arrivel Airport"
-                        
-                )
+                Text(selectType ? "Select Departure Airport":"Select Arrivel Airport")
                     .font(.title3)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                 HStack {
-                    Text(selectType ?
-                         "From" : "To")
+                    Text(selectType ?"From" : "To")
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                     Spacer()
                     Image(systemName: "xmark")
                         .foregroundColor(.white)
                         .font(.title2)
-                        .onTapGesture {
-                            dismiss()
-                        }
+                        .onTapGesture { dismiss() }
                 }.padding(.horizontal)
-                
                 
                 TextField("Enter City and Airport", text: $viewModel.text)
                     .onChange(of: viewModel.text) { _ in
@@ -52,155 +38,63 @@ struct SelectFromAndToLocationView: View {
                 .background(Color.white)
                 .foregroundColor(Color.gray)
                 .cornerRadius(10)
-                
-                            
-                 
             }
             .padding()
             .background(Color.blue)
-  
-            
-            
+            // MARK: - Search starts when text count is 3
             if viewModel.text.count >= 3 {
-                VStack(alignment:.leading,spacing:10){
+                VStack(spacing:10){
                     
                     if !viewModel.cityAndCountryFilterList.isEmpty {
                         ForEach(viewModel.cityAndCountryFilterList) { result in
+                            /// If the number of airports in the city is more than 2, all airports are written
                             if result.city.airport.count >= 2{
-                                HStack {
-                                    VStack(alignment: .leading) {
-                                        Text("\(result.city.name),\(result.country)")
-                                            .font(.callout)
-                                        Text("All Airports")
-                                            .font(.footnote)
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(.gray)
-                                    }
-                                    Spacer()
-                                    Text(result.city.code)
-                                        .font(.footnote)
-                                        .padding(.all,5)
-                                        .background(Color.gray.opacity(0.6))
-                                        .cornerRadius(10)
-                                }
-                               
-                                
-                             
-                                ForEach(result.city.airport) { airport in
-                                    HStack{
-                                        VStack(alignment:.leading){
+                                VStack {
+                                    HStack {
+                                        VStack(alignment:.leading) {
                                             Text("\(result.city.name),\(result.country)")
-                                                .font(.callout)
-                                            Text(airport.name)
+                                                
+                                            Text("All Airports")
                                                 .font(.footnote)
                                                 .fontWeight(.semibold)
                                                 .foregroundColor(.gray)
+                                                
                                         }
                                         Spacer()
-                                        Text(airport.code)
+                                        Text(result.city.code)
                                             .font(.footnote)
                                             .padding(.all,5)
                                             .background(Color.gray.opacity(0.6))
                                             .cornerRadius(10)
                                         
-                                    }
+                                    }.padding(.trailing)
+                                    Divider()
+                                        .padding(.trailing)
                                 }
+                                // MARK: - Airports List
+                              airportList(result: result)
                             }
                             else{
-                                ForEach(result.city.airport) { airport in
-                                    
-                                    HStack{
-                                        VStack(alignment:.leading){
-                                            Text("\(result.city.name),\(result.country)")
-                                                .font(.callout)
-                                            Text(airport.name)
-                                                .font(.footnote)
-                                                .fontWeight(.semibold)
-                                                .foregroundColor(.gray)
-                                        }
-                                        Spacer()
-                                        Text(airport.code)
-                                            .font(.footnote)
-                                            .padding(.all,5)
-                                            .background(Color.gray.opacity(0.6))
-                                            .cornerRadius(10)
-                                        
-                                    }
-                                }
+                             airportList(result: result)
                             }
                         }
                     }else{
                         ForEach(viewModel.airportFilterList) { result in
-                            ForEach(result.city.airport) { airport in
-                                
-                                HStack{
-                                    VStack(alignment:.leading){
-                                        Text("\(result.city.name),\(result.country)")
-                                            .font(.callout)
-                                        Text(airport.name)
-                                            .font(.footnote)
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(.gray)
-                                    }
-                                    Spacer()
-                                    Text(airport.code)
-                                        .font(.footnote)
-                                        .padding(.all,5)
-                                        .background(Color.gray.opacity(0.6))
-                                        .cornerRadius(10)
-                                    
-                                }
-                            }
+                          airportList(result: result)
                         }
-
                     }
                     Spacer()
                 }.padding(.leading)
             }else{
                 resultNil
             }
-            
-         
-            
-           
         }
     }
 }
 
 
 
-extension SelectFromAndToLocationView {
-    private var resultNil : some View {
-        VStack(alignment:.leading,spacing: 10) {
-            Text("Populer Cities")
-                .fontWeight(.bold)
-          
-            HStack(spacing:15) {
-                    ForEach(0...3,id:\.self) { i in
-                        Text("Ankara")
-                            .font(.callout)
-                            .padding(.all,10)
-                            .overlay( /// apply a rounded border
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(.gray.opacity(0.7), lineWidth: 1))
-                    }
-                }
-            
-              HStack(spacing:15) {
-                      ForEach(0...2,id:\.self) { i in
-                          Text("Londra")
-                              .font(.callout)
-                              .padding(.all,10)
-                              .overlay( /// apply a rounded border
-                              RoundedRectangle(cornerRadius: 10)
-                                  .stroke(.gray.opacity(0.7), lineWidth: 1))
-                      }
-                  }
-            .padding(.top,2)
-            Spacer()
-        }.padding(.horizontal)
-    }
-}
+
 
 
 
