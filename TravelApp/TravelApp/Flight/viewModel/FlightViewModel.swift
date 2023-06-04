@@ -12,13 +12,16 @@ final class FlightViewModel : ObservableObject {
     @Published var resutlFlight : [Flight] = []
     @Published var cityAndCountryFilterList : [Flight] = []
     @Published var airportFilterList : [Flight] = []
+    @Published var populerCitiesDomestic : [Flight] = []
+    @Published var populerCitiesAbroad : [Flight] = []
 
 
     init(){
-        getData()
+        getDataAirport()
+        getPopulerCities()
     }
     
-    func getData(){
+    func getDataAirport(){
         let airport0 = Airport(id: 0,
                               name: "Sabiha",
                               code: "SAW")
@@ -45,7 +48,42 @@ final class FlightViewModel : ObservableObject {
 
         resutlFlight.append(flight)
         resutlFlight.append(flight1)
+        
     }
+    
+    func getPopulerCities()  {
+        let airport0 = Airport(id: 0,
+                              name: "Sabiha",
+                              code: "SAW")
+        let airport1 = Airport(id: 1,
+                              name: "İstanbul Havalimanı",
+                              code: "IST")
+        
+        let airport2 = Airport(id: 2,
+                              name: "Selanik Uluslararası Havalimanı",
+                              code: "SKG")
+        
+        
+        //
+        let flight = Flight(id: 0,
+                            city: City(id: 0,
+                                       name: "İstanbul",
+                                       code: "ISTA",
+                                       airport: [airport0,airport1]),
+                            country: "Türkiye")
+        
+        let flight1 = Flight(id: 1,
+                            city: City(id: 1,
+                                       name: "Selanik",
+                                       code: "ISTA",
+                                       airport: [airport2]),
+                            country: "Yunanistan")
+        populerCitiesDomestic.append(flight)
+        populerCitiesAbroad.append(flight1)
+        populerCitiesDomestic.append(flight)
+        populerCitiesAbroad.append(flight1)
+    }
+    
     
     func searchFlight() {
         cityAndCountryFilterList = []

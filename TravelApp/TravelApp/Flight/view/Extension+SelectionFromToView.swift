@@ -13,28 +13,41 @@ extension SelectFromAndToLocationView {
         VStack(alignment:.leading,spacing: 10) {
             Text("Populer Cities")
                 .fontWeight(.bold)
-          
-            HStack(spacing:15) {
-                    ForEach(0...3,id:\.self) { i in
-                        Text("Ankara")
-                            .font(.callout)
-                            .padding(.all,10)
-                            .overlay( /// apply a rounded border
-                            RoundedRectangle(cornerRadius: 10)
+         
+            
+            VStack(alignment:.leading) {
+                HStack{
+                    ForEach(viewModel.populerCitiesDomestic){ result in
+                        Text(result.city.name)
+                               .font(.callout)
+                               .padding(.all,10)
+                               .overlay( /// apply a rounded border
+                               RoundedRectangle(cornerRadius: 10)
                                 .stroke(.gray.opacity(0.7), lineWidth: 1))
+                               .onTapGesture {
+                                   viewModel.text = result.city.name
+                                   viewModel.searchFlight()
+                               }
                     }
                 }
+                
+                
+                HStack{
+                    ForEach(viewModel.populerCitiesAbroad){ result in
+                        Text(result.city.name)
+                               .font(.callout)
+                               .padding(.all,10)
+                               .overlay( /// apply a rounded border
+                               RoundedRectangle(cornerRadius: 10)
+                                   .stroke(.gray.opacity(0.7), lineWidth: 1))
+                               .onTapGesture {
+                                   viewModel.text = result.city.name
+                                   viewModel.searchFlight()
+                               }
+                    }
+                }
+            }
             
-              HStack(spacing:15) {
-                      ForEach(0...2,id:\.self) { i in
-                          Text("Londra")
-                              .font(.callout)
-                              .padding(.all,10)
-                              .overlay( /// apply a rounded border
-                              RoundedRectangle(cornerRadius: 10)
-                                  .stroke(.gray.opacity(0.7), lineWidth: 1))
-                      }
-                  }
             .padding(.top,2)
             Spacer()
         }.padding(.horizontal)

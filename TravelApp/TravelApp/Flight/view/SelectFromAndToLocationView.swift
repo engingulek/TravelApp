@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SelectFromAndToLocationView: View {
-    @ObservedObject private var viewModel = FlightViewModel()
+    @ObservedObject  var viewModel = FlightViewModel()
     @Environment(\.dismiss) var dismiss
     @State var selectType = true
     var body: some View {
