@@ -17,7 +17,7 @@ extension SelectFromAndToLocationView {
             
             VStack(alignment:.leading) {
                 HStack{
-                    ForEach(viewModel.populerCitiesDomestic){ result in
+                    ForEach(flightViewModel.populerCitiesDomestic){ result in
                         Text(result.city.name)
                                .font(.callout)
                                .padding(.all,10)
@@ -25,15 +25,15 @@ extension SelectFromAndToLocationView {
                                RoundedRectangle(cornerRadius: 10)
                                 .stroke(.gray.opacity(0.7), lineWidth: 1))
                                .onTapGesture {
-                                   viewModel.text = result.city.name
-                                   viewModel.searchFlight()
+                                   flightViewModel.text = result.city.name
+                                   flightViewModel.searchFlight()
                                }
                     }
                 }
                 
                 
                 HStack{
-                    ForEach(viewModel.populerCitiesAbroad){ result in
+                    ForEach(flightViewModel.populerCitiesAbroad){ result in
                         Text(result.city.name)
                                .font(.callout)
                                .padding(.all,10)
@@ -41,8 +41,8 @@ extension SelectFromAndToLocationView {
                                RoundedRectangle(cornerRadius: 10)
                                    .stroke(.gray.opacity(0.7), lineWidth: 1))
                                .onTapGesture {
-                                   viewModel.text = result.city.name
-                                   viewModel.searchFlight()
+                                   flightViewModel.text = result.city.name
+                                   flightViewModel.searchFlight()
                                }
                     }
                 }
@@ -78,6 +78,15 @@ extension SelectFromAndToLocationView {
                         }
                         Divider()
                     }.padding(.trailing)
+                        .onTapGesture {
+                            flightViewModel.selectedLocation(selectCityforSearch: result.city,
+                                                             selectAirportForSearch: [airport],
+                                                             selectType: selectType)
+                            flightViewModel.text = ""
+                            self.dismiss()
+                        }
+                       
+                       
                 }
             
         }

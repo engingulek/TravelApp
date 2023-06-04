@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct TravelAppApp: App {
+    @StateObject var flightViewModel = FlightViewModel()
     var body: some Scene {
         WindowGroup {
             HomeView()
+                .environmentObject(flightViewModel)
         }
     }
 }

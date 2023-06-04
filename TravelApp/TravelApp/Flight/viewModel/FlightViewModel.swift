@@ -14,6 +14,11 @@ final class FlightViewModel : ObservableObject {
     @Published var airportFilterList : [Flight] = []
     @Published var populerCitiesDomestic : [Flight] = []
     @Published var populerCitiesAbroad : [Flight] = []
+    @Published var selectedDepature : City?
+    @Published var selectedArrivel : City?
+    @Published var textSelectedDepature  = "City/Airport"
+    @Published var textSelectedArrivel  = "City/Airport"
+    
 
 
     init(){
@@ -107,7 +112,44 @@ final class FlightViewModel : ObservableObject {
                 }
             }
         }
-
-            
     }
+    
+    func selectedLocation(selectCityforSearch selectCity:City,
+                          selectAirportForSearch selectAirport:[Airport],
+                          selectType:Bool){
+        
+        var city = selectCity
+        city.airport = selectAirport
+        if selectType {
+            selectedDepature = city
+            guard let depature = selectedDepature  else {return}
+            let cityName = depature.name
+            let airportName = depature.airport.count  >= 2 ? "All Airports" : depature.airport[0].name
+            textSelectedDepature = "\( cityName)/\(airportName)"
+        }else{
+            selectedArrivel = city
+            guard let arrivel = selectedArrivel else {return}
+            let cityName = arrivel.name
+            let airportName = arrivel.airport.count >= 2 ? "All Airports" : arrivel.airport[0].name
+            textSelectedArrivel = "\( cityName)/\( airportName)"
+            
+        }
+    }
+    
+    func changeFromAndTo(){
+        var selectedTemp = selectedArrivel
+        selectedArrivel = selectedDepature
+        selectedDepature = selectedTemp
+        
+        
+        var selectedText = textSelectedArrivel
+        textSelectedArrivel = textSelectedDepature
+        textSelectedDepature = selectedText
+    }
+    
+   
+    
+    
+    
+    
 }

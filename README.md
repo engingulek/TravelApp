@@ -2,14 +2,10 @@
 Flight, Bus and Car Rent app
 
 Last Update
-1 Haziran 2023
+4 Haziran 2023
 
- <table style"float:right;">
- <tr>
+<img width="300" alt="Ekran Resmi 2023-06-04 22 59 49" src="https://github.com/engingulek/TravelApp/assets/74055938/2436f95b-ce0e-40cb-8a43-cf8a43c0f9ad">
+<img width="300" alt="Ekran Resmi 2023-06-04 22 59 31" src="https://github.com/engingulek/TravelApp/assets/74055938/4bc0266a-594b-4b02-a272-9bf81ff0ca86">
+<img width="300" alt="Ekran Resmi 2023-06-04 22 59 16" src="https://github.com/engingulek/TravelApp/assets/74055938/db001b84-022e-418a-88b6-086840261133">
 
- <td> <img  width="300" src="https://github.com/engingulek/TravelApp/assets/74055938/97e4adbd-2bfe-441d-839b-89f222d4379e"></td>
-   <td> <img width="300" src="https://github.com/engingulek/TravelApp/assets/74055938/56789259-9659-4944-a95d-2537f3825133"></td>
-<td><img  alt=""></td>
- </tr>
 
-</table>

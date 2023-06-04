@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftUI
 
 struct FlightView: View {
+    @EnvironmentObject var flightViewModel : FlightViewModel
     @State private var selectedButton = 0
     @State private var isPresentedFrom = false
     @State private var isPresentedTo = false
@@ -26,7 +27,9 @@ struct FlightView: View {
                 }
                 Image(systemName: "arrow.up.arrow.down.circle")
                     .font(.title)
-                    .foregroundColor(Color.blue)
+                    .foregroundColor(Color.blue).onTapGesture {
+                        flightViewModel.changeFromAndTo()
+                    }
             
                 toCityAirport
                     .onTapGesture {
@@ -85,7 +88,7 @@ struct FlightView: View {
                     VStack(alignment:.leading) {
                         Text("From")
                             .foregroundColor(Color.gray)
-                        Text("City/Airport")
+                        Text(flightViewModel.textSelectedDepature)
                     }
                     
                     Spacer()
@@ -107,7 +110,7 @@ struct FlightView: View {
                 VStack(alignment:.leading) {
                     Text("To")
                         .foregroundColor(Color.gray)
-                    Text("City/Airport")
+                    Text(flightViewModel.textSelectedArrivel)
                 }
                 
                 Spacer()
