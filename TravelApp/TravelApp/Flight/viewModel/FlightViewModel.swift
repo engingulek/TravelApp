@@ -9,105 +9,61 @@ import Foundation
 
 final class FlightViewModel : ObservableObject {
     @Published var text = ""
-    @Published var resutlFlight : [Flight] = []
-    @Published var cityAndCountryFilterList : [Flight] = []
-    @Published var airportFilterList : [Flight] = []
+    @Published var resutlFlight : [FlightVM] = []
+    @Published var cityAndCountryFilterList : [FlightVM] = []
+    @Published var airportFilterList : [FlightVM] = []
+    
     @Published var populerCitiesDomestic : [Flight] = []
     @Published var populerCitiesAbroad : [Flight] = []
     @Published var selectedDepature : City?
     @Published var selectedArrivel : City?
     @Published var textSelectedDepature  = "City/Airport"
     @Published var textSelectedArrivel  = "City/Airport"
+    private var flightService = FlightService()
     
 
 
-    init(){
-        getDataAirport()
-        getPopulerCities()
-    }
     
-    func getDataAirport(){
-        let airport0 = Airport(id: 0,
-                              name: "Sabiha",
-                              code: "SAW")
-        let airport1 = Airport(id: 1,
-                              name: "İstanbul Havalimanı",
-                              code: "IST")
-        let airport2 = Airport(id: 2,
-                              name: "Esenboğa",
-                              code: "ESB")
+    func getDataAirport() async {
         
-        let flight = Flight(id: 0,
-                            city: City(id: 0,
-                                       name: "İstanbul",
-                                       code: "ISTA",
-                                       airport: [airport0,airport1]),
-                            country: "Türkiye")
-
-        let flight1 = Flight(id: 1,
-                            city: City(id: 1,
-                                       name: "Ankara",
-                                       code: "ANK",
-                                       airport: [airport2]),
-                            country: "Türkiye")
-
-        resutlFlight.append(flight)
-        resutlFlight.append(flight1)
-        
+        do {
+            await flightService.getFlights(completion: { (response:Result<[Flight],Error>) in
+                switch response {
+                case .success(let list):
+                    DispatchQueue.main.async {
+                        self.resutlFlight = list.map(FlightVM.init)
+                    }
+                case .failure(_):
+                    DispatchQueue.main.async {
+                        self.resutlFlight = []
+                    }
+                }
+            })
+        }
     }
     
     func getPopulerCities()  {
-        let airport0 = Airport(id: 0,
-                              name: "Sabiha",
-                              code: "SAW")
-        let airport1 = Airport(id: 1,
-                              name: "İstanbul Havalimanı",
-                              code: "IST")
-        
-        let airport2 = Airport(id: 2,
-                              name: "Selanik Uluslararası Havalimanı",
-                              code: "SKG")
-        
-        
-        //
-        let flight = Flight(id: 0,
-                            city: City(id: 0,
-                                       name: "İstanbul",
-                                       code: "ISTA",
-                                       airport: [airport0,airport1]),
-                            country: "Türkiye")
-        
-        let flight1 = Flight(id: 1,
-                            city: City(id: 1,
-                                       name: "Selanik",
-                                       code: "ISTA",
-                                       airport: [airport2]),
-                            country: "Yunanistan")
-        populerCitiesDomestic.append(flight)
-        populerCitiesAbroad.append(flight1)
-        populerCitiesDomestic.append(flight)
-        populerCitiesAbroad.append(flight1)
+       
     }
     
     
     func searchFlight() {
-        cityAndCountryFilterList = []
+       cityAndCountryFilterList = []
         airportFilterList = []
         cityAndCountryFilterList =   resutlFlight.filter {
             $0.country.lowercased().contains(text.lowercased()) ||
             $0.city.name.lowercased().contains(text.lowercased())
         }
-        
+    
         for filter in resutlFlight {
             for airport in filter.city.airport{
                 if airport.name.lowercased().contains(text.lowercased()){
                     airportFilterList.append(
-                        .init(id: filter.id,
-                              city: City(id: filter.city.id,
-                                         name: filter.city.name,
-                                         code: filter.city.code,
-                                         airport: [airport]),
-                              country: filter.country)
+                        .init(flight: Flight(_id: filter.id,
+                                           city: City(id: filter.city.id,
+                                            name: filter.city.name,
+                                            code: filter.city.code,
+                                                      airport: [airport]), country: filter.country))
                     )
                 }
             }
@@ -137,19 +93,27 @@ final class FlightViewModel : ObservableObject {
     }
     
     func changeFromAndTo(){
-        var selectedTemp = selectedArrivel
+        let selectedTemp = selectedArrivel
         selectedArrivel = selectedDepature
         selectedDepature = selectedTemp
         
         
-        var selectedText = textSelectedArrivel
+        let selectedText = textSelectedArrivel
         textSelectedArrivel = textSelectedDepature
         textSelectedDepature = selectedText
     }
-    
-   
-    
-    
-    
-    
+}
+
+
+struct FlightVM : Identifiable {
+    let flight : Flight
+    var id : String{
+        flight._id
+    }
+    var city : City {
+        flight.city
+    }
+    var country : String {
+        flight.country
+    }
 }

@@ -17,7 +17,7 @@ extension SelectFromAndToLocationView {
             
             VStack(alignment:.leading) {
                 HStack{
-                    ForEach(flightViewModel.populerCitiesDomestic){ result in
+                    /*ForEach(flightViewModel.populerCitiesDomestic){ result in
                         Text(result.city.name)
                                .font(.callout)
                                .padding(.all,10)
@@ -28,12 +28,12 @@ extension SelectFromAndToLocationView {
                                    flightViewModel.text = result.city.name
                                    flightViewModel.searchFlight()
                                }
-                    }
+                    }*/
                 }
                 
                 
                 HStack{
-                    ForEach(flightViewModel.populerCitiesAbroad){ result in
+                   /* ForEach(flightViewModel.populerCitiesAbroad){ result in
                         Text(result.city.name)
                                .font(.callout)
                                .padding(.all,10)
@@ -44,7 +44,7 @@ extension SelectFromAndToLocationView {
                                    flightViewModel.text = result.city.name
                                    flightViewModel.searchFlight()
                                }
-                    }
+                    }*/
                 }
             }
             
@@ -53,7 +53,7 @@ extension SelectFromAndToLocationView {
         }.padding(.horizontal)
     }
     
-    func airportList(result:Flight) ->  some View {
+    func airportList(result:FlightVM) ->  some View {
         VStack{
             
                 ForEach(result.city.airport) { airport in

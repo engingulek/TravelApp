@@ -99,6 +99,8 @@ struct SelectFromAndToLocationView: View {
             }else{
                 resultNil
             }
+        }.task {
+            await flightViewModel.getDataAirport()
         }
     }
 }

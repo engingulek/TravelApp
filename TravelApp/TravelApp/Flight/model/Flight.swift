@@ -8,23 +8,23 @@
 import Foundation
 
 
-struct Flight : Identifiable {
+struct Flight : Codable {
    
     
-    var id : Int
+    var _id : String
     var city : City
     var country : String
     
 }
 
-struct City :Identifiable {
+struct City :Identifiable, Codable {
     var id : Int
     var name : String
     var code : String
     var airport : [Airport]
 }
 
-struct Airport : Identifiable {
+struct Airport : Identifiable , Codable {
     var id : Int
     var name : String
     var code : String
