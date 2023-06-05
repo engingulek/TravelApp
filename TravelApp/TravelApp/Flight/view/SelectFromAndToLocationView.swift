@@ -26,18 +26,21 @@ struct SelectFromAndToLocationView: View {
                     Image(systemName: "xmark")
                         .foregroundColor(.white)
                         .font(.title2)
-                        .onTapGesture { dismiss() }
+                        .onTapGesture {
+                            dismiss()
+                            flightViewModel.text = ""
+                        }
                 }.padding(.horizontal)
                 
                 TextField("Enter City and Airport", text: $flightViewModel.text)
                     .onChange(of: flightViewModel.text) { _ in
                         flightViewModel.searchFlight()
                     }
-                .font(.callout)
-                .padding(.all,10)
-                .background(Color.white)
-                .foregroundColor(Color.gray)
-                .cornerRadius(10)
+                    .font(.callout)
+                    .padding(.all,10)
+                    .background(Color.white)
+                    .foregroundColor(Color.gray)
+                    .cornerRadius(10)
             }
             .padding()
             .background(Color.blue)
@@ -49,50 +52,55 @@ struct SelectFromAndToLocationView: View {
                         ForEach(flightViewModel.cityAndCountryFilterList) { result in
                             /// If the number of airports in the city is more than 2, all airports are written
                             
-                                if result.city.airport.count >= 2{
-                                    VStack {
-                                        HStack {
-                                            VStack(alignment:.leading) {
-                                                Text("\(result.city.name),\(result.country)")
-                                                    
-                                                Text("All Airports")
-                                                    .font(.footnote)
-                                                    .fontWeight(.semibold)
-                                                    .foregroundColor(.gray)
-                                                    
-                                            }
-                                            Spacer()
-                                            Text(result.city.code)
-                                                .font(.footnote)
-                                                .padding(.all,5)
-                                                .background(Color.gray.opacity(0.6))
-                                                .cornerRadius(10)
+                            if result.city.airport.count >= 2{
+                                VStack {
+                                    HStack {
+                                        VStack(alignment:.leading) {
+                                            Text("\(result.city.name),\(result.country)")
                                             
-                                        }.padding(.trailing)
-                                        Divider()
-                                            .padding(.trailing)
-                                    } .onTapGesture {
-                                      
-                                        flightViewModel.selectedLocation(selectCityforSearch: result.city, selectAirportForSearch: result.city.airport,
-                                                                         selectType:selectType)
-                                        flightViewModel.text = ""
-                                        self.dismiss()
-                                    }
-                                    // MARK: - Airports List
-                                  airportList(result: result)
+                                            Text("All Airports")
+                                                .font(.footnote)
+                                                .fontWeight(.semibold)
+                                                .foregroundColor(.gray)
+                                            
+                                        }
+                                        Spacer()
+                                        Text(result.city.code)
+                                            .font(.footnote)
+                                            .padding(.all,5)
+                                            .background(Color.gray.opacity(0.6))
+                                            .cornerRadius(10)
                                         
+                                    }.padding(.trailing)
+                                    Divider()
+                                        .padding(.trailing)
+                                } .onTapGesture {
+                                    
+                                    flightViewModel.selectedLocation(selectCityforSearch: result.city, selectAirportForSearch: result.city.airport,
+                                                                     selectType:selectType)
+                                    flightViewModel.text = ""
+                                    self.dismiss()
                                 }
-                                else{
-                                 airportList(result: result)
-                                        
-                                }
+                                // MARK: - Airports List
+                                airportList(result: result)
+                                
+                            }
+                            else{
+                                airportList(result: result)
+                                
+                            }
                             
                         }
                     }else{
-                        ForEach(flightViewModel.airportFilterList) { result in
-                          airportList(result: result)
+                        if !flightViewModel.airportFilterList.isEmpty {
+                            ForEach(flightViewModel.airportFilterList) { result in
+                                airportList(result: result)
                                 
+                            }
+                        }else{
+                            Text("There were no results")
                         }
+                        
                     }
                     Spacer()
                 }.padding(.leading)
@@ -101,6 +109,7 @@ struct SelectFromAndToLocationView: View {
             }
         }.task {
             await flightViewModel.getDataAirport()
+            await flightViewModel.getPopulerCities()
         }
     }
 }

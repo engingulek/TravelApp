@@ -12,18 +12,19 @@ final class FlightViewModel : ObservableObject {
     @Published var resutlFlight : [FlightVM] = []
     @Published var cityAndCountryFilterList : [FlightVM] = []
     @Published var airportFilterList : [FlightVM] = []
+    @Published var populerCitiesDomestic : [FlightVM] = []
+    @Published var populerCitiesAbroad : [FlightVM] = []
     
-    @Published var populerCitiesDomestic : [Flight] = []
-    @Published var populerCitiesAbroad : [Flight] = []
     @Published var selectedDepature : City?
     @Published var selectedArrivel : City?
     @Published var textSelectedDepature  = "City/Airport"
     @Published var textSelectedArrivel  = "City/Airport"
     private var flightService = FlightService()
+    var popFlights : [FlightVM] = []
     
 
 
-    
+    // MARK: Get Flights
     func getDataAirport() async {
         
         do {
@@ -42,11 +43,30 @@ final class FlightViewModel : ObservableObject {
         }
     }
     
-    func getPopulerCities()  {
+    // MARK: Get Pop Flights
+    
+    func getPopulerCities() async {
+        
+        do{
+            await flightService.getPopFlights(completion: { (response:Result<[Flight],Error>) in
+                switch response {
+                case .success(let list):
+                    DispatchQueue.main.async {
+                        self.popFlights = list.map(FlightVM.init)
+                        self.populerCitiesDomestic = self.popFlights.filter({$0.country == "Türkiye" })
+                        self.populerCitiesAbroad = self.popFlights.filter({$0.country != "Türkiye" })
+                    }
+                case .failure(_):
+                    DispatchQueue.main.async {
+                        self.popFlights = []
+                    }
+                }
+            })
+        }
        
     }
     
-    
+    // MARK: Search Flight
     func searchFlight() {
        cityAndCountryFilterList = []
         airportFilterList = []

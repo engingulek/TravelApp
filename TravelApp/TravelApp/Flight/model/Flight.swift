@@ -17,7 +17,11 @@ struct Flight : Codable {
     
 }
 
-struct City :Identifiable, Codable {
+struct City :Identifiable, Codable,Equatable {
+    static func == (lhs: City, rhs: City) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     var id : Int
     var name : String
     var code : String

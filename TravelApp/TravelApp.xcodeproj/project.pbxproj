@@ -21,7 +21,6 @@
 		7D741B062A2E1E2C004357A4 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D741B052A2E1E2C004357A4 /* Network.swift */; };
 		7D741B082A2E1E3E004357A4 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D741B072A2E1E3E004357A4 /* ServiceManager.swift */; };
 		7D741B0B2A2E1E6B004357A4 /* FlightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D741B0A2A2E1E6B004357A4 /* FlightService.swift */; };
-		7D741B102A2E29EF004357A4 /* FlightServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D741B0F2A2E29EF004357A4 /* FlightServiceMock.swift */; };
 		7D741B132A2E2EB4004357A4 /* FlightViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D741B122A2E2EB4004357A4 /* FlightViewModelTest.swift */; };
 		7DC85BE22A2A8E3900AB46E3 /* SelectFromAndToLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC85BE12A2A8E3900AB46E3 /* SelectFromAndToLocationView.swift */; };
 		7DC85BE82A2A913200AB46E3 /* Flight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC85BE72A2A913200AB46E3 /* Flight.swift */; };
@@ -64,7 +63,6 @@
 		7D741B072A2E1E3E004357A4 /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		7D741B0A2A2E1E6B004357A4 /* FlightService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightService.swift; sourceTree = "<group>"; };
 		7D741B0C2A2E2195004357A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		7D741B0F2A2E29EF004357A4 /* FlightServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightServiceMock.swift; sourceTree = "<group>"; };
 		7D741B122A2E2EB4004357A4 /* FlightViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightViewModelTest.swift; sourceTree = "<group>"; };
 		7DC85BE12A2A8E3900AB46E3 /* SelectFromAndToLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFromAndToLocationView.swift; sourceTree = "<group>"; };
 		7DC85BE72A2A913200AB46E3 /* Flight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flight.swift; sourceTree = "<group>"; };
@@ -154,7 +152,6 @@
 		7D4394482A28B3D700BDAB65 /* TravelAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				7D741B112A2E29F8004357A4 /* Mock */,
 				7D741B122A2E2EB4004357A4 /* FlightViewModelTest.swift */,
 			);
 			path = TravelAppTests;
@@ -194,14 +191,6 @@
 				7D741B0A2A2E1E6B004357A4 /* FlightService.swift */,
 			);
 			path = service;
-			sourceTree = "<group>";
-		};
-		7D741B112A2E29F8004357A4 /* Mock */ = {
-			isa = PBXGroup;
-			children = (
-				7D741B0F2A2E29EF004357A4 /* FlightServiceMock.swift */,
-			);
-			path = Mock;
 			sourceTree = "<group>";
 		};
 		7DC85BE52A2A910A00AB46E3 /* view */ = {
@@ -397,7 +386,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D741B132A2E2EB4004357A4 /* FlightViewModelTest.swift in Sources */,
-				7D741B102A2E29EF004357A4 /* FlightServiceMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
