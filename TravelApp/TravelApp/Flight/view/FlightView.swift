@@ -10,9 +10,15 @@ import SwiftUI
 
 struct FlightView: View {
     @EnvironmentObject var flightViewModel : FlightViewModel
+    @EnvironmentObject var selectDepAndArViewModel : SelectDepAndArDateViewModel
     @State private var selectedButton = 0
+    
     @State private var isPresentedFrom = false
     @State private var isPresentedTo = false
+    
+    @State private var isPresentedDateDepature = false
+    @State private var isPresentedDateArrivel = false
+    
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack {
@@ -39,8 +45,24 @@ struct FlightView: View {
                     .fullScreenCover(isPresented:$isPresentedTo) {
                         SelectFromAndToLocationView(selectType: false)
                 }
-                date
-                selectedButton == 1 ? returnDate : nil
+                depatureDate.onTapGesture {
+                    self.isPresentedDateDepature = true
+                }.sheet(isPresented: $isPresentedDateDepature) {
+                   SelectDepartureDate()
+                        .presentationDetents([.height(UIScreen.main.bounds.height / 1.5),.fraction(0.75)])
+                        
+                }
+                selectedButton == 1 ?
+                returnDate
+                    .onTapGesture {
+                        self.isPresentedDateArrivel = true
+        
+                    }.sheet(isPresented: $isPresentedDateArrivel, content: {
+                        SelectArrvivelDate(startArrivelDate: selectDepAndArViewModel.selectedDepatureDate)
+                          .presentationDetents([.height(UIScreen.main.bounds.height / 1.5),.fraction(0.75)])
+                    })
+                
+                : nil
                 HStack(spacing: 5) {
                     passanger
                     classType
@@ -127,14 +149,14 @@ struct FlightView: View {
     
     
     
-    var date : some View {
+    var depatureDate : some View {
         VStack(alignment: .leading) {
             HStack {
                 Image(systemName: "calendar")
                 VStack(alignment:.leading) {
                     Text("Date")
                         .foregroundColor(Color.gray)
-                    Text("02 Jun 2023")
+                    Text(selectDepAndArViewModel.selectedDepatureDate.formatted())
                 }
                 
                 Spacer()
@@ -154,7 +176,7 @@ struct FlightView: View {
                 VStack(alignment:.leading) {
                     Text("Return Date")
                         .foregroundColor(Color.gray)
-                    Text("02 Jun 2023")
+                    Text(selectDepAndArViewModel.selectedArrivelDate.formatted())
                 }
                 
                 Spacer()
@@ -231,6 +253,7 @@ struct FlightView: View {
 
 struct FlightView_Previews: PreviewProvider {
     static var previews: some View {
-        FlightView()
+        FlightView().environmentObject(FlightViewModel())
+            .environmentObject(SelectDepAndArDateViewModel())
     }
 }

@@ -1,13 +1,12 @@
 //
-//  Extension+View.swift
+//  Extension+HomeView.swift
 //  TravelApp
 //
-//  Created by engin gülek on 1.06.2023.
+//  Created by engin gülek on 6.06.2023.
 //
 
 import Foundation
 import SwiftUI
-
 
 struct RoundedCorner: Shape {
     var radius: CGFloat = .infinity
@@ -19,11 +18,7 @@ struct RoundedCorner: Shape {
     }
 }
 
-extension View {
-    func roundedCorner(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        clipShape(RoundedCorner(radius: radius, corners: corners) )
-    }
-}
+
 
 extension HomeView {
 // MARK: - Title Design
@@ -36,4 +31,3 @@ extension HomeView {
     }
 
 }
-

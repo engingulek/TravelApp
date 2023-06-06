@@ -10,10 +10,12 @@ import SwiftUI
 @main
 struct TravelAppApp: App {
     @StateObject var flightViewModel = FlightViewModel()
+    @StateObject var selectedDepAndArViewModel = SelectDepAndArDateViewModel()
     var body: some Scene {
         WindowGroup {
             HomeView()
                 .environmentObject(flightViewModel)
+                .environmentObject(selectedDepAndArViewModel)
         }
     }
 }

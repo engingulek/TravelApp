@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D1228442A2F6355003FD3EE /* SelectDepartureDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1228432A2F6355003FD3EE /* SelectDepartureDate.swift */; };
+		7D1228462A2F75F3003FD3EE /* SelectDepAndArDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1228452A2F75F3003FD3EE /* SelectDepAndArDateViewModel.swift */; };
 		7D39B5C52A292A8E006C7A96 /* FlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D39B5C42A292A8E006C7A96 /* FlightView.swift */; };
 		7D4394392A28B3D600BDAB65 /* TravelAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4394382A28B3D600BDAB65 /* TravelAppApp.swift */; };
 		7D43943D2A28B3D700BDAB65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D43943C2A28B3D700BDAB65 /* Assets.xcassets */; };
@@ -16,6 +18,8 @@
 		7D4394672A28BB5300BDAB65 /* SlidingTabView in Frameworks */ = {isa = PBXBuildFile; productRef = 7D4394662A28BB5300BDAB65 /* SlidingTabView */; };
 		7D4394692A28BB7300BDAB65 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4394682A28BB7300BDAB65 /* Extension.swift */; };
 		7D43946D2A28C44800BDAB65 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D43946C2A28C44800BDAB65 /* HomeView.swift */; };
+		7D6D81672A2F9C06001FDBAF /* Extension+HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6D81662A2F9C06001FDBAF /* Extension+HomeView.swift */; };
+		7D6D81692A2FABDB001FDBAF /* SelectArrvivelDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6D81682A2FABDB001FDBAF /* SelectArrvivelDate.swift */; };
 		7D741B022A2E1E04004357A4 /* DataResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D741B012A2E1E04004357A4 /* DataResult.swift */; };
 		7D741B042A2E1E19004357A4 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D741B032A2E1E19004357A4 /* RequestType.swift */; };
 		7D741B062A2E1E2C004357A4 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D741B052A2E1E2C004357A4 /* Network.swift */; };
@@ -46,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D1228432A2F6355003FD3EE /* SelectDepartureDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDepartureDate.swift; sourceTree = "<group>"; };
+		7D1228452A2F75F3003FD3EE /* SelectDepAndArDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDepAndArDateViewModel.swift; sourceTree = "<group>"; };
 		7D39B5C42A292A8E006C7A96 /* FlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightView.swift; sourceTree = "<group>"; };
 		7D4394352A28B3D600BDAB65 /* TravelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4394382A28B3D600BDAB65 /* TravelAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelAppApp.swift; sourceTree = "<group>"; };
@@ -57,6 +63,8 @@
 		7D4394552A28B3D700BDAB65 /* TravelAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7D4394682A28BB7300BDAB65 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		7D43946C2A28C44800BDAB65 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		7D6D81662A2F9C06001FDBAF /* Extension+HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+HomeView.swift"; sourceTree = "<group>"; };
+		7D6D81682A2FABDB001FDBAF /* SelectArrvivelDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectArrvivelDate.swift; sourceTree = "<group>"; };
 		7D741B012A2E1E04004357A4 /* DataResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResult.swift; sourceTree = "<group>"; };
 		7D741B032A2E1E19004357A4 /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
 		7D741B052A2E1E2C004357A4 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -96,6 +104,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D1228412A2F6300003FD3EE /* part */ = {
+			isa = PBXGroup;
+			children = (
+				7DC85BE12A2A8E3900AB46E3 /* SelectFromAndToLocationView.swift */,
+				7DE1C6F82A2CADEB00A0DD79 /* Extension+SelectionFromToView.swift */,
+				7D1228432A2F6355003FD3EE /* SelectDepartureDate.swift */,
+				7D6D81682A2FABDB001FDBAF /* SelectArrvivelDate.swift */,
+			);
+			path = part;
+			sourceTree = "<group>";
+		};
 		7D39B5C32A292A77006C7A96 /* Flight */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				7D741B0C2A2E2195004357A4 /* Info.plist */,
+				7D4394682A28BB7300BDAB65 /* Extension.swift */,
 				7D741AFF2A2E1DEB004357A4 /* Manager */,
 				7D39B5C32A292A77006C7A96 /* Flight */,
 				7DD404BC2A28C57E00F63A00 /* Home */,
@@ -196,9 +216,8 @@
 		7DC85BE52A2A910A00AB46E3 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				7D1228412A2F6300003FD3EE /* part */,
 				7D39B5C42A292A8E006C7A96 /* FlightView.swift */,
-				7DC85BE12A2A8E3900AB46E3 /* SelectFromAndToLocationView.swift */,
-				7DE1C6F82A2CADEB00A0DD79 /* Extension+SelectionFromToView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -215,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				7DC85BEA2A2A97A200AB46E3 /* FlightViewModel.swift */,
+				7D1228452A2F75F3003FD3EE /* SelectDepAndArDateViewModel.swift */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -222,8 +242,8 @@
 		7DD404BC2A28C57E00F63A00 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				7D4394682A28BB7300BDAB65 /* Extension.swift */,
 				7D43946C2A28C44800BDAB65 /* HomeView.swift */,
+				7D6D81662A2F9C06001FDBAF /* Extension+HomeView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -367,8 +387,10 @@
 			files = (
 				7DC85BE22A2A8E3900AB46E3 /* SelectFromAndToLocationView.swift in Sources */,
 				7D39B5C52A292A8E006C7A96 /* FlightView.swift in Sources */,
+				7D6D81692A2FABDB001FDBAF /* SelectArrvivelDate.swift in Sources */,
 				7DC85BEB2A2A97A200AB46E3 /* FlightViewModel.swift in Sources */,
 				7D741B022A2E1E04004357A4 /* DataResult.swift in Sources */,
+				7D1228442A2F6355003FD3EE /* SelectDepartureDate.swift in Sources */,
 				7D4394392A28B3D600BDAB65 /* TravelAppApp.swift in Sources */,
 				7D741B062A2E1E2C004357A4 /* Network.swift in Sources */,
 				7D43946D2A28C44800BDAB65 /* HomeView.swift in Sources */,
@@ -378,6 +400,8 @@
 				7DC85BE82A2A913200AB46E3 /* Flight.swift in Sources */,
 				7D741B042A2E1E19004357A4 /* RequestType.swift in Sources */,
 				7D741B082A2E1E3E004357A4 /* ServiceManager.swift in Sources */,
+				7D1228462A2F75F3003FD3EE /* SelectDepAndArDateViewModel.swift in Sources */,
+				7D6D81672A2F9C06001FDBAF /* Extension+HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,7 +572,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -582,7 +606,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
