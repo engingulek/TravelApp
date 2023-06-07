@@ -12,15 +12,14 @@ struct FlightView: View {
     @EnvironmentObject var flightViewModel : FlightViewModel
     @EnvironmentObject var selectDepAndArViewModel : SelectDepAndArDateViewModel
     @EnvironmentObject var selectPassangerViewModel : SelectPassengerViewModel
+    @EnvironmentObject var classViewModel : ClassViewModel
     @State private var selectedButton = 0
-    
     @State private var isPresentedFrom = false
     @State private var isPresentedTo = false
-    
     @State private var isPresentedDateDepature = false
     @State private var isPresentedDateArrivel = false
-    
     @State private var isPresentedPassanger = false
+    @State private var isPresenterClass = false
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -74,6 +73,13 @@ struct FlightView: View {
                             SelectPassangerView()
                         }
                     classType
+                        .onTapGesture {
+                            self.isPresenterClass = true
+                        }.sheet(isPresented: $isPresenterClass) {
+                            ClassView()
+                                .presentationDetents([.height(UIScreen.main.bounds.height / 4),.fraction(0.25)])
+                          
+                        }
                 }
                 .padding(.horizontal)
                 searchButton
@@ -226,7 +232,7 @@ struct FlightView: View {
                     VStack(alignment:.leading) {
                         Text("Class")
                             .foregroundColor(Color.gray)
-                        Text("Economy")
+                        Text(classViewModel.selectedClassType)
                     }
                    
                  
@@ -264,5 +270,6 @@ struct FlightView_Previews: PreviewProvider {
         FlightView().environmentObject(FlightViewModel())
             .environmentObject(SelectDepAndArDateViewModel())
             .environmentObject(SelectPassengerViewModel())
+            .environmentObject(ClassViewModel())
     }
 }

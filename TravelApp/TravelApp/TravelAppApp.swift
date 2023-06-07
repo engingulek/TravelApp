@@ -12,12 +12,14 @@ struct TravelAppApp: App {
     @StateObject var flightViewModel = FlightViewModel()
     @StateObject var selectedDepAndArViewModel = SelectDepAndArDateViewModel()
     @StateObject var selectPassangerViewModel = SelectPassengerViewModel()
+    @StateObject var classViewModel = ClassViewModel()
     var body: some Scene {
         WindowGroup {
             HomeView()
                 .environmentObject(flightViewModel)
                 .environmentObject(selectedDepAndArViewModel)
                 .environmentObject(selectPassangerViewModel)
+                .environmentObject(classViewModel)
         }
     }
 }
