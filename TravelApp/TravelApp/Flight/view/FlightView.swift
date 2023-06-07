@@ -19,6 +19,8 @@ struct FlightView: View {
     @State private var isPresentedDateDepature = false
     @State private var isPresentedDateArrivel = false
     
+    @State private var isPresentedPassanger = false
+    
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack {
@@ -65,6 +67,11 @@ struct FlightView: View {
                 : nil
                 HStack(spacing: 5) {
                     passanger
+                        .onTapGesture {
+                            self.isPresentedPassanger = true
+                        }.fullScreenCover(isPresented: $isPresentedPassanger) {
+                            SelectPassangerView()
+                        }
                     classType
                 }
                 .padding(.horizontal)
@@ -156,7 +163,7 @@ struct FlightView: View {
                 VStack(alignment:.leading) {
                     Text("Date")
                         .foregroundColor(Color.gray)
-                    Text(selectDepAndArViewModel.selectedDepatureDate.formatted())
+                    Text(selectDepAndArViewModel.selectedDepatureDate.dateFormatted())
                 }
                 
                 Spacer()
@@ -176,7 +183,7 @@ struct FlightView: View {
                 VStack(alignment:.leading) {
                     Text("Return Date")
                         .foregroundColor(Color.gray)
-                    Text(selectDepAndArViewModel.selectedArrivelDate.formatted())
+                    Text((selectDepAndArViewModel.selectedArrivelDate.dateFormatted() ) as String)
                 }
                 
                 Spacer()

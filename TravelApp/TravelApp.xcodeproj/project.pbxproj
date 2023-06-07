@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7D1228442A2F6355003FD3EE /* SelectDepartureDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1228432A2F6355003FD3EE /* SelectDepartureDate.swift */; };
 		7D1228462A2F75F3003FD3EE /* SelectDepAndArDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1228452A2F75F3003FD3EE /* SelectDepAndArDateViewModel.swift */; };
+		7D168C992A30689C0063A7C8 /* SelectPassangerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D168C982A30689C0063A7C8 /* SelectPassangerView.swift */; };
 		7D39B5C52A292A8E006C7A96 /* FlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D39B5C42A292A8E006C7A96 /* FlightView.swift */; };
 		7D4394392A28B3D600BDAB65 /* TravelAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4394382A28B3D600BDAB65 /* TravelAppApp.swift */; };
 		7D43943D2A28B3D700BDAB65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D43943C2A28B3D700BDAB65 /* Assets.xcassets */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		7D1228432A2F6355003FD3EE /* SelectDepartureDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDepartureDate.swift; sourceTree = "<group>"; };
 		7D1228452A2F75F3003FD3EE /* SelectDepAndArDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDepAndArDateViewModel.swift; sourceTree = "<group>"; };
+		7D168C982A30689C0063A7C8 /* SelectPassangerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPassangerView.swift; sourceTree = "<group>"; };
 		7D39B5C42A292A8E006C7A96 /* FlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightView.swift; sourceTree = "<group>"; };
 		7D4394352A28B3D600BDAB65 /* TravelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4394382A28B3D600BDAB65 /* TravelAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelAppApp.swift; sourceTree = "<group>"; };
@@ -107,12 +109,36 @@
 		7D1228412A2F6300003FD3EE /* part */ = {
 			isa = PBXGroup;
 			children = (
+				7D168C972A3068850063A7C8 /* passenger */,
+				7D168C962A3064B00063A7C8 /* date */,
+				7D168C952A30649E0063A7C8 /* fromTo */,
+			);
+			path = part;
+			sourceTree = "<group>";
+		};
+		7D168C952A30649E0063A7C8 /* fromTo */ = {
+			isa = PBXGroup;
+			children = (
 				7DC85BE12A2A8E3900AB46E3 /* SelectFromAndToLocationView.swift */,
-				7DE1C6F82A2CADEB00A0DD79 /* Extension+SelectionFromToView.swift */,
+			);
+			path = fromTo;
+			sourceTree = "<group>";
+		};
+		7D168C962A3064B00063A7C8 /* date */ = {
+			isa = PBXGroup;
+			children = (
 				7D1228432A2F6355003FD3EE /* SelectDepartureDate.swift */,
 				7D6D81682A2FABDB001FDBAF /* SelectArrvivelDate.swift */,
 			);
-			path = part;
+			path = date;
+			sourceTree = "<group>";
+		};
+		7D168C972A3068850063A7C8 /* passenger */ = {
+			isa = PBXGroup;
+			children = (
+				7D168C982A30689C0063A7C8 /* SelectPassangerView.swift */,
+			);
+			path = passenger;
 			sourceTree = "<group>";
 		};
 		7D39B5C32A292A77006C7A96 /* Flight */ = {
@@ -218,6 +244,7 @@
 			children = (
 				7D1228412A2F6300003FD3EE /* part */,
 				7D39B5C42A292A8E006C7A96 /* FlightView.swift */,
+				7DE1C6F82A2CADEB00A0DD79 /* Extension+SelectionFromToView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -398,6 +425,7 @@
 				7DE1C6F92A2CADEB00A0DD79 /* Extension+SelectionFromToView.swift in Sources */,
 				7D741B0B2A2E1E6B004357A4 /* FlightService.swift in Sources */,
 				7DC85BE82A2A913200AB46E3 /* Flight.swift in Sources */,
+				7D168C992A30689C0063A7C8 /* SelectPassangerView.swift in Sources */,
 				7D741B042A2E1E19004357A4 /* RequestType.swift in Sources */,
 				7D741B082A2E1E3E004357A4 /* ServiceManager.swift in Sources */,
 				7D1228462A2F75F3003FD3EE /* SelectDepAndArDateViewModel.swift in Sources */,

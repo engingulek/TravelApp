@@ -15,8 +15,8 @@ extension View {
 }
 
 extension Date  {
-    func formatted() -> String {
-        return self.formatted(.dateTime.year().month().day())
+    func dateFormatted() -> String {
+        return self.formatted(.dateTime.day().month().year()) as String
     }
 }
 
