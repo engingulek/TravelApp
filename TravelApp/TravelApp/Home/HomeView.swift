@@ -51,6 +51,7 @@ struct HomeView_Previews: PreviewProvider {
         HomeView()
             .environmentObject(FlightViewModel())
                 .environmentObject(SelectDepAndArDateViewModel())
+                .environmentObject(SelectPassengerViewModel())
             
     }
 }

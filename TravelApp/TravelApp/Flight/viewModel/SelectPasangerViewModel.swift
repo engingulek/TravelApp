@@ -69,13 +69,14 @@ class SelectPassengerViewModel : ObservableObject {
             self.studentCount += 1
             print(studentCount)
         }
+        totalCountCalculate()
     }
     
     func toDecreasePassengerCount(passenger:PassagersType){
         switch passenger {
             
         case .adult:
-            if self.adultCount > 1 {
+            if self.totalCount > 1 {
                 self.adultCount -= 1
                 print(adultCount)
             }
@@ -98,6 +99,7 @@ class SelectPassengerViewModel : ObservableObject {
                 print(studentCount)
             }
         }
+        totalCountCalculate()
     }
     
     func totalCountCalculate(){
