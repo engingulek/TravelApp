@@ -7,32 +7,9 @@
 
 import SwiftUI
 
-
-
-enum PassagersType: CaseIterable {
-    case adult
-    case kind
-    case baby
-    case student
-    
-    var description : (String,String) {
-        switch self {
-        case .adult:
-            return ("Adult","")
-            
-        case .kind:
-            return ("Kind","(2-12) Years Old")
-    
-        case .baby:
-            return ("Baby","(0-2) Years Old")
-        case .student:
-            return ("Student","12-24 Years Old")
-        }
-    }
-}
-
 struct SelectPassangerView: View {
-    
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var selectPassangerViewModel : SelectPassengerViewModel
     var body: some View {
         VStack {
             HStack{
@@ -43,6 +20,10 @@ struct SelectPassangerView: View {
                     .foregroundColor(.black)
                     .font(.title2)
             }.padding(.horizontal)
+                .onTapGesture {
+                    self.dismiss()
+                    selectPassangerViewModel.totalCountCalculate()
+                }
          
                 ScrollView{
                     VStack(alignment: .leading) {
@@ -55,34 +36,46 @@ struct SelectPassangerView: View {
                                         .font(.footnote)
                                 }
                                 Spacer()
+                                
+                               
+                                
                                 HStack{
                                     Button("-") {
-                                        
+                                        selectPassangerViewModel.toDecreasePassengerCount(passenger: passanger)
                                     }
-                                    .padding(.horizontal,10)
-                                    .padding(.vertical,5)
-                                    .background(.gray.opacity(0.3))
-                                    .cornerRadius(20)
+                                    .padding(.horizontal,8)
+                                    .padding(.vertical,3)
+                                    .background(Color.gray.opacity(0.4))
                                     .foregroundColor(.black)
-                                    
-                                    Text("1")
-                                    
-                                    Button("+") {
-                                        
-                                    }
-                                    .padding(.horizontal,10)
-                                    .padding(.vertical,5)
-                                    .background(.blue)
                                     .cornerRadius(20)
+                                    Text("\(selectPassangerViewModel.passengerCount(passenger: passanger))")
+                                        .frame(width: 10)
+                                    Button("+") {
+                                        selectPassangerViewModel.toIncreasePassengerCount(passenger: passanger)
+                                    }
+                                    
+                                    .padding(.horizontal,8)
+                                    .padding(.vertical,3)
+                                    .background(Color.blue)
                                     .foregroundColor(.white)
+                                    .cornerRadius(20)
                                 }
+                                
+                               
+                                
                             }
-                            Divider()
+                   
+                                Divider()
+                                .frame(height: 2)
+                                .overlay(.blue)
+
+                            
+                            
                         }
                     }.padding(.horizontal)
                 }
             
-        }
+        }.padding(.top)
     }
     
    
@@ -94,5 +87,6 @@ struct SelectPassangerView: View {
 struct SelectPassangerView_Previews: PreviewProvider {
     static var previews: some View {
         SelectPassangerView()
+            .environmentObject(SelectPassengerViewModel())
     }
 }

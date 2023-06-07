@@ -11,11 +11,13 @@ import SwiftUI
 struct TravelAppApp: App {
     @StateObject var flightViewModel = FlightViewModel()
     @StateObject var selectedDepAndArViewModel = SelectDepAndArDateViewModel()
+    @StateObject var selectPassangerViewModel = SelectPassengerViewModel()
     var body: some Scene {
         WindowGroup {
             HomeView()
                 .environmentObject(flightViewModel)
                 .environmentObject(selectedDepAndArViewModel)
+                .environmentObject(selectPassangerViewModel)
         }
     }
 }

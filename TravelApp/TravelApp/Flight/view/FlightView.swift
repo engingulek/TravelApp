@@ -11,6 +11,7 @@ import SwiftUI
 struct FlightView: View {
     @EnvironmentObject var flightViewModel : FlightViewModel
     @EnvironmentObject var selectDepAndArViewModel : SelectDepAndArDateViewModel
+    @EnvironmentObject var selectPassangerViewModel : SelectPassengerViewModel
     @State private var selectedButton = 0
     
     @State private var isPresentedFrom = false
@@ -203,7 +204,7 @@ struct FlightView: View {
                 VStack(alignment:.leading) {
                     Text("Passenger")
                         .foregroundColor(Color.gray)
-                    Text("1 Passenger")
+                    Text("\(selectPassangerViewModel.totalCount) Passenger")
                 }
                 
                 Spacer()
@@ -262,5 +263,6 @@ struct FlightView_Previews: PreviewProvider {
     static var previews: some View {
         FlightView().environmentObject(FlightViewModel())
             .environmentObject(SelectDepAndArDateViewModel())
+            .environmentObject(SelectPassengerViewModel())
     }
 }
