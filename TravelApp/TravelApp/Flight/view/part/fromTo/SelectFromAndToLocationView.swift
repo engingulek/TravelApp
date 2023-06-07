@@ -123,6 +123,7 @@ struct SelectFromAndToLocationView: View {
 struct SelectFromAndToLocationView_Previews: PreviewProvider {
     static var previews: some View {
         SelectFromAndToLocationView(selectType: true)
+            .environmentObject(FlightViewModel())
     }
 }
 
