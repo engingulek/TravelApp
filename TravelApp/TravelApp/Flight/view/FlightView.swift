@@ -13,6 +13,7 @@ struct FlightView: View {
     @EnvironmentObject var selectDepAndArViewModel : SelectDepAndArDateViewModel
     @EnvironmentObject var selectPassangerViewModel : SelectPassengerViewModel
     @EnvironmentObject var classViewModel : ClassViewModel
+    @ObservedObject var flightTicketSearchViewModel = FlightTicketSearchViewModel()
     @State private var selectedButton = 0
     @State private var isPresentedFrom = false
     @State private var isPresentedTo = false
@@ -20,6 +21,8 @@ struct FlightView: View {
     @State private var isPresentedDateArrivel = false
     @State private var isPresentedPassanger = false
     @State private var isPresenterClass = false
+    @State private var showingAlert = false
+    @State private var alertMessage = ""
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -250,7 +253,34 @@ struct FlightView: View {
     
     var searchButton : some View {
         Button {
-            
+            do {
+                 try flightTicketSearchViewModel.fromLocationControl(flightViewModel.textSelectedDepature)
+                 try flightTicketSearchViewModel.toLocationControl(flightViewModel.textSelectedArrivel)
+                try flightTicketSearchViewModel.fromToLocationCompare(flightViewModel.selectedDepature!, flightViewModel.selectedArrivel!)
+                
+                if selectedButton == 0{
+                    flightTicketSearchViewModel.getFlightInfo(fromCode: flightViewModel.selectedDepature?.airport[0].code ?? "",
+                                                              toCode: flightViewModel.selectedArrivel?.airport[0].code ?? "",
+                                                              depatureDate: selectDepAndArViewModel.selectedDepatureDate.formatted(),
+                                                              passenger: selectPassangerViewModel.totalCount,
+                                                              classType: classViewModel.selectedClassType)
+                }else{
+                    
+                    flightTicketSearchViewModel.getFlightInfo(fromCode: flightViewModel.selectedDepature?.airport[0].code ?? "",
+                                                              toCode: flightViewModel.selectedArrivel?.airport[0].code ?? "",
+                                                              depatureDate: selectDepAndArViewModel.selectedDepatureDate.formatted(),
+                                                              arrivelDate: selectDepAndArViewModel.selectedArrivelDate.formatted() ,
+                                                              passenger: selectPassangerViewModel.totalCount,
+                                                              classType: classViewModel.selectedClassType)
+                }
+                
+              
+             
+            }catch{
+                self.showingAlert = true
+                self.alertMessage = error.localizedDescription
+                print(error.localizedDescription)
+            }
         } label: {
             Text("Search Flight")
                 .foregroundColor(Color.white)
@@ -260,6 +290,12 @@ struct FlightView: View {
             .background(Color.blue)
             .cornerRadius(20)
             .padding(.top)
+            .alert(isPresented: $showingAlert) {
+                Alert( title: Text("Important message"),
+                       message: Text(alertMessage),
+                       dismissButton: .default(Text("Got it!"))
+                           )
+            }
           
 
     }

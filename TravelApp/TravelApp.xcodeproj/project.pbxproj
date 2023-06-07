@@ -24,6 +24,8 @@
 		7D67C1142A30FDB300B6B14F /* ClassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67C1132A30FDB300B6B14F /* ClassView.swift */; };
 		7D67C1162A30FDD200B6B14F /* ClassViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67C1152A30FDD200B6B14F /* ClassViewModel.swift */; };
 		7D67C11A2A3105A400B6B14F /* ClassSelectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67C1192A3105A400B6B14F /* ClassSelectionRow.swift */; };
+		7D67C11D2A31093B00B6B14F /* FlightTicketSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67C11C2A31093B00B6B14F /* FlightTicketSearchView.swift */; };
+		7D67C1212A31096800B6B14F /* FlightTicketSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67C1202A31096800B6B14F /* FlightTicketSearchViewModel.swift */; };
 		7D6D81672A2F9C06001FDBAF /* Extension+HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6D81662A2F9C06001FDBAF /* Extension+HomeView.swift */; };
 		7D6D81692A2FABDB001FDBAF /* SelectArrvivelDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6D81682A2FABDB001FDBAF /* SelectArrvivelDate.swift */; };
 		7D741B022A2E1E04004357A4 /* DataResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D741B012A2E1E04004357A4 /* DataResult.swift */; };
@@ -75,6 +77,8 @@
 		7D67C1132A30FDB300B6B14F /* ClassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassView.swift; sourceTree = "<group>"; };
 		7D67C1152A30FDD200B6B14F /* ClassViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassViewModel.swift; sourceTree = "<group>"; };
 		7D67C1192A3105A400B6B14F /* ClassSelectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassSelectionRow.swift; sourceTree = "<group>"; };
+		7D67C11C2A31093B00B6B14F /* FlightTicketSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightTicketSearchView.swift; sourceTree = "<group>"; };
+		7D67C1202A31096800B6B14F /* FlightTicketSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightTicketSearchViewModel.swift; sourceTree = "<group>"; };
 		7D6D81662A2F9C06001FDBAF /* Extension+HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+HomeView.swift"; sourceTree = "<group>"; };
 		7D6D81682A2FABDB001FDBAF /* SelectArrvivelDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectArrvivelDate.swift; sourceTree = "<group>"; };
 		7D741B012A2E1E04004357A4 /* DataResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResult.swift; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 		7D4394372A28B3D600BDAB65 /* TravelApp */ = {
 			isa = PBXGroup;
 			children = (
+				7D67C11B2A31092700B6B14F /* FlightTicket */,
 				7D741B0C2A2E2195004357A4 /* Info.plist */,
 				7D4394682A28BB7300BDAB65 /* Extension.swift */,
 				7D741AFF2A2E1DEB004357A4 /* Manager */,
@@ -231,6 +236,31 @@
 				7D67C1192A3105A400B6B14F /* ClassSelectionRow.swift */,
 			);
 			path = class;
+			sourceTree = "<group>";
+		};
+		7D67C11B2A31092700B6B14F /* FlightTicket */ = {
+			isa = PBXGroup;
+			children = (
+				7D67C11F2A31094B00B6B14F /* viewModel */,
+				7D67C11E2A31094400B6B14F /* view */,
+			);
+			path = FlightTicket;
+			sourceTree = "<group>";
+		};
+		7D67C11E2A31094400B6B14F /* view */ = {
+			isa = PBXGroup;
+			children = (
+				7D67C11C2A31093B00B6B14F /* FlightTicketSearchView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		7D67C11F2A31094B00B6B14F /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7D67C1202A31096800B6B14F /* FlightTicketSearchViewModel.swift */,
+			);
+			path = viewModel;
 			sourceTree = "<group>";
 		};
 		7D741AFF2A2E1DEB004357A4 /* Manager */ = {
@@ -455,8 +485,10 @@
 				7D67C1162A30FDD200B6B14F /* ClassViewModel.swift in Sources */,
 				7D741B042A2E1E19004357A4 /* RequestType.swift in Sources */,
 				7D741B082A2E1E3E004357A4 /* ServiceManager.swift in Sources */,
+				7D67C1212A31096800B6B14F /* FlightTicketSearchViewModel.swift in Sources */,
 				7D1228462A2F75F3003FD3EE /* SelectDepAndArDateViewModel.swift in Sources */,
 				7D6D81672A2F9C06001FDBAF /* Extension+HomeView.swift in Sources */,
+				7D67C11D2A31093B00B6B14F /* FlightTicketSearchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
