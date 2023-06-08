@@ -22,6 +22,7 @@ struct FlightView: View {
     @State private var isPresentedPassanger = false
     @State private var isPresenterClass = false
     @State private var showingAlert = false
+    @State private var isPresentedFlightTickerSearcView = false
     @State private var alertMessage = ""
     
     var body: some View {
@@ -254,7 +255,7 @@ struct FlightView: View {
     var searchButton : some View {
         Button {
             do {
-                 try flightTicketSearchViewModel.fromLocationControl(flightViewModel.textSelectedDepature)
+                 /*try flightTicketSearchViewModel.fromLocationControl(flightViewModel.textSelectedDepature)
                  try flightTicketSearchViewModel.toLocationControl(flightViewModel.textSelectedArrivel)
                 try flightTicketSearchViewModel.fromToLocationCompare(flightViewModel.selectedDepature!, flightViewModel.selectedArrivel!)
                 
@@ -272,10 +273,10 @@ struct FlightView: View {
                                                               arrivelDate: selectDepAndArViewModel.selectedArrivelDate.formatted() ,
                                                               passenger: selectPassangerViewModel.totalCount,
                                                               classType: classViewModel.selectedClassType)
-                }
+                }*/
                 
-              
-             
+                self.isPresentedFlightTickerSearcView = true
+
             }catch{
                 self.showingAlert = true
                 self.alertMessage = error.localizedDescription
@@ -295,6 +296,8 @@ struct FlightView: View {
                        message: Text(alertMessage),
                        dismissButton: .default(Text("Got it!"))
                            )
+            }.fullScreenCover(isPresented: $isPresentedFlightTickerSearcView) {
+                FlightTicketSearchView()
             }
           
 
