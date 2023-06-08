@@ -8,6 +8,7 @@
 import SwiftUI
 struct FlightTicketSearchView: View {
     @Environment(\.dismiss) var dismiss
+    @ObservedObject var flightTicketSearchViewModel = FlightTicketSearchViewModel()
     var body: some View {
      
         VStack{
@@ -41,6 +42,9 @@ struct FlightTicketSearchView: View {
                 .edgesIgnoringSafeArea(.bottom)
             
         }.background(Color("backgroundTabbar"))
+            .task {
+                await flightTicketSearchViewModel.getDataFlightTickets()
+            }
     }
 }
 
@@ -121,34 +125,34 @@ extension FlightTicketSearchView {
     
     private var searchTicketInfo : some View {
         VStack(spacing: 20) {
-            ForEach(0..<10) { _ in
+            ForEach(flightTicketSearchViewModel.flightTickets) { result in
                 VStack(spacing: 10) {
                     HStack{
                         HStack{
                             Image(systemName: "airplane")
-                            Text("Airline Name")
+                            Text(result.airline)
                         }.font(.subheadline)
                         Spacer()
                         HStack{
-                            Text("22:10")
+                            Text(result.deptureClock)
                             Image(systemName: "arrow.right")
-                            Text("23:40")
+                            Text(result.arrivelClock)
                         }.font(.subheadline)
                         Spacer()
-                        Text("500.0 ₺")
+                        Text("\(result.price)₺")
                             .font(.subheadline)
                             .fontWeight(.bold)
                     }
                     HStack{
                         HStack{
-                            Text("IST")
+                            Text(result.from.airport.code)
                             Image(systemName: "chevron.right")
-                            Text("ESB")
+                            Text(result.to.airport.code)
                         }.font(.subheadline)
                         Spacer()
                         HStack{
                             Image(systemName: "bag.fill")
-                            Text("15 kg/person  ")
+                            Text("\(result.bagWeight) kg/person")
                         }.font(.subheadline)
                     }
                     VStack{
@@ -158,8 +162,8 @@ extension FlightTicketSearchView {
                         .overlay(.black)
                     }.padding(.top)
                     HStack{
-                        Text("Sabiha Gökçen Havalimanı -")
-                        Text("Esenboğa Havalimanı")
+                        Text("\(result.from.airport.name) -")
+                        Text("\(result.to.airport.name)")
                         Spacer()
                     }.font(.caption2)
                 }.padding([.top,.bottom],20)

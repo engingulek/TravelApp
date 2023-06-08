@@ -25,21 +25,11 @@ enum FlightTicketSearchError : LocalizedError {
     }
 }
 
+final
 class FlightTicketSearchViewModel : ObservableObject {
-    
-    func fromLocationControl(_ from:String) throws  {
-        guard from != "City/Airport" else {throw FlightTicketSearchError.emptyFromLocation}
-        
-    }
-    
-    func toLocationControl(_ to:String) throws  {
-        guard to != "City/Airport" else {throw FlightTicketSearchError.emptyToLocation}
-        
-    }
-    
-    func fromToLocationCompare(_ from:City,_ to:City) throws {
-        guard from.id != to.id else {throw FlightTicketSearchError.fromToLoctionCompare}
-    }
+   private var flightTicketService = FlightTicketService()
+    @Published var flightTickets : [FlightTicketVM] = []
+ 
     
     
     func getFlightInfo(fromCode:String,
@@ -71,6 +61,72 @@ class FlightTicketSearchViewModel : ObservableObject {
     }
     
     
+    func getDataFlightTickets() async {
+        do {
+            await flightTicketService.getFlightTickets(completion: { (response:Result<[FlightTicket],Error>) in
+                switch response {
+                case .success(let list):
+                    DispatchQueue.main.async {
+                        self.flightTickets = list.map(FlightTicketVM.init)
+                    }
+                case .failure(_):
+                    DispatchQueue.main.async {
+                        self.flightTickets = []
+                    }
+                }
+            })
+        }
+    }
+}
+
+struct FlightTicketVM: Identifiable {
+    let flightTicket : FlightTicket
+    var id : String {
+        flightTicket._id
+    }
+    var airline : String {
+        flightTicket.airline
+    }
     
+    var from : Info {
+        flightTicket.from
+    }
+    var to : Info {
+        flightTicket.to
+    }
+    var date: String {
+        flightTicket.date
+    }
+    var deptureClock: String{
+        flightTicket.deptureClock
+    }
+    var arrivelClock : String {
+        flightTicket.arrivelClock
+    }
+    var classType: String {
+        flightTicket.classType
+    }
+    var price : Int {
+        flightTicket.price
+    }
+    var bagWeight: Int {
+        flightTicket.bagWeight
+    }
+}
+
+
+extension FlightTicketSearchViewModel {
+    func fromLocationControl(_ from:String) throws  {
+        guard from != "City/Airport" else {throw FlightTicketSearchError.emptyFromLocation}
+        
+    }
     
+    func toLocationControl(_ to:String) throws  {
+        guard to != "City/Airport" else {throw FlightTicketSearchError.emptyToLocation}
+        
+    }
+    
+    func fromToLocationCompare(_ from:City,_ to:City) throws {
+        guard from.id != to.id else {throw FlightTicketSearchError.fromToLoctionCompare}
+    }
 }

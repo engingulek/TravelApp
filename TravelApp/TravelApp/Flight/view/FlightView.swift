@@ -255,7 +255,7 @@ struct FlightView: View {
     var searchButton : some View {
         Button {
             do {
-                 /*try flightTicketSearchViewModel.fromLocationControl(flightViewModel.textSelectedDepature)
+                 try flightTicketSearchViewModel.fromLocationControl(flightViewModel.textSelectedDepature)
                  try flightTicketSearchViewModel.toLocationControl(flightViewModel.textSelectedArrivel)
                 try flightTicketSearchViewModel.fromToLocationCompare(flightViewModel.selectedDepature!, flightViewModel.selectedArrivel!)
                 
@@ -273,7 +273,7 @@ struct FlightView: View {
                                                               arrivelDate: selectDepAndArViewModel.selectedArrivelDate.formatted() ,
                                                               passenger: selectPassangerViewModel.totalCount,
                                                               classType: classViewModel.selectedClassType)
-                }*/
+                }
                 
                 self.isPresentedFlightTickerSearcView = true
 

@@ -9,6 +9,7 @@ import Foundation
 enum Network {
     case flights
     case popFlights
+    case flightTickets
 }
 
 
@@ -24,6 +25,8 @@ extension Network : TargetType {
             return "/flights"
         case .popFlights:
             return "/allPopFlights"
+        case .flightTickets:
+            return "/flightTickets"
         }
     }
     
@@ -34,6 +37,8 @@ extension Network : TargetType {
             return .get
         case .popFlights:
             return .get
+        case .flightTickets:
+            return .get
         }
     }
     
@@ -43,6 +48,8 @@ extension Network : TargetType {
         case .flights:
             return .requestPlain
         case .popFlights:
+            return .requestPlain
+        case .flightTickets:
             return .requestPlain
         }
     }

@@ -12,9 +12,6 @@ protocol ServiceManagerProtocol {
 
 }
 
-
-
-
 final class ServiceManager : ServiceManagerProtocol {
     func fetch<M>(target: Network, completion: @escaping (Result<[M]?, Error>) -> ()) where M : Decodable, M : Encodable {
         

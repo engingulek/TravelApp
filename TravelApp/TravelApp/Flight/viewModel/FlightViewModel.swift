@@ -19,6 +19,7 @@ final class FlightViewModel : ObservableObject {
     @Published var selectedArrivel : City?
     @Published var textSelectedDepature  = "City/Airport"
     @Published var textSelectedArrivel  = "City/Airport"
+    
     private var flightService = FlightService()
     var popFlights : [FlightVM] = []
     
