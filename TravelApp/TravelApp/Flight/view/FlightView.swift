@@ -260,19 +260,21 @@ struct FlightView: View {
                 try flightTicketSearchViewModel.fromToLocationCompare(flightViewModel.selectedDepature!, flightViewModel.selectedArrivel!)
                 
                 if selectedButton == 0{
-                    flightTicketSearchViewModel.getFlightInfo(fromCode: flightViewModel.selectedDepature?.airport[0].code ?? "",
-                                                              toCode: flightViewModel.selectedArrivel?.airport[0].code ?? "",
+                    flightTicketSearchViewModel.getFlightInfo(fromCode: flightViewModel.fromCode,
+                                                              toCode: flightViewModel.toCode,
                                                               depatureDate: selectDepAndArViewModel.selectedDepatureDate.formatted(),
                                                               passenger: selectPassangerViewModel.totalCount,
-                                                              classType: classViewModel.selectedClassType)
+                                                              classType: classViewModel.selectedClassType,
+                                                              passengerList:selectPassangerViewModel.passengerList )
                 }else{
                     
-                    flightTicketSearchViewModel.getFlightInfo(fromCode: flightViewModel.selectedDepature?.airport[0].code ?? "",
-                                                              toCode: flightViewModel.selectedArrivel?.airport[0].code ?? "",
+                    flightTicketSearchViewModel.getFlightInfo(fromCode: flightViewModel.fromCode ,
+                                                              toCode: flightViewModel.toCode,
                                                               depatureDate: selectDepAndArViewModel.selectedDepatureDate.formatted(),
                                                               arrivelDate: selectDepAndArViewModel.selectedArrivelDate.formatted() ,
                                                               passenger: selectPassangerViewModel.totalCount,
-                                                              classType: classViewModel.selectedClassType)
+                                                              classType: classViewModel.selectedClassType,
+                                                              passengerList: selectPassangerViewModel.passengerList)
                 }
                 
                 self.isPresentedFlightTickerSearcView = true

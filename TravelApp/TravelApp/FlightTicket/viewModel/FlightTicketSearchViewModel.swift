@@ -31,20 +31,25 @@ class FlightTicketSearchViewModel : ObservableObject {
     @Published var flightTickets : [FlightTicketVM] = []
     @Published var getDeptureDate = ""
     @Published var dateList : [Date] = []
+    @Published var fromCode = ""
+    @Published var toCode = ""
  
     
     
     func getFlightInfo(fromCode:String,
                        toCode:String,
                        depatureDate:String,
-                       passenger:Int,classType:String){
+                       passenger:Int,classType:String,passengerList:[String:Int]){
         
         print(fromCode)
+        self.fromCode = fromCode
         print(toCode)
+        self.toCode = toCode
         print(depatureDate)
         self.getDeptureDate = depatureDate.stringToDate().dateFormatted()
         print(passenger)
         print(classType)
+        print(passengerList)
         
     }
     
@@ -52,7 +57,7 @@ class FlightTicketSearchViewModel : ObservableObject {
                        toCode:String,
                        depatureDate:String,
                        arrivelDate:String = "",
-                       passenger:Int,classType:String){
+                       passenger:Int,classType:String,passengerList:[String:Int]){
         
         print(fromCode)
         print(toCode)
@@ -60,6 +65,7 @@ class FlightTicketSearchViewModel : ObservableObject {
         print(arrivelDate)
         print(passenger)
         print(classType)
+        print(passengerList)
         
     }
     

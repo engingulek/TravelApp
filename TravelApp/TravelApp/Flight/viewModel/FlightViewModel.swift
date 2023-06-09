@@ -20,6 +20,9 @@ final class FlightViewModel : ObservableObject {
     @Published var textSelectedDepature  = "City/Airport"
     @Published var textSelectedArrivel  = "City/Airport"
     
+    @Published var fromCode = ""
+    @Published var toCode = ""
+    
     private var flightService = FlightService()
     var popFlights : [FlightVM] = []
     
@@ -103,12 +106,14 @@ final class FlightViewModel : ObservableObject {
             let cityName = depature.name
             let airportName = depature.airport.count  >= 2 ? "All Airports" : depature.airport[0].name
             textSelectedDepature = "\( cityName)/\(airportName)"
+            self.fromCode = depature.airport.count >= 2 ? city.code : depature.airport[0].code
         }else{
             selectedArrivel = city
             guard let arrivel = selectedArrivel else {return}
             let cityName = arrivel.name
             let airportName = arrivel.airport.count >= 2 ? "All Airports" : arrivel.airport[0].name
             textSelectedArrivel = "\( cityName)/\( airportName)"
+            self.toCode = arrivel.airport.count >= 2 ? city.code : arrivel.airport[0].code
             
         }
     }

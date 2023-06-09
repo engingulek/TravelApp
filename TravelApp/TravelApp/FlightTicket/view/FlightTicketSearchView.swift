@@ -9,6 +9,7 @@ import SwiftUI
 struct FlightTicketSearchView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var flightTicketSearchViewModel : FlightTicketSearchViewModel
+    @EnvironmentObject var flightViewModel : FlightViewModel
     var body: some View {
      
         VStack{
@@ -55,6 +56,7 @@ struct FlightTicketSearchView_Previews: PreviewProvider {
     static var previews: some View {
         FlightTicketSearchView()
             .environmentObject(FlightTicketSearchViewModel())
+            .environmentObject(FlightViewModel())
     }
 }
 
@@ -78,13 +80,13 @@ extension FlightTicketSearchView {
     private var routeDetail : some View {
         VStack{
             HStack{
-                Text("İstanbul/Türkiye")
+                Text(flightViewModel.selectedDepature?.name ?? "None")
                 Spacer()
-                Text("Ankara/Türkiye")
+                Text(flightViewModel.selectedArrivel?.name ?? "None")
             }.foregroundColor(Color.white)
             
             HStack{
-                Text("Saw")
+                Text(flightTicketSearchViewModel.fromCode)
                 Spacer()
                 ZStack{
                     VStack{
@@ -98,7 +100,7 @@ extension FlightTicketSearchView {
                         .font(.title2)
                 }
               Spacer()
-                Text("ESB")
+                Text(flightTicketSearchViewModel.toCode)
                     
             }.foregroundColor(Color.white)
                 .fontWeight(.semibold)

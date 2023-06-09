@@ -36,6 +36,7 @@ class SelectPassengerViewModel : ObservableObject {
     @Published var babyCount = PassagersType.baby.description.2
     @Published var studentCount = PassagersType.student.description.2
     @Published var totalCount = 1
+    @Published var passengerList : [String:Int] = [PassagersType.adult.description.0 : PassagersType.adult.description.2]
     
     
     
@@ -104,6 +105,10 @@ class SelectPassengerViewModel : ObservableObject {
     
     func totalCountCalculate(){
         totalCount = self.adultCount + self.kindCount + self.babyCount + self.studentCount
+        self.passengerList["Adult"] = self.adultCount
+        self.passengerList["Kind"] = self.kindCount
+        self.passengerList["Baby"] = self.babyCount
+        self.passengerList["Student"] = self.studentCount
     }
     
     

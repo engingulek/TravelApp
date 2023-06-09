@@ -56,7 +56,7 @@ final class SelectedPassengerViewModelTest: XCTestCase {
         XCTAssertEqual(expected, 1)
     }
     
-    func test_totalCoutn_return3(){
+   func test_totalCoutn_return3(){
         selectedPassangerViewModel.toIncreasePassengerCount(passenger: .adult)
         selectedPassangerViewModel.toIncreasePassengerCount(passenger: .kind)
         let expected = selectedPassangerViewModel.totalCount
