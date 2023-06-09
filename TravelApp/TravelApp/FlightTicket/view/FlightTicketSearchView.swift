@@ -8,7 +8,7 @@
 import SwiftUI
 struct FlightTicketSearchView: View {
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var flightTicketSearchViewModel = FlightTicketSearchViewModel()
+    @EnvironmentObject var flightTicketSearchViewModel : FlightTicketSearchViewModel
     var body: some View {
      
         VStack{
@@ -44,6 +44,9 @@ struct FlightTicketSearchView: View {
         }.background(Color("backgroundTabbar"))
             .task {
                 await flightTicketSearchViewModel.getDataFlightTickets()
+                
+            }.onAppear{
+                flightTicketSearchViewModel.listDateLater20()
             }
     }
 }
@@ -51,6 +54,7 @@ struct FlightTicketSearchView: View {
 struct FlightTicketSearchView_Previews: PreviewProvider {
     static var previews: some View {
         FlightTicketSearchView()
+            .environmentObject(FlightTicketSearchViewModel())
     }
 }
 
@@ -104,17 +108,30 @@ extension FlightTicketSearchView {
     
     private var dateList : some View {
         VStack {
+            
             ScrollView(.horizontal,showsIndicators: false) {
                 HStack(spacing: 20) {
-                    ForEach(0..<10) { _ in
+                    
+                   
+                   
+                    ForEach(flightTicketSearchViewModel.dateList,id:\.self) { futureDate in
+                        
                         VStack {
-                            Text("20")
+                            Text(futureDate.dayMonthFormat().0)
                                 .font(.title)
-                            Text("July")
-                        }.foregroundColor(.white)
+                            Text(futureDate.dayMonthFormat().1)
+                        }
+                        .foregroundColor(flightTicketSearchViewModel.getDeptureDate == futureDate.dateFormatted() ?
+                            .blue : .white )
                         .padding()
-                        .background(Color.white.opacity(0.2))
+                        .background(
+                            flightTicketSearchViewModel.getDeptureDate == futureDate.dateFormatted() ?
+                                .white :  Color.white.opacity(0.2))
                         .cornerRadius(20)
+                        .onTapGesture {
+                            flightTicketSearchViewModel.getDeptureDate = futureDate.dateFormatted()
+                            flightTicketSearchViewModel.listDateLater20()
+                        }
                         
                            
                     }
@@ -139,9 +156,9 @@ extension FlightTicketSearchView {
                             Text(result.arrivelClock)
                         }.font(.subheadline)
                         Spacer()
-                        Text("\(result.price)₺")
+                       /* Text("\(result.price)₺")
                             .font(.subheadline)
-                            .fontWeight(.bold)
+                            .fontWeight(.bold)*/
                     }
                     HStack{
                         HStack{

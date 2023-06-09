@@ -31,5 +31,6 @@ struct SelectDepartureDate: View {
 struct SelectDepartureDate_Previews: PreviewProvider {
     static var previews: some View {
         SelectDepartureDate()
+            .environmentObject(SelectDepAndArDateViewModel())
     }
 }

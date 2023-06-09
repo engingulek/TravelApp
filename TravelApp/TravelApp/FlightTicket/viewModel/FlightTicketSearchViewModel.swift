@@ -29,6 +29,8 @@ final
 class FlightTicketSearchViewModel : ObservableObject {
    private var flightTicketService = FlightTicketService()
     @Published var flightTickets : [FlightTicketVM] = []
+    @Published var getDeptureDate = ""
+    @Published var dateList : [Date] = []
  
     
     
@@ -40,6 +42,7 @@ class FlightTicketSearchViewModel : ObservableObject {
         print(fromCode)
         print(toCode)
         print(depatureDate)
+        self.getDeptureDate = depatureDate.stringToDate().dateFormatted()
         print(passenger)
         print(classType)
         
@@ -58,6 +61,19 @@ class FlightTicketSearchViewModel : ObservableObject {
         print(passenger)
         print(classType)
         
+    }
+    
+    func listDateLater20(){
+
+        let currentDate = self.getDeptureDate.stringToDate()
+        var datecomponent = DateComponents()
+        for addDate in 0..<30 {
+            datecomponent.day = addDate
+            let futureCalender = Calendar.current.date(byAdding: datecomponent, to: currentDate)
+            guard let futureDate = futureCalender else {return}
+            dateList.append(futureDate)
+            
+        }
     }
     
     
@@ -106,7 +122,7 @@ struct FlightTicketVM: Identifiable {
     var classType: String {
         flightTicket.classType
     }
-    var price : Int {
+    var price : [PriceInfo] {
         flightTicket.price
     }
     var bagWeight: Int {

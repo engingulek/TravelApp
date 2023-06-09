@@ -13,7 +13,7 @@ struct FlightView: View {
     @EnvironmentObject var selectDepAndArViewModel : SelectDepAndArDateViewModel
     @EnvironmentObject var selectPassangerViewModel : SelectPassengerViewModel
     @EnvironmentObject var classViewModel : ClassViewModel
-    @ObservedObject var flightTicketSearchViewModel = FlightTicketSearchViewModel()
+    @EnvironmentObject var flightTicketSearchViewModel : FlightTicketSearchViewModel
     @State private var selectedButton = 0
     @State private var isPresentedFrom = false
     @State private var isPresentedTo = false
@@ -280,7 +280,7 @@ struct FlightView: View {
             }catch{
                 self.showingAlert = true
                 self.alertMessage = error.localizedDescription
-                print(error.localizedDescription)
+                
             }
         } label: {
             Text("Search Flight")
@@ -310,5 +310,6 @@ struct FlightView_Previews: PreviewProvider {
             .environmentObject(SelectDepAndArDateViewModel())
             .environmentObject(SelectPassengerViewModel())
             .environmentObject(ClassViewModel())
+            .environmentObject(FlightTicketSearchViewModel())
     }
 }

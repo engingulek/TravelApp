@@ -16,8 +16,14 @@ struct FlightTicket : Codable{
     var deptureClock: String
     var arrivelClock : String
     var classType: String
-    var price : Int
+    var price : [PriceInfo]
     var bagWeight: Int
+}
+
+
+struct PriceInfo :  Codable {
+    var person : String
+    var price : Int
 }
 
 struct Info : Codable {
