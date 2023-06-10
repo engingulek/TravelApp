@@ -284,7 +284,10 @@ struct FlightView: View {
                 FlightTicketSearchView(deptureDate: selectDepAndArViewModel.selectedArrivelDate,
                                        returnDate: selectDepAndArViewModel.selectedDepatureDate,
                                        deptureCity: flightViewModel.selectedDepature,
-                                       arrivelCity: flightViewModel.selectedArrivel)
+                                       arrivelCity: flightViewModel.selectedArrivel,
+                                       classType:classViewModel.selectedClassType,
+                                       passangerList: selectPassangerViewModel.passengerList
+                )
             }
           
 

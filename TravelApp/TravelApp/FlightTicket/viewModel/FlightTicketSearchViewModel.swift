@@ -12,26 +12,42 @@ import Foundation
 final
 class FlightTicketSearchViewModel : ObservableObject {
    private var flightTicketService = FlightTicketService()
-    @Published var flightTickets : [FlightTicketVM] = []
+    @Published var flightTicketsDepture : [FlightTicketVM] = []
     @Published var getDeptureDate : Date?
     @Published var dateList = [Date]()
+    var deptureDate:Date?
+    var returnDate:Date?
+    var deptureCity : City?
+    var arrivelCity: City?
+    var classType : String?
+    var passangerList: [String:Int]?
+    
     
   
     
-    func getDataFlightTickets() async {
+    func getDataDeptureFlightTickets() async {
         do {
             await flightTicketService.getFlightTickets(completion: { (response:Result<[FlightTicket],Error>) in
                 switch response {
                 case .success(let list):
                     DispatchQueue.main.async {
-                        
                         let resultList =  list.map(FlightTicketVM.init)
-                        self.flightTickets = resultList
+                       /* print(self.deptureCity!.airport)
+                        print("Date Test \(self.getDeptureDate?.dateFormatted())")
+                        print("Date Test 1  \(resultList[0].date.stringToDate().dateFormatted())")*/
+                        self.flightTicketsDepture =  resultList.filter{ result in
+                            self.deptureCity!.airport.contains(where: {$0.code == result.from.airport.code})
+                            
+                            &&   self.arrivelCity!.airport.contains(where: {$0.code == result.to.airport.code})
+                            && self.getDeptureDate!.dateFormatted() == result.date.stringToDate().dateFormatted()
+                            && self.classType! == result.classType
+                           
+                        }
                         
                     }
                 case .failure(_):
                     DispatchQueue.main.async {
-                        self.flightTickets = []
+                        self.flightTicketsDepture = []
                     }
                 }
             })

@@ -14,17 +14,20 @@ struct FlightTicketSearchView: View {
     var returnDate:Date?
     var deptureCity : City?
     var arrivelCity: City?
+    var classType : String = ""
+    var passangerList: [String:Int] = [:]
     
-
     var body: some View {
      
         VStack{
             VStack{
+                
                 /// header
                 header
                 /// Route Detail
                 routeDetail
                 /// dateList
+                
                 dateList
                 
             }.frame(width: UIScreen.main.bounds.width,
@@ -40,8 +43,15 @@ struct FlightTicketSearchView: View {
                         .foregroundColor(Color.blue)
                     Spacer()
                 }
+                
+                /*VStack{
+                    Text((returnDate?.dateFormatted())!)
+                    Text("\(deptureCity!.airport.count)")
+                    Text("\(arrivelCity!.airport.count)")
+                    Text("\(passangerList.count)")
+                }*/
                 ScrollView(showsIndicators: false) {
-                   // searchTicketInfo
+                    searchTicketInfo
            
                 }
                 
@@ -51,11 +61,17 @@ struct FlightTicketSearchView: View {
         }.background(Color("backgroundTabbar"))
             .onAppear{
                 flightTicketSearchViewModel.getDeptureDate = deptureDate
-               
                  flightTicketSearchViewModel.listDateLater20()
+                flightTicketSearchViewModel.returnDate = returnDate
+                flightTicketSearchViewModel.deptureCity = deptureCity
+                flightTicketSearchViewModel.arrivelCity = arrivelCity
+                flightTicketSearchViewModel.classType = classType
+                flightTicketSearchViewModel.passangerList = passangerList
+                
+                
             }
             .task {
-                await flightTicketSearchViewModel.getDataFlightTickets()
+                await flightTicketSearchViewModel.getDataDeptureFlightTickets()
               
             }
     }
@@ -143,6 +159,11 @@ extension FlightTicketSearchView {
                             selectDepAndArViewModel.selectedDepatureDate = futureDate
                             print(flightTicketSearchViewModel.getDeptureDate!.dayMonthFormat().0)
                             print(futureDate.dayMonthFormat().0)
+                           
+                            
+                            Task {
+                               await self.flightTicketSearchViewModel.getDataDeptureFlightTickets()
+                            }
                         }
                     }
                 }
@@ -152,7 +173,7 @@ extension FlightTicketSearchView {
     
     private var searchTicketInfo : some View {
         VStack(spacing: 20) {
-            ForEach(flightTicketSearchViewModel.flightTickets) { result in
+            ForEach(flightTicketSearchViewModel.flightTicketsDepture) { result in
                 VStack(spacing: 10) {
                     HStack{
                         HStack{
@@ -165,7 +186,7 @@ extension FlightTicketSearchView {
                             Image(systemName: "arrow.right")
                             Text(result.arrivelClock)
                         }.font(.subheadline)
-                        Spacer()
+                        
                     }
                     HStack{
                         HStack{

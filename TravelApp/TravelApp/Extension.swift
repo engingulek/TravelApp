@@ -28,5 +28,19 @@ extension Date  {
     
 }
 
+extension String {
+
+    func stringToDate() -> Date {
+        let dateFormatter = DateFormatter()
+        let getDate = self
+        let a = getDate.split(separator: " ")
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let date = dateFormatter.date(from: "\( a[0])")
+        return date ?? Date.now
+
+    }
+
+}
+
 
 
