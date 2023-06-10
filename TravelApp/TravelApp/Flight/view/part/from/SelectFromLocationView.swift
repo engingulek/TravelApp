@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-struct SelectFromAndToLocationView: View {
+struct SelectFromLocationView: View {
     @EnvironmentObject  var flightViewModel : FlightViewModel
     @Environment(\.dismiss) var dismiss
     @State var selectType = true
     var body: some View {
         VStack (alignment:.leading){
             VStack(spacing : 10) {
-                Text(selectType ? "Select Departure Airport":"Select Arrivel Airport")
+                Text("Select Departure Airport")
                     .font(.title3)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                 HStack {
-                    Text(selectType ?"From" : "To")
+                    Text("From")
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                     Spacer()
@@ -75,9 +75,15 @@ struct SelectFromAndToLocationView: View {
                                     Divider()
                                         .padding(.trailing)
                                 } .onTapGesture {
-                                    
-                                    flightViewModel.selectedLocation(selectCityforSearch: result.city, selectAirportForSearch: result.city.airport,
-                                                                     selectType:selectType)
+                                    print(result.city.name)
+                                    print(result.country)
+                                    print("All airports")
+                                    print(result.city.code)
+                                    flightViewModel.selectedDepature = City(id: result.city.id,
+                                                                           name: result.city.name,
+                                                                           code: result.city.code,
+                                                                           airport: result.city.airport)
+                                    flightViewModel.textSelectedDepature = "\(result.city.name)/All Airports"
                                     flightViewModel.text = ""
                                     self.dismiss()
                                 }
@@ -104,9 +110,8 @@ struct SelectFromAndToLocationView: View {
                     }
                     Spacer()
                 }.padding(.leading)
-            }else{
-                resultNil
             }
+            Spacer()
         }.task {
             await flightViewModel.getDataAirport()
             await flightViewModel.getPopulerCities()
@@ -122,7 +127,7 @@ struct SelectFromAndToLocationView: View {
 
 struct SelectFromAndToLocationView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectFromAndToLocationView(selectType: true)
+        SelectFromLocationView()
             .environmentObject(FlightViewModel())
     }
 }

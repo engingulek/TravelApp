@@ -54,6 +54,7 @@ class SelectPassengerViewModel : ObservableObject {
         }
     }
     
+    // MARK: - Increase Passanger
     func toIncreasePassengerCount(passenger:PassagersType){
         switch passenger {
             
@@ -73,6 +74,7 @@ class SelectPassengerViewModel : ObservableObject {
         totalCountCalculate()
     }
     
+    // MARK: - Decrase Passanger
     func toDecreasePassengerCount(passenger:PassagersType){
         switch passenger {
             
@@ -103,6 +105,7 @@ class SelectPassengerViewModel : ObservableObject {
         totalCountCalculate()
     }
     
+    //MARK: - Caculate and get passenger list
     func totalCountCalculate(){
         totalCount = self.adultCount + self.kindCount + self.babyCount + self.studentCount
         self.passengerList["Adult"] = self.adultCount

@@ -32,7 +32,7 @@ final class FlightViewModel : ObservableObject {
     func getDataAirport() async {
         
         do {
-            await flightService.getFlights(completion: { (response:Result<[Flight],Error>) in
+            await flightService.getCityOrAirport(completion: { (response:Result<[Flight],Error>) in
                 switch response {
                 case .success(let list):
                     DispatchQueue.main.async {
@@ -52,7 +52,7 @@ final class FlightViewModel : ObservableObject {
     func getPopulerCities() async {
         
         do{
-            await flightService.getPopFlights(completion: { (response:Result<[Flight],Error>) in
+            await flightService.getPopCity(completion: { (response:Result<[Flight],Error>) in
                 switch response {
                 case .success(let list):
                     DispatchQueue.main.async {
@@ -94,29 +94,6 @@ final class FlightViewModel : ObservableObject {
         }
     }
     
-    func selectedLocation(selectCityforSearch selectCity:City,
-                          selectAirportForSearch selectAirport:[Airport],
-                          selectType:Bool){
-        
-        var city = selectCity
-        city.airport = selectAirport
-        if selectType {
-            selectedDepature = city
-            guard let depature = selectedDepature  else {return}
-            let cityName = depature.name
-            let airportName = depature.airport.count  >= 2 ? "All Airports" : depature.airport[0].name
-            textSelectedDepature = "\( cityName)/\(airportName)"
-            self.fromCode = depature.airport.count >= 2 ? city.code : depature.airport[0].code
-        }else{
-            selectedArrivel = city
-            guard let arrivel = selectedArrivel else {return}
-            let cityName = arrivel.name
-            let airportName = arrivel.airport.count >= 2 ? "All Airports" : arrivel.airport[0].name
-            textSelectedArrivel = "\( cityName)/\( airportName)"
-            self.toCode = arrivel.airport.count >= 2 ? city.code : arrivel.airport[0].code
-            
-        }
-    }
     
     func changeFromAndTo(){
         let selectedTemp = selectedArrivel

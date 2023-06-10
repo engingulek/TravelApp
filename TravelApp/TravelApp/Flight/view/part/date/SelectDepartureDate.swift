@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SelectDepartureDate: View {
     @EnvironmentObject var selectedDepAndArViewModel : SelectDepAndArDateViewModel
+    @EnvironmentObject var flightTicketSearchViewModel : FlightTicketSearchViewModel
+   
     @Environment(\.dismiss) var dismiss
     var body: some View {
             VStack {
@@ -21,6 +23,10 @@ struct SelectDepartureDate: View {
                     if newValue > selectedDepAndArViewModel.selectedArrivelDate {
                         selectedDepAndArViewModel.selectedArrivelDate = newValue
                     }
+                    selectedDepAndArViewModel.selectedDepatureDate = newValue
+                    flightTicketSearchViewModel.getDeptureDate = newValue
+                   
+                    
 
                     self.dismiss()
                 }
@@ -32,5 +38,7 @@ struct SelectDepartureDate_Previews: PreviewProvider {
     static var previews: some View {
         SelectDepartureDate()
             .environmentObject(SelectDepAndArDateViewModel())
+            .environmentObject(FlightTicketSearchViewModel())
+          
     }
 }

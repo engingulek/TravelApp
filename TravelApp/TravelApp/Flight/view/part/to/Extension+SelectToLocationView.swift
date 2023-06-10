@@ -1,14 +1,14 @@
 //
-//  Extension+SelectionFromToView.swift
+//  Extension+SelectToLocationView.swift
 //  TravelApp
 //
-//  Created by engin gülek on 4.06.2023.
+//  Created by engin gülek on 9.06.2023.
 //
 
 import Foundation
 import SwiftUI
 
-extension SelectFromAndToLocationView {
+extension SelectToLocationView {
     var resultNil : some View {
         VStack(alignment:.leading,spacing: 10) {
             Text("Populer Cities")
@@ -80,9 +80,15 @@ extension SelectFromAndToLocationView {
                         Divider()
                     }.padding(.trailing)
                         .onTapGesture {
-                            flightViewModel.selectedLocation(selectCityforSearch: result.city,
-                                                             selectAirportForSearch: [airport],
-                                                             selectType: selectType)
+                            print(result.city.name)
+                            print(result.country)
+                            print(airport.name)
+                            print(airport.code)
+                            flightViewModel.selectedArrivel = City(id: result.city.id,
+                                                                   name: result.city.name,
+                                                                   code: result.city.code,
+                                                                   airport: [airport])
+                            flightViewModel.textSelectedArrivel = "\(result.city.name)/\(airport.name)"
                             flightViewModel.text = ""
                             self.dismiss()
                         }

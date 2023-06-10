@@ -13,7 +13,7 @@ struct FlightView: View {
     @EnvironmentObject var selectDepAndArViewModel : SelectDepAndArDateViewModel
     @EnvironmentObject var selectPassangerViewModel : SelectPassengerViewModel
     @EnvironmentObject var classViewModel : ClassViewModel
-    @EnvironmentObject var flightTicketSearchViewModel : FlightTicketSearchViewModel
+    
     @State private var selectedButton = 0
     @State private var isPresentedFrom = false
     @State private var isPresentedTo = false
@@ -34,7 +34,7 @@ struct FlightView: View {
                         self.isPresentedFrom = true
                     }
                     .fullScreenCover(isPresented:$isPresentedFrom) {
-                        SelectFromAndToLocationView()
+                        SelectFromLocationView()
                     
                 }
                 Image(systemName: "arrow.up.arrow.down.circle")
@@ -49,7 +49,7 @@ struct FlightView: View {
                         
                     }
                     .fullScreenCover(isPresented:$isPresentedTo) {
-                        SelectFromAndToLocationView(selectType: false)
+                        SelectToLocationView()
                 }
                 depatureDate.onTapGesture {
                     self.isPresentedDateDepature = true
@@ -255,28 +255,10 @@ struct FlightView: View {
     var searchButton : some View {
         Button {
             do {
-                 try flightTicketSearchViewModel.fromLocationControl(flightViewModel.textSelectedDepature)
-                 try flightTicketSearchViewModel.toLocationControl(flightViewModel.textSelectedArrivel)
-                try flightTicketSearchViewModel.fromToLocationCompare(flightViewModel.selectedDepature!, flightViewModel.selectedArrivel!)
-                
-                if selectedButton == 0{
-                    flightTicketSearchViewModel.getFlightInfo(fromCode: flightViewModel.fromCode,
-                                                              toCode: flightViewModel.toCode,
-                                                              depatureDate: selectDepAndArViewModel.selectedDepatureDate.formatted(),
-                                                              passenger: selectPassangerViewModel.totalCount,
-                                                              classType: classViewModel.selectedClassType,
-                                                              passengerList:selectPassangerViewModel.passengerList )
-                }else{
-                    
-                    flightTicketSearchViewModel.getFlightInfo(fromCode: flightViewModel.fromCode ,
-                                                              toCode: flightViewModel.toCode,
-                                                              depatureDate: selectDepAndArViewModel.selectedDepatureDate.formatted(),
-                                                              arrivelDate: selectDepAndArViewModel.selectedArrivelDate.formatted() ,
-                                                              passenger: selectPassangerViewModel.totalCount,
-                                                              classType: classViewModel.selectedClassType,
-                                                              passengerList: selectPassangerViewModel.passengerList)
-                }
-                
+                 try flightViewModel.fromLocationControl(flightViewModel.textSelectedDepature)
+                 try flightViewModel.toLocationControl(flightViewModel.textSelectedArrivel)
+                try flightViewModel.fromToLocationCompare(flightViewModel.selectedDepature!, flightViewModel.selectedArrivel!)
+           
                 self.isPresentedFlightTickerSearcView = true
 
             }catch{
@@ -299,7 +281,10 @@ struct FlightView: View {
                        dismissButton: .default(Text("Got it!"))
                            )
             }.fullScreenCover(isPresented: $isPresentedFlightTickerSearcView) {
-                FlightTicketSearchView()
+                FlightTicketSearchView(deptureDate: selectDepAndArViewModel.selectedArrivelDate,
+                                       returnDate: selectDepAndArViewModel.selectedDepatureDate,
+                                       deptureCity: flightViewModel.selectedDepature,
+                                       arrivelCity: flightViewModel.selectedArrivel)
             }
           
 
@@ -312,6 +297,6 @@ struct FlightView_Previews: PreviewProvider {
             .environmentObject(SelectDepAndArDateViewModel())
             .environmentObject(SelectPassengerViewModel())
             .environmentObject(ClassViewModel())
-            .environmentObject(FlightTicketSearchViewModel())
+            
     }
 }
