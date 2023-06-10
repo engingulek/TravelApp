@@ -63,6 +63,14 @@ final class SelectedPassengerViewModelTest: XCTestCase {
         XCTAssertEqual(expected, 3)
         
     }
+    
+    func test_passengerList(){
+        selectedPassangerViewModel.toIncreasePassengerCount(passenger: .kind)
+        selectedPassangerViewModel.toDecreasePassengerCount(passenger: .adult)
+        selectedPassangerViewModel.toIncreasePassengerCount(passenger: .baby)
+        let expected : [String:Int] = ["Adult" : 0,"Kind" : 1,"Baby":1,"Student":0]
+        XCTAssertEqual(expected, selectedPassangerViewModel.passengerList,"The passengerList should be expected")
+    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

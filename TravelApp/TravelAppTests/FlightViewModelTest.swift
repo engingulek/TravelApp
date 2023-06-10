@@ -25,8 +25,36 @@ final class FlightViewModelTest: XCTestCase {
  
         urlSession = nil
         super.tearDown()
+    }
+    
+    func test_with_getFlight_network_is_valid(){
+        let flight = Network.flights
+        
+        let  method = flight.method.rawValue
+        let path = flight.path
+        let url = flight.baseUrl + flight.path
+
+        XCTAssertEqual(method, "GET","The method type should be GET")
+        XCTAssertEqual(path, "/flights","The path type should be /flights")
+        XCTAssertEqual(url, "http://localhost:3000/flights","The path type should be http://localhost:3000/flights")
         
     }
+    
+    func test_with_getPopFlights_network_is_valid(){
+        let popFlight = Network.popFlights
+        
+        let method = popFlight.method.rawValue
+        let path = popFlight.path
+        let url = popFlight.baseUrl + popFlight.path
+
+
+        XCTAssertEqual(method, "GET","The method type should be GET")
+        XCTAssertEqual(path, "/allPopFlights","The path type should be /allPopFlights")
+        XCTAssertEqual(url, "http://localhost:3000/allPopFlights","The path type should be http://localhost:3000/allPopFlights")
+        
+    }
+
+    
     
 
     func test_getFlights_HTTPStatusCode200() throws {
@@ -91,6 +119,21 @@ final class FlightViewModelTest: XCTestCase {
         
         XCTAssertEqual(flightViewModel.selectedDepature, flightViewModel.selectedArrivel)
         XCTAssertEqual(flightViewModel.textSelectedDepature, flightViewModel.textSelectedArrivel)
+    }
+    
+    func test_is_from_select(){
+        XCTAssertNoThrow(try flightViewModel.fromLocationControl("İstanbul/Sabiha Gökçen"))
+    }
+    
+    func test_is_to_select(){
+        XCTAssertNoThrow(try flightViewModel.fromLocationControl("İstanbul/Esenboğa Havalimanı"))
+    }
+    
+    func test_is_toFrom_Compare(){
+        let from = City(id: 1, name: "İstanbul", code: "IST", airport: [Airport(id: 2, name: "Sabiha Gökçen", code: "SAW")])
+        let to = City(id: 2, name: "Ankara", code: "ESB", airport: [Airport(id: 2, name: "Esenboğa Havalimanı", code: "ESB")])
+        
+        XCTAssertNoThrow(try flightViewModel.fromToLocationCompare(from, to))
     }
     
     

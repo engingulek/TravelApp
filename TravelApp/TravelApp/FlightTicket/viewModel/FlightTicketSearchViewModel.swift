@@ -32,18 +32,12 @@ class FlightTicketSearchViewModel : ObservableObject {
                 case .success(let list):
                     DispatchQueue.main.async {
                         let resultList =  list.map(FlightTicketVM.init)
-                       /* print(self.deptureCity!.airport)
-                        print("Date Test \(self.getDeptureDate?.dateFormatted())")
-                        print("Date Test 1  \(resultList[0].date.stringToDate().dateFormatted())")*/
                         self.flightTicketsDepture =  resultList.filter{ result in
                             self.deptureCity!.airport.contains(where: {$0.code == result.from.airport.code})
-                            
                             &&   self.arrivelCity!.airport.contains(where: {$0.code == result.to.airport.code})
                             && self.getDeptureDate!.dateFormatted() == result.date.stringToDate().dateFormatted()
                             && self.classType! == result.classType
-                           
                         }
-                        
                     }
                 case .failure(_):
                     DispatchQueue.main.async {

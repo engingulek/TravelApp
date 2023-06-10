@@ -157,10 +157,6 @@ extension FlightTicketSearchView {
                         .onTapGesture {
                             flightTicketSearchViewModel.getDeptureDate = futureDate
                             selectDepAndArViewModel.selectedDepatureDate = futureDate
-                            print(flightTicketSearchViewModel.getDeptureDate!.dayMonthFormat().0)
-                            print(futureDate.dayMonthFormat().0)
-                           
-                            
                             Task {
                                await self.flightTicketSearchViewModel.getDataDeptureFlightTickets()
                             }

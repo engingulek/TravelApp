@@ -22,21 +22,22 @@ final class FlightTicketSearchViewModelUnitTest: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func test_is_from_select(){
-        XCTAssertNoThrow(try flightTicket.fromLocationControl("İstanbul/Sabiha Gökçen"))
-    }
-    
-    func test_is_to_select(){
-        XCTAssertNoThrow(try flightTicket.fromLocationControl("İstanbul/Esenboğa Havalimanı"))
-    }
-    
-    func test_is_toFrom_Compare(){
-        let from = City(id: 1, name: "İstanbul", code: "IST", airport: [Airport(id: 2, name: "Sabiha Gökçen", code: "SAW")])
-        let to = City(id: 2, name: "Ankara", code: "ESB", airport: [Airport(id: 2, name: "Esenboğa Havalimanı", code: "ESB")])
+    func test_with_flightTickets_network_is_valid(){
+        let flightTicket = Network.flightTickets
         
-        XCTAssertNoThrow(try flightTicket.fromToLocationCompare(from, to))
+        let method = flightTicket.method.rawValue
+        let path = flightTicket.path
+        let url = flightTicket.baseUrl + flightTicket.path
+
+        XCTAssertEqual(method, "GET","The method type should be GET")
+        XCTAssertEqual(path, "/flightTickets","The path type should be /flightTickets ")
+        XCTAssertEqual(url, "http://localhost:3000/flightTickets","The path type should be http://localhost:3000/flightTickets")
+        
     }
     
+   
+    
+   
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
