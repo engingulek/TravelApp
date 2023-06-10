@@ -23,6 +23,7 @@ class FlightTicketSearchViewModel : ObservableObject {
     var passangerList: [String:Int]?
     
     
+    
   
     
     func getDataDeptureFlightTickets() async {
@@ -46,6 +47,22 @@ class FlightTicketSearchViewModel : ObservableObject {
                 }
             })
         }
+    }
+    
+    //MARK: - Calculate total amount
+    func calculateTotalAmount(_ priceInfo:[PriceInfo]) -> String {
+        
+        var totalAmount = 0.0
+        for info in priceInfo {
+            //print("PassengerList \(passangerList[i])")
+           // print(info.person.capitalized)
+            totalAmount += Double(info.price) * Double(passangerList![info.person.capitalized] ?? 0)
+           // print("ali \(passangerList![info.person])")
+        }
+        
+       /* print(passangerList)
+        print(priceInfo)*/
+        return String(format: "%.1f", totalAmount)
     }
     
     

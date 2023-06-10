@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-struct FlightTicketSearchView: View {
+struct FlightTicketDeptureView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var flightTicketSearchViewModel : FlightTicketSearchViewModel
     @EnvironmentObject var selectDepAndArViewModel : SelectDepAndArDateViewModel
@@ -36,27 +36,29 @@ struct FlightTicketSearchView: View {
                 .roundedCorner(20, corners: [.bottomLeft,.bottomRight])
                 .edgesIgnoringSafeArea(.top)
                 
-            // ticket list
-            VStack{
-                HStack{
-                    Text("Please select your outbound flight")
-                        .foregroundColor(Color.blue)
-                    Spacer()
-                }
-                
-                /*VStack{
-                    Text((returnDate?.dateFormatted())!)
-                    Text("\(deptureCity!.airport.count)")
-                    Text("\(arrivelCity!.airport.count)")
-                    Text("\(passangerList.count)")
-                }*/
-                ScrollView(showsIndicators: false) {
-                    searchTicketInfo
            
+            if flightTicketSearchViewModel.flightTicketsDepture.count == 0 {
+                VStack {
+                    Text("No Ticket ")
                 }
-                
-            }.padding(.horizontal)
-                .edgesIgnoringSafeArea(.bottom)
+            }else{
+                // ticket list
+                VStack{
+                    HStack{
+                        Text("Please select your outbound flight")
+                            .foregroundColor(Color.blue)
+                        Spacer()
+                    }
+                    
+                    ScrollView(showsIndicators: false) {
+                        searchTicketInfo
+                    }
+                    
+                }.padding(.horizontal)
+                    .edgesIgnoringSafeArea(.bottom)
+            }
+            Spacer()
+            
             
         }.background(Color("backgroundTabbar"))
             .onAppear{
@@ -79,7 +81,7 @@ struct FlightTicketSearchView: View {
 
 struct FlightTicketSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        FlightTicketSearchView()
+        FlightTicketDeptureView()
             .environmentObject(FlightTicketSearchViewModel())
             .environmentObject(SelectDepAndArDateViewModel())
         
@@ -87,7 +89,7 @@ struct FlightTicketSearchView_Previews: PreviewProvider {
     }
 }
 
-extension FlightTicketSearchView {
+extension FlightTicketDeptureView {
     private var header : some View {
         HStack{
             Image(systemName: "arrowtriangle.backward")
@@ -196,6 +198,10 @@ extension FlightTicketSearchView {
                             Text("\(result.bagWeight) kg/person")
                         }.font(.subheadline)
                     }
+                    HStack {
+                        Spacer()
+                        Text("Total Amount \(flightTicketSearchViewModel.calculateTotalAmount(result.price)) ₺")
+                    } .font(.caption)
                     VStack{
                         Divider()
                             .frame(

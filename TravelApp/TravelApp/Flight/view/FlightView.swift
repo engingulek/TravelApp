@@ -281,7 +281,7 @@ struct FlightView: View {
                        dismissButton: .default(Text("Cancel"))
                            )
             }.fullScreenCover(isPresented: $isPresentedFlightTickerSearcView) {
-                FlightTicketSearchView(deptureDate: selectDepAndArViewModel.selectedArrivelDate,
+                FlightTicketDeptureView(deptureDate: selectDepAndArViewModel.selectedArrivelDate,
                                        returnDate: selectDepAndArViewModel.selectedDepatureDate,
                                        deptureCity: flightViewModel.selectedDepature,
                                        arrivelCity: flightViewModel.selectedArrivel,
