@@ -278,7 +278,7 @@ struct FlightView: View {
             .alert(isPresented: $showingAlert) {
                 Alert( title: Text("Important message"),
                        message: Text(alertMessage),
-                       dismissButton: .default(Text("Got it!"))
+                       dismissButton: .default(Text("Cancel"))
                            )
             }.fullScreenCover(isPresented: $isPresentedFlightTickerSearcView) {
                 FlightTicketSearchView(deptureDate: selectDepAndArViewModel.selectedArrivelDate,
