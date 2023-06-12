@@ -10,15 +10,18 @@ struct FlightTicketDeptureView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var flightTicketSearchViewModel : FlightTicketSearchViewModel
     @EnvironmentObject var selectDepAndArViewModel : SelectDepAndArDateViewModel
+    
+    @State private var isPresentedFlightInfoView = false
+    @State private var isPresentedFlightTicketReturn = false
     var deptureDate:Date?
     var returnDate:Date?
     var deptureCity : City?
     var arrivelCity: City?
-    var classType : String = ""
     var passangerList: [String:Int] = [:]
+    var selectedButton:Int?
     
     var body: some View {
-     
+        
         VStack{
             VStack{
                 
@@ -32,11 +35,11 @@ struct FlightTicketDeptureView: View {
                 
             }.frame(width: UIScreen.main.bounds.width,
                     height: UIScreen.main.bounds.height / 3)
-                .background(Color.blue)
-                .roundedCorner(20, corners: [.bottomLeft,.bottomRight])
-                .edgesIgnoringSafeArea(.top)
-                
-           
+            .background(Color.blue)
+            .roundedCorner(20, corners: [.bottomLeft,.bottomRight])
+            .edgesIgnoringSafeArea(.top)
+            
+            
             if flightTicketSearchViewModel.flightTicketsDepture.count == 0 {
                 VStack {
                     Text("No Ticket ")
@@ -63,18 +66,17 @@ struct FlightTicketDeptureView: View {
         }.background(Color("backgroundTabbar"))
             .onAppear{
                 flightTicketSearchViewModel.getDeptureDate = deptureDate
-                 flightTicketSearchViewModel.listDateLater20()
+                flightTicketSearchViewModel.listDateLater20()
                 flightTicketSearchViewModel.returnDate = returnDate
                 flightTicketSearchViewModel.deptureCity = deptureCity
                 flightTicketSearchViewModel.arrivelCity = arrivelCity
-                flightTicketSearchViewModel.classType = classType
                 flightTicketSearchViewModel.passangerList = passangerList
                 
                 
             }
             .task {
                 await flightTicketSearchViewModel.getDataDeptureFlightTickets()
-              
+                
             }
     }
 }
@@ -85,7 +87,7 @@ struct FlightTicketSearchView_Previews: PreviewProvider {
             .environmentObject(FlightTicketSearchViewModel())
             .environmentObject(SelectDepAndArDateViewModel())
         
-            
+        
     }
 }
 
@@ -123,18 +125,18 @@ extension FlightTicketDeptureView {
                         Divider()
                             .frame(width: UIScreen.main.bounds.width / 2,
                                    height: 1)
-                        .overlay(.white)
+                            .overlay(.white)
                     }
                     Image(systemName: "airplane")
                         .foregroundColor(Color.white)
                         .font(.title2)
                 }
-              Spacer()
+                Spacer()
                 Text(arrivelCity!.airport.count >= 2 ? arrivelCity!.code : arrivelCity!.airport[0].code)
-                    
+                
             }.foregroundColor(Color.white)
                 .fontWeight(.semibold)
-                
+            
         }.padding(.horizontal)
     }
     
@@ -160,7 +162,7 @@ extension FlightTicketDeptureView {
                             flightTicketSearchViewModel.getDeptureDate = futureDate
                             selectDepAndArViewModel.selectedDepatureDate = futureDate
                             Task {
-                               await self.flightTicketSearchViewModel.getDataDeptureFlightTickets()
+                                await self.flightTicketSearchViewModel.getDataDeptureFlightTickets()
                             }
                         }
                     }
@@ -172,11 +174,23 @@ extension FlightTicketDeptureView {
     private var searchTicketInfo : some View {
         VStack(spacing: 20) {
             ForEach(flightTicketSearchViewModel.flightTicketsDepture) { result in
-              
+                
                 FlightTicketCell(result: result)
-                   
+                    .onTapGesture {
+                        if selectedButton == 0 {
+                            self.isPresentedFlightInfoView = true
+                        }else{
+                            self.isPresentedFlightTicketReturn = true
+                        }
+                    }.fullScreenCover(isPresented: $isPresentedFlightInfoView) {
+                        FlightInfoView()
+                    }.fullScreenCover(isPresented: $isPresentedFlightTicketReturn) {
+                        FlightTicketReturnView()
+                    }
+                
+                
             }
         }
     }
-   
+    
 }

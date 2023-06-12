@@ -9,13 +9,13 @@ import SwiftUI
 
 struct SelectArrvivelDate: View {
     @EnvironmentObject var selectedDepAndArViewModel : SelectDepAndArDateViewModel
-    var startArrivelDate : Date
+    var startArrivelDate : Date?
     @Environment(\.dismiss) var dismiss
     var body: some View {
         
         @State var arrivelDateRange : ClosedRange<Date> = {
              let calender = Calendar.current
-            let minDate = calender.date(byAdding: .day, value: 0, to: startArrivelDate)
+            let minDate = calender.date(byAdding: .day, value: 0, to: startArrivelDate!)
              let maxDate = calender.date(byAdding: .month, value: 11, to: .now)
              return minDate!...maxDate!
          }()
@@ -34,6 +34,6 @@ struct SelectArrvivelDate: View {
 
 struct SelectArrvivelDate_Previews: PreviewProvider {
     static var previews: some View {
-        SelectArrvivelDate(startArrivelDate: .now)
+        SelectArrvivelDate()
     }
 }

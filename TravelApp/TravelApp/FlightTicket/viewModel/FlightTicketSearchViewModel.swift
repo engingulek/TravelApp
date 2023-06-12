@@ -19,7 +19,6 @@ class FlightTicketSearchViewModel : ObservableObject {
     var returnDate:Date?
     var deptureCity : City?
     var arrivelCity: City?
-    var classType : String?
     var passangerList: [String:Int]?
     
     
@@ -37,7 +36,6 @@ class FlightTicketSearchViewModel : ObservableObject {
                             self.deptureCity!.airport.contains(where: {$0.code == result.from.airport.code})
                             &&   self.arrivelCity!.airport.contains(where: {$0.code == result.to.airport.code})
                             && self.getDeptureDate!.dateFormatted() == result.date.stringToDate().dateFormatted()
-                            && self.classType! == result.classType
                         }
                     }
                 case .failure(_):

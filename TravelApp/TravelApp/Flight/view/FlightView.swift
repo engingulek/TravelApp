@@ -35,14 +35,14 @@ struct FlightView: View {
                     }
                     .fullScreenCover(isPresented:$isPresentedFrom) {
                         SelectFromLocationView()
-                    
-                }
+                        
+                    }
                 Image(systemName: "arrow.up.arrow.down.circle")
                     .font(.title)
                     .foregroundColor(Color.blue).onTapGesture {
                         flightViewModel.changeFromAndTo()
                     }
-            
+                
                 toCityAirport
                     .onTapGesture {
                         self.isPresentedTo = true
@@ -50,22 +50,22 @@ struct FlightView: View {
                     }
                     .fullScreenCover(isPresented:$isPresentedTo) {
                         SelectToLocationView()
-                }
+                    }
                 depatureDate.onTapGesture {
                     self.isPresentedDateDepature = true
                 }.sheet(isPresented: $isPresentedDateDepature) {
-                   SelectDepartureDate()
+                    SelectDepartureDate()
                         .presentationDetents([.height(UIScreen.main.bounds.height / 1.5),.fraction(0.75)])
-                        
+                    
                 }
                 selectedButton == 1 ?
                 returnDate
                     .onTapGesture {
                         self.isPresentedDateArrivel = true
-        
+                        
                     }.sheet(isPresented: $isPresentedDateArrivel, content: {
                         SelectArrvivelDate(startArrivelDate: selectDepAndArViewModel.selectedDepatureDate)
-                          .presentationDetents([.height(UIScreen.main.bounds.height / 1.5),.fraction(0.75)])
+                            .presentationDetents([.height(UIScreen.main.bounds.height / 1.5),.fraction(0.75)])
                     })
                 
                 : nil
@@ -82,7 +82,7 @@ struct FlightView: View {
                         }.sheet(isPresented: $isPresenterClass) {
                             ClassView()
                                 .presentationDetents([.height(UIScreen.main.bounds.height / 4),.fraction(0.25)])
-                          
+                            
                         }
                 }
                 .padding(.horizontal)
@@ -90,56 +90,58 @@ struct FlightView: View {
             }
             .padding(.bottom)
             
+        }.onAppear{
+            print("FlightView \(selectDepAndArViewModel.selectedArrivelDate)")
         }
         
-      
+        
     }
     
     var button : some View {
-       
-              HStack(spacing:20) {
-                  Button {
-                      selectedButton = 0
-                  } label: {
-                      Text("On Way")
-                          .foregroundColor(selectedButton == 0 ?
-                              .white : Color.gray)
-                  }.padding()
-                      .background(selectedButton == 0 ? Color.blue : nil)
-                      .cornerRadius(20)
-                  Button {
-                      selectedButton = 1
-                  } label: {
-                      Text("Rounded Trip")
-                          .foregroundColor(selectedButton == 1 ?
-                              .white : Color.gray)
-                  }.padding()
-                      .background(selectedButton == 1 ? Color.blue : nil)
-                      .cornerRadius(20)
-              }.padding(.top)
-          
-      }
+        
+        HStack(spacing:20) {
+            Button {
+                selectedButton = 0
+            } label: {
+                Text("On Way")
+                    .foregroundColor(selectedButton == 0 ?
+                        .white : Color.gray)
+            }.padding()
+                .background(selectedButton == 0 ? Color.blue : nil)
+                .cornerRadius(20)
+            Button {
+                selectedButton = 1
+            } label: {
+                Text("Rounded Trip")
+                    .foregroundColor(selectedButton == 1 ?
+                        .white : Color.gray)
+            }.padding()
+                .background(selectedButton == 1 ? Color.blue : nil)
+                .cornerRadius(20)
+        }.padding(.top)
+        
+    }
     
     var fromCityAirport : some View {
-    
-            VStack(alignment: .leading) {
-                HStack {
-                    Image(systemName: "airplane.departure")
-                    VStack(alignment:.leading) {
-                        Text("From")
-                            .foregroundColor(Color.gray)
-                        Text(flightViewModel.textSelectedDepature)
-                    }
-                    
-                    Spacer()
-                }.padding(.all,10)
-     
-                    .overlay(
+        
+        VStack(alignment: .leading) {
+            HStack {
+                Image(systemName: "airplane.departure")
+                VStack(alignment:.leading) {
+                    Text("From")
+                        .foregroundColor(Color.gray)
+                    Text(flightViewModel.textSelectedDepature)
+                }
+                
+                Spacer()
+            }.padding(.all,10)
+            
+                .overlay(
                     RoundedRectangle(cornerRadius: 20)
                         .stroke(.blue, lineWidth: 1)
                 )
-            }.padding([.horizontal,.top])
-            
+        }.padding([.horizontal,.top])
+        
         
     }
     
@@ -155,11 +157,11 @@ struct FlightView: View {
                 
                 Spacer()
             }.padding(.all,10)
- 
+            
                 .overlay(
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(.blue, lineWidth: 1)
-            )
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(.blue, lineWidth: 1)
+                )
         }.padding(.horizontal)
             .padding(.top,5)
     }
@@ -179,11 +181,11 @@ struct FlightView: View {
                 
                 Spacer()
             }.padding(.all,10)
- 
+            
                 .overlay( /// apply a rounded border
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(.blue, lineWidth: 1)
-            )
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(.blue, lineWidth: 1)
+                )
         }.padding([.horizontal,.top])
     }
     
@@ -199,11 +201,11 @@ struct FlightView: View {
                 
                 Spacer()
             }.padding(.all,10)
- 
+            
                 .overlay( /// apply a rounded border
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(.blue, lineWidth: 1)
-            )
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(.blue, lineWidth: 1)
+                )
         }.padding([.horizontal,.top])
     }
     
@@ -219,17 +221,17 @@ struct FlightView: View {
                 
                 Spacer()
             }.padding(.all,10)
- 
+            
                 .overlay( /// apply a rounded border
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(.blue, lineWidth: 1)
-            )
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(.blue, lineWidth: 1)
+                )
         }.padding(.top)
     }
     
     var classType : some View {
         VStack(alignment: .leading) {
-           
+            
             HStack {
                 Image(systemName: "gearshape.fill")
                 HStack {
@@ -238,29 +240,32 @@ struct FlightView: View {
                             .foregroundColor(Color.gray)
                         Text(classViewModel.selectedClassType)
                     }
-                   
-                 
+                    
+                    
                 }
                 
                 Spacer()
             }.padding(.all,10)
- 
+            
                 .overlay( /// apply a rounded border
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(.blue, lineWidth: 1)
-            )
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(.blue, lineWidth: 1)
+                )
         }.padding(.top)
     }
     
     var searchButton : some View {
         Button {
             do {
-                 try flightViewModel.fromLocationControl(flightViewModel.textSelectedDepature)
-                 try flightViewModel.toLocationControl(flightViewModel.textSelectedArrivel)
+                try flightViewModel.fromLocationControl(flightViewModel.textSelectedDepature)
+                try flightViewModel.toLocationControl(flightViewModel.textSelectedArrivel)
                 try flightViewModel.fromToLocationCompare(flightViewModel.selectedDepature!, flightViewModel.selectedArrivel!)
-           
+                
                 self.isPresentedFlightTickerSearcView = true
-
+                if selectedButton == 0{
+                    //  selectDepAndArViewModel.selectedArrivelDate = nil
+                }
+                
             }catch{
                 self.showingAlert = true
                 self.alertMessage = error.localizedDescription
@@ -279,18 +284,19 @@ struct FlightView: View {
                 Alert( title: Text("Important message"),
                        message: Text(alertMessage),
                        dismissButton: .default(Text("Cancel"))
-                           )
+                )
             }.fullScreenCover(isPresented: $isPresentedFlightTickerSearcView) {
                 FlightTicketDeptureView(deptureDate: selectDepAndArViewModel.selectedArrivelDate,
-                                       returnDate: selectDepAndArViewModel.selectedDepatureDate,
-                                       deptureCity: flightViewModel.selectedDepature,
-                                       arrivelCity: flightViewModel.selectedArrivel,
-                                       classType:classViewModel.selectedClassType,
-                                       passangerList: selectPassangerViewModel.passengerList
+                                        returnDate: selectDepAndArViewModel.selectedDepatureDate,
+                                        deptureCity: flightViewModel.selectedDepature,
+                                        arrivelCity: flightViewModel.selectedArrivel,
+                                        //classType:classViewModel.selectedClassType,
+                                        passangerList: selectPassangerViewModel.passengerList,
+                                        selectedButton : self.selectedButton
                 )
             }
-          
-
+        
+        
     }
 }
 
@@ -300,6 +306,6 @@ struct FlightView_Previews: PreviewProvider {
             .environmentObject(SelectDepAndArDateViewModel())
             .environmentObject(SelectPassengerViewModel())
             .environmentObject(ClassViewModel())
-            
+        
     }
 }
