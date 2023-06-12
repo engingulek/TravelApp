@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FlightInfoView: View {
   @State  private var isPresentedConfirm = false
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var body: some View {
         ZStack {
             Color("backgroundTabbar")
@@ -58,15 +59,25 @@ struct FlightInfoView: View {
                         .frame(width: UIScreen.main.bounds.width / 2)
                         .background(Color.blue)
                         .cornerRadius(20)
-                        .fullScreenCover(isPresented: $isPresentedConfirm) {
-                            Text("dad")
+                        .navigationDestination(isPresented: $isPresentedConfirm) {
+                            PassengerAndPayInfo()
                         }
                     
                 }
             }.padding(.top,80)
+                .toolbar {
+                    ToolbarItem(placement:.navigationBarLeading) {
+                        Image(systemName: "arrowtriangle.backward")
+                            .foregroundColor(Color.white)
+                            .onTapGesture {
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                    }
+                }
             
 
-        }
+        }.navigationBarBackButtonHidden(true)
+        
         
         
     }
@@ -252,7 +263,7 @@ struct FlightInfoView: View {
 
 struct FlightInfo_Previews: PreviewProvider {
     static var previews: some View {
-        FlightInfoView()
+       FlightInfoView()
     }
 }
 

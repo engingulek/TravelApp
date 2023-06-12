@@ -22,70 +22,76 @@ struct FlightTicketDeptureView: View {
     
     var body: some View {
         
-        VStack{
+        NavigationStack {
             VStack{
-                
-                /// header
-                header
-                /// Route Detail
-                routeDetail
-                /// dateList
-                
-                dateList
-                
-            }.frame(width: UIScreen.main.bounds.width,
-                    height: UIScreen.main.bounds.height / 3)
-            .background(Color.blue)
-            .roundedCorner(20, corners: [.bottomLeft,.bottomRight])
-            .edgesIgnoringSafeArea(.top)
-            
-            
-            if flightTicketSearchViewModel.flightTicketsDepture.count == 0 {
-                VStack {
-                    Text("No Ticket ")
-                }
-            }else{
-                // ticket list
                 VStack{
-                    HStack{
-                        Text("Please select your outbound flight")
-                            .foregroundColor(Color.blue)
-                        Spacer()
-                    }
                     
-                    ScrollView(showsIndicators: false) {
-                        searchTicketInfo
-                    }
+                    /// header
+                    header
+                    /// Route Detail
+                    routeDetail
+                    /// dateList
                     
-                }.padding(.horizontal)
-                    .edgesIgnoringSafeArea(.bottom)
-            }
-            Spacer()
-            
-            
-        }.background(Color("backgroundTabbar"))
-            .onAppear{
-                flightTicketSearchViewModel.getDeptureDate = deptureDate
-                flightTicketSearchViewModel.listDateLater20()
-                flightTicketSearchViewModel.returnDate = returnDate
-                flightTicketSearchViewModel.deptureCity = deptureCity
-                flightTicketSearchViewModel.arrivelCity = arrivelCity
-                flightTicketSearchViewModel.passangerList = passangerList
+                    dateList
+                    
+                }.frame(width: UIScreen.main.bounds.width,
+                        height: UIScreen.main.bounds.height / 3)
+                .background(Color.blue)
+                .roundedCorner(20, corners: [.bottomLeft,.bottomRight])
+                .edgesIgnoringSafeArea(.top)
                 
                 
-            }
-            .task {
-                await flightTicketSearchViewModel.getDataDeptureFlightTickets()
+                if flightTicketSearchViewModel.flightTicketsDepture.count == 0 {
+                    VStack {
+                        Text("No Ticket ")
+                    }
+                }else{
+                    // ticket list
+                    VStack{
+                        HStack{
+                            Text("Please select your outbound flight")
+                                .foregroundColor(Color.blue)
+                            Spacer()
+                        }
+                        
+                        ScrollView(showsIndicators: false) {
+                            searchTicketInfo
+                        }
+                        
+                    }.padding(.horizontal)
+                        .edgesIgnoringSafeArea(.bottom)
+                }
+                Spacer()
                 
-            }
+                
+            }.background(Color("backgroundTabbar"))
+                .onAppear{
+                    flightTicketSearchViewModel.getDeptureDate = deptureDate
+                    flightTicketSearchViewModel.listDateLater20()
+                    flightTicketSearchViewModel.returnDate = returnDate
+                    flightTicketSearchViewModel.deptureCity = deptureCity
+                    flightTicketSearchViewModel.arrivelCity = arrivelCity
+                    flightTicketSearchViewModel.passangerList = passangerList
+                    
+                    
+                }
+                .task {
+                    await flightTicketSearchViewModel.getDataDeptureFlightTickets()
+                    
+                }
+               
+        }
     }
 }
 
 struct FlightTicketSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        FlightTicketDeptureView()
-            .environmentObject(FlightTicketSearchViewModel())
-            .environmentObject(SelectDepAndArDateViewModel())
+   
+            FlightTicketDeptureView()
+                .environmentObject(FlightTicketSearchViewModel())
+                .environmentObject(SelectDepAndArDateViewModel())
+        
+       
         
         
     }
@@ -182,13 +188,11 @@ extension FlightTicketDeptureView {
                         }else{
                             self.isPresentedFlightTicketReturn = true
                         }
-                    }.fullScreenCover(isPresented: $isPresentedFlightInfoView) {
+                    }.navigationDestination(isPresented: $isPresentedFlightInfoView){
                         FlightInfoView()
-                    }.fullScreenCover(isPresented: $isPresentedFlightTicketReturn) {
+                    }.navigationDestination(isPresented: $isPresentedFlightTicketReturn) {
                         FlightTicketReturnView()
                     }
-                
-                
             }
         }
     }
