@@ -39,6 +39,16 @@ extension String {
         return date ?? Date.now
 
     }
+    
+    
+    func splitTime() -> String {
+        let timeSplit = self.split(separator: ":")
+        return String(timeSplit[0])
+    }
+    
+    func time24Clockchange00() -> String {
+        self == "00" ? "24" : self
+    }
 
 }
 

@@ -12,7 +12,7 @@ struct FlightView: View {
     @EnvironmentObject var flightViewModel : FlightViewModel
     @EnvironmentObject var selectDepAndArViewModel : SelectDepAndArDateViewModel
     @EnvironmentObject var selectPassangerViewModel : SelectPassengerViewModel
-    @EnvironmentObject var filterViewModel : FilterViewModel
+
     
     
     @State private var selectedButton = 0
@@ -277,7 +277,7 @@ struct FlightView_Previews: PreviewProvider {
         FlightView().environmentObject(FlightViewModel())
             .environmentObject(SelectDepAndArDateViewModel())
             .environmentObject(SelectPassengerViewModel())
-            .environmentObject(FilterViewModel())
+         
             
     }
 }

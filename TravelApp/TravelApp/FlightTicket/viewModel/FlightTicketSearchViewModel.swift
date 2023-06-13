@@ -9,21 +9,25 @@ import Foundation
 
 
 
-final
-class FlightTicketSearchViewModel : ObservableObject {
-   private var flightTicketService = FlightTicketService()
+
+ class FlightTicketSearchViewModel : ObservableObject {
+    private var flightTicketService = FlightTicketService()
     @Published var flightTicketsDepture : [FlightTicketVM] = []
+     @Published var tempFligjtTicDepList : [FlightTicketVM] = []
+   
     @Published var getDeptureDate : Date?
     @Published var dateList = [Date]()
+    @Published var selectedClassType : ClassType?
+    @Published var selectedTimesOfDay : TimesOfDay?
+   
+    
     var deptureDate:Date?
     var returnDate:Date?
     var deptureCity : City?
     var arrivelCity: City?
     var passangerList: [String:Int]?
-    
-    
-    
-  
+    var flightList = [FlightVM]()
+
     
     func getDataDeptureFlightTickets() async {
         do {
@@ -31,12 +35,18 @@ class FlightTicketSearchViewModel : ObservableObject {
                 switch response {
                 case .success(let list):
                     DispatchQueue.main.async {
-                        let resultList =  list.map(FlightTicketVM.init)
-                        self.flightTicketsDepture =  resultList.filter{ result in
+                        let flightList =  list.map(FlightTicketVM.init)
+                        let resultList =  flightList.filter{ result in
                             self.deptureCity!.airport.contains(where: {$0.code == result.from.airport.code})
                             &&   self.arrivelCity!.airport.contains(where: {$0.code == result.to.airport.code})
                             && self.getDeptureDate!.dateFormatted() == result.date.stringToDate().dateFormatted()
                         }
+                        
+                        self.flightTicketsDepture = resultList
+                        self.tempFligjtTicDepList = resultList
+                       
+                        
+                        
                     }
                 case .failure(_):
                     DispatchQueue.main.async {
@@ -52,25 +62,19 @@ class FlightTicketSearchViewModel : ObservableObject {
         
         var totalAmount = 0.0
         for info in priceInfo {
-            //print("PassengerList \(passangerList[i])")
-           // print(info.person.capitalized)
             totalAmount += Double(info.price) * Double(passangerList![info.person.capitalized] ?? 0)
-           // print("ali \(passangerList![info.person])")
         }
-        
-       /* print(passangerList)
-        print(priceInfo)*/
         return String(format: "%.1f", totalAmount)
     }
     
     
     func listDateLater20(){
-
+        
         let currentDate = Date.now
         print("List Date Later \(currentDate)")
         print(Date.now)
         
-       
+        
         var datecomponent = DateComponents()
         for addDate in 0..<30 {
             datecomponent.day = addDate
@@ -82,9 +86,9 @@ class FlightTicketSearchViewModel : ObservableObject {
     }
     
     
- 
     
-   
+    
+    
 }
 
 struct FlightTicketVM: Identifiable {
@@ -119,6 +123,17 @@ struct FlightTicketVM: Identifiable {
     }
     var bagWeight: Int {
         flightTicket.bagWeight
+    }
+    var timesOfDay : TimesOfDay {
+        if 5 <= Int(flightTicket.deptureClock.splitTime())! && Int(flightTicket.deptureClock.splitTime())! < 12 {
+            return .morning
+        } else if  12 <= Int(flightTicket.deptureClock.splitTime())! && Int(flightTicket.deptureClock.splitTime())! < 16{
+            return .afternoon
+        } else if  16 <= Int(flightTicket.deptureClock.splitTime())! && Int(flightTicket.deptureClock.splitTime())! < 20{
+            return .evening
+        } else{
+            return .night
+        }
     }
 }
 

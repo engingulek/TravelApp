@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ClassRow: View {
-    @EnvironmentObject var filterViewModel : FilterViewModel
+    @EnvironmentObject var flightTicketSearchViewModel : FlightTicketSearchViewModel
     let classType:ClassType
     var body: some View {
         HStack {
             Text(classType.rawValue )
             Spacer()
-            if classType == filterViewModel.selectedClassType {
+            if classType == flightTicketSearchViewModel.selectedClassType {
                 Image(systemName: "checkmark")
                     .foregroundColor(.accentColor)
                     
@@ -23,7 +23,7 @@ struct ClassRow: View {
            
         }.contentShape(Rectangle())
             .onTapGesture {
-                filterViewModel.selectedClassType = classType
+                flightTicketSearchViewModel.selectedClassType = classType
                        }
            
     }
@@ -32,6 +32,6 @@ struct ClassRow: View {
 struct ClassSelectionRow_Previews: PreviewProvider {
     static var previews: some View {
         ClassRow(classType: .economy)
-            .environmentObject(FilterViewModel())
+            .environmentObject(FlightTicketSearchViewModel())
     }
 }

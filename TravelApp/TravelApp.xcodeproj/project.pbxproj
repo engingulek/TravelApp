@@ -20,6 +20,7 @@
 		7D3B486C2A379102002DC90C /* PassengerAndPayInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B486B2A379102002DC90C /* PassengerAndPayInfo.swift */; };
 		7D3D35F42A38A049001DE980 /* TimesOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D35F32A38A049001DE980 /* TimesOfDay.swift */; };
 		7D3D35F62A38AC3E001DE980 /* Extension+FlightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D35F52A38AC3E001DE980 /* Extension+FlightViewModel.swift */; };
+		7D3D35FD2A38AE44001DE980 /* Extension+FlightTicketSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D35FC2A38AE44001DE980 /* Extension+FlightTicketSearchViewModel.swift */; };
 		7D4394392A28B3D600BDAB65 /* TravelAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4394382A28B3D600BDAB65 /* TravelAppApp.swift */; };
 		7D43943D2A28B3D700BDAB65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D43943C2A28B3D700BDAB65 /* Assets.xcassets */; };
 		7D4394402A28B3D700BDAB65 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D43943F2A28B3D700BDAB65 /* Preview Assets.xcassets */; };
@@ -30,7 +31,6 @@
 		7D43946D2A28C44800BDAB65 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D43946C2A28C44800BDAB65 /* HomeView.swift */; };
 		7D45E4FC2A30C414001D388A /* SelectedPassengerViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D45E4FB2A30C414001D388A /* SelectedPassengerViewModelTest.swift */; };
 		7D67C1142A30FDB300B6B14F /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67C1132A30FDB300B6B14F /* FilterView.swift */; };
-		7D67C1162A30FDD200B6B14F /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67C1152A30FDD200B6B14F /* FilterViewModel.swift */; };
 		7D67C11A2A3105A400B6B14F /* ClassRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67C1192A3105A400B6B14F /* ClassRow.swift */; };
 		7D67C11D2A31093B00B6B14F /* FlightTicketDeptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67C11C2A31093B00B6B14F /* FlightTicketDeptureView.swift */; };
 		7D67C1212A31096800B6B14F /* FlightTicketSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67C1202A31096800B6B14F /* FlightTicketSearchViewModel.swift */; };
@@ -82,6 +82,7 @@
 		7D3B486B2A379102002DC90C /* PassengerAndPayInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerAndPayInfo.swift; sourceTree = "<group>"; };
 		7D3D35F32A38A049001DE980 /* TimesOfDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesOfDay.swift; sourceTree = "<group>"; };
 		7D3D35F52A38AC3E001DE980 /* Extension+FlightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+FlightViewModel.swift"; sourceTree = "<group>"; };
+		7D3D35FC2A38AE44001DE980 /* Extension+FlightTicketSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+FlightTicketSearchViewModel.swift"; sourceTree = "<group>"; };
 		7D4394352A28B3D600BDAB65 /* TravelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4394382A28B3D600BDAB65 /* TravelAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelAppApp.swift; sourceTree = "<group>"; };
 		7D43943C2A28B3D700BDAB65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -94,7 +95,6 @@
 		7D43946C2A28C44800BDAB65 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7D45E4FB2A30C414001D388A /* SelectedPassengerViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPassengerViewModelTest.swift; sourceTree = "<group>"; };
 		7D67C1132A30FDB300B6B14F /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
-		7D67C1152A30FDD200B6B14F /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		7D67C1192A3105A400B6B14F /* ClassRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassRow.swift; sourceTree = "<group>"; };
 		7D67C11C2A31093B00B6B14F /* FlightTicketDeptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightTicketDeptureView.swift; sourceTree = "<group>"; };
 		7D67C1202A31096800B6B14F /* FlightTicketSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightTicketSearchViewModel.swift; sourceTree = "<group>"; };
@@ -264,6 +264,24 @@
 			path = viewModel;
 			sourceTree = "<group>";
 		};
+		7D3D35F92A38AD51001DE980 /* row */ = {
+			isa = PBXGroup;
+			children = (
+				7D67C1192A3105A400B6B14F /* ClassRow.swift */,
+				7D3D35F32A38A049001DE980 /* TimesOfDay.swift */,
+			);
+			path = row;
+			sourceTree = "<group>";
+		};
+		7D3D35FB2A38AE0A001DE980 /* filter */ = {
+			isa = PBXGroup;
+			children = (
+				7D3D35F92A38AD51001DE980 /* row */,
+				7D67C1132A30FDB300B6B14F /* FilterView.swift */,
+			);
+			path = filter;
+			sourceTree = "<group>";
+		};
 		7D43942C2A28B3D500BDAB65 = {
 			isa = PBXGroup;
 			children = (
@@ -332,9 +350,6 @@
 		7D67C1122A30FDA300B6B14F /* filter */ = {
 			isa = PBXGroup;
 			children = (
-				7D67C1132A30FDB300B6B14F /* FilterView.swift */,
-				7D67C1192A3105A400B6B14F /* ClassRow.swift */,
-				7D3D35F32A38A049001DE980 /* TimesOfDay.swift */,
 			);
 			path = filter;
 			sourceTree = "<group>";
@@ -353,6 +368,7 @@
 		7D67C11E2A31094400B6B14F /* view */ = {
 			isa = PBXGroup;
 			children = (
+				7D3D35FB2A38AE0A001DE980 /* filter */,
 				7D3B485D2A373D6F002DC90C /* return */,
 				7D3B485C2A373D66002DC90C /* depture */,
 			);
@@ -363,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				7D67C1202A31096800B6B14F /* FlightTicketSearchViewModel.swift */,
+				7D3D35FC2A38AE44001DE980 /* Extension+FlightTicketSearchViewModel.swift */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -417,7 +434,6 @@
 				7DC85BEA2A2A97A200AB46E3 /* FlightViewModel.swift */,
 				7D1228452A2F75F3003FD3EE /* SelectDepAndArDateViewModel.swift */,
 				7D168C9A2A307F8D0063A7C8 /* SelectPasangerViewModel.swift */,
-				7D67C1152A30FDD200B6B14F /* FilterViewModel.swift */,
 				7D3D35F52A38AC3E001DE980 /* Extension+FlightViewModel.swift */,
 			);
 			path = viewModel;
@@ -579,6 +595,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DC85BE22A2A8E3900AB46E3 /* SelectFromLocationView.swift in Sources */,
+				7D3D35FD2A38AE44001DE980 /* Extension+FlightTicketSearchViewModel.swift in Sources */,
 				7D39B5C52A292A8E006C7A96 /* FlightView.swift in Sources */,
 				7D6D81692A2FABDB001FDBAF /* SelectArrvivelDate.swift in Sources */,
 				7DDD6D4E2A33C6B80003C478 /* Extension+SelectToLocationView.swift in Sources */,
@@ -601,7 +618,6 @@
 				7D741B0B2A2E1E6B004357A4 /* FlightService.swift in Sources */,
 				7DC85BE82A2A913200AB46E3 /* Flight.swift in Sources */,
 				7D168C992A30689C0063A7C8 /* SelectPassangerView.swift in Sources */,
-				7D67C1162A30FDD200B6B14F /* FilterViewModel.swift in Sources */,
 				7D3B48612A373DED002DC90C /* FlightTicketReturnView.swift in Sources */,
 				7D2FBDBE2A321C2200BB6E37 /* FlightTicket.swift in Sources */,
 				7D741B042A2E1E19004357A4 /* RequestType.swift in Sources */,

@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct TimesOfDayRow: View {
-    @EnvironmentObject var filterViewModel : FilterViewModel
+    @EnvironmentObject var flightTicketSearchViewModel : FlightTicketSearchViewModel
     let timesOfDay:TimesOfDay
     var body: some View {
         HStack {
             Text(timesOfDay.rawValue )
             Spacer()
-            if timesOfDay == filterViewModel.selectedTimesOfDay {
+            if timesOfDay == flightTicketSearchViewModel.selectedTimesOfDay {
                 Image(systemName: "checkmark")
                     .foregroundColor(.accentColor)
                     
@@ -23,7 +23,7 @@ struct TimesOfDayRow: View {
            
         }.contentShape(Rectangle())
             .onTapGesture {
-                filterViewModel.selectedTimesOfDay = timesOfDay
+                flightTicketSearchViewModel.selectedTimesOfDay = timesOfDay
                        }
            
     }
@@ -32,6 +32,6 @@ struct TimesOfDayRow: View {
 struct TimesOfDayRow_Previews: PreviewProvider {
     static var previews: some View {
         TimesOfDayRow(timesOfDay: .afternoon)
-            .environmentObject(FilterViewModel())
+            .environmentObject(FlightTicketSearchViewModel())
     }
 }
