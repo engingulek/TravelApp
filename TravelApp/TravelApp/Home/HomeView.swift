@@ -52,7 +52,7 @@ struct HomeView_Previews: PreviewProvider {
             .environmentObject(FlightViewModel())
                 .environmentObject(SelectDepAndArDateViewModel())
                 .environmentObject(SelectPassengerViewModel())
-                .environmentObject(ClassViewModel())
+                .environmentObject(FilterViewModel())
                 .environmentObject(FlightTicketSearchViewModel())
             
     }

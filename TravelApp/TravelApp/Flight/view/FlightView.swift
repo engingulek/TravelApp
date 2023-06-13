@@ -12,7 +12,8 @@ struct FlightView: View {
     @EnvironmentObject var flightViewModel : FlightViewModel
     @EnvironmentObject var selectDepAndArViewModel : SelectDepAndArDateViewModel
     @EnvironmentObject var selectPassangerViewModel : SelectPassengerViewModel
-    @EnvironmentObject var classViewModel : ClassViewModel
+    @EnvironmentObject var filterViewModel : FilterViewModel
+    
     
     @State private var selectedButton = 0
     @State private var isPresentedFrom = false
@@ -20,7 +21,7 @@ struct FlightView: View {
     @State private var isPresentedDateDepature = false
     @State private var isPresentedDateArrivel = false
     @State private var isPresentedPassanger = false
-    @State private var isPresenterClass = false
+    
     @State private var showingAlert = false
     @State private var isPresentedFlightTickerSearcView = false
     @State private var alertMessage = ""
@@ -76,14 +77,8 @@ struct FlightView: View {
                         }.fullScreenCover(isPresented: $isPresentedPassanger) {
                             SelectPassangerView()
                         }
-                    classType
-                        .onTapGesture {
-                            self.isPresenterClass = true
-                        }.sheet(isPresented: $isPresenterClass) {
-                            ClassView()
-                                .presentationDetents([.height(UIScreen.main.bounds.height / 4),.fraction(0.25)])
-                          
-                        }
+                
+                      
                 }
                 .padding(.horizontal)
                 searchButton
@@ -229,30 +224,7 @@ struct FlightView: View {
         }.padding(.top)
     }
     
-    var classType : some View {
-        VStack(alignment: .leading) {
-           
-            HStack {
-                Image(systemName: "gearshape.fill")
-                HStack {
-                    VStack(alignment:.leading) {
-                        Text("Class")
-                            .foregroundColor(Color.gray)
-                        Text(classViewModel.selectedClassType)
-                    }
-                   
-                 
-                }
-                
-                Spacer()
-            }.padding(.all,10)
- 
-                .overlay( /// apply a rounded border
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(.blue, lineWidth: 1)
-            )
-        }.padding(.top)
-    }
+
     
     var searchButton : some View {
         Button {
@@ -305,7 +277,7 @@ struct FlightView_Previews: PreviewProvider {
         FlightView().environmentObject(FlightViewModel())
             .environmentObject(SelectDepAndArDateViewModel())
             .environmentObject(SelectPassengerViewModel())
-            .environmentObject(ClassViewModel())
+            .environmentObject(FilterViewModel())
             
     }
 }

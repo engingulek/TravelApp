@@ -10,6 +10,8 @@ import SwiftUI
 struct FlightInfoView: View {
   @State  private var isPresentedConfirm = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    var deptureFlightTicket : FlightTicketVM?
+    var returnFlightTicket : FlightTicketVM?
     var body: some View {
         ZStack {
             Color("backgroundTabbar")
@@ -34,7 +36,10 @@ struct FlightInfoView: View {
             ScrollView {
                 VStack(spacing:10){
                     deptureTicketInfo
-                    returnTicketInfo
+                    if returnFlightTicket != nil {
+                        returnTicketInfo
+                    }
+                
                     ZStack(alignment:.top){
                             priceInfo
                             .padding(.top)
@@ -77,6 +82,10 @@ struct FlightInfoView: View {
             
 
         }.navigationBarBackButtonHidden(true)
+            .onAppear{
+              //  print("Test \(deptureTicketInfo)")
+                print("Test \(returnTicketInfo)")
+            }
         
         
         
@@ -86,7 +95,7 @@ struct FlightInfoView: View {
         VStack(spacing:10){
             /// date
             HStack{
-                Text("Jun 13 2023")
+                Text(deptureFlightTicket!.date)
                 
                 Spacer()
             }.font(.caption2)
@@ -107,7 +116,7 @@ struct FlightInfoView: View {
                 }
                 
                 Spacer()
-                Text("Economy")
+                Text(deptureFlightTicket!.classType)
                     .padding(8)
                     .background(Color.blue)
                     .cornerRadius(10)
@@ -117,28 +126,28 @@ struct FlightInfoView: View {
             
             // code clock
             HStack {
-                Text("SAW 14:50")
+                Text("\(deptureFlightTicket!.from.airport.code) \(deptureFlightTicket!.deptureClock)")
                 Spacer()
                 HStack {
-                    Image(systemName: "clock.circle")
+                    Image(systemName: "clock")
                         .foregroundColor(Color.blue)
                     Text("40 dk")
                         .foregroundColor(Color.black.opacity(0.7))
                 }.font(.footnote)
                 
                 Spacer()
-                Text("ESB 15:30")
+                Text("\(deptureFlightTicket!.to.airport.code)/\(deptureFlightTicket!.arrivelClock)")
             }
             
             HStack {
-                Text("İstanbul/Sabiha Gökçen")
+                Text("\(deptureFlightTicket!.from.city)/\(deptureFlightTicket!.from.airport.name)")
                 Spacer()
-                Text("Ankara/Esenboğa")
+                Text("\(deptureFlightTicket!.to.city)/\(deptureFlightTicket!.to.airport.name)")
             }
             .font(.caption)
             
             HStack{
-                Text("Bag:15 kg")
+                Text("Bag:\(deptureFlightTicket!.bagWeight) kg")
                     .font(.caption)
                 Spacer()
             }
@@ -188,7 +197,7 @@ struct FlightInfoView: View {
                 Text("SAW 14:50")
                 Spacer()
                 HStack {
-                    Image(systemName: "clock.circle")
+                    Image(systemName: "clock")
                         .foregroundColor(Color.blue)
                     Text("40 dk")
                         .foregroundColor(Color.black.opacity(0.7))

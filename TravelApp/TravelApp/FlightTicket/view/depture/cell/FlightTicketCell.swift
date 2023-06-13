@@ -41,6 +41,16 @@ struct FlightTicketCell: View {
                 Spacer()
                 Text("Total Amount \(flightTicketSearchViewModel.calculateTotalAmount(result!.price)) ₺")
             } .font(.caption)
+            HStack{
+                Text("\(result!.classType)")
+                    .padding(.vertical,5)
+                    .padding(.horizontal,10)
+                    .background(Color.blue)
+                    .foregroundColor(Color.white)
+                    .cornerRadius(20)
+                    .font(.callout)
+                Spacer()
+            }
             VStack{
                 Divider()
                     .frame(

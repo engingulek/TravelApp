@@ -10,7 +10,7 @@ struct FlightTicketDeptureView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var flightTicketSearchViewModel : FlightTicketSearchViewModel
     @EnvironmentObject var selectDepAndArViewModel : SelectDepAndArDateViewModel
-    
+    @State private var isPresenterFilterView = false
     @State private var isPresentedFlightInfoView = false
     @State private var isPresentedFlightTicketReturn = false
     var deptureDate:Date?
@@ -79,19 +79,21 @@ struct FlightTicketDeptureView: View {
                     await flightTicketSearchViewModel.getDataDeptureFlightTickets()
                     
                 }
-               
+            
         }
     }
 }
 
 struct FlightTicketSearchView_Previews: PreviewProvider {
     static var previews: some View {
-   
-            FlightTicketDeptureView()
-                .environmentObject(FlightTicketSearchViewModel())
-                .environmentObject(SelectDepAndArDateViewModel())
         
-       
+        FlightTicketDeptureView()
+            .environmentObject(FlightTicketSearchViewModel())
+            .environmentObject(SelectDepAndArDateViewModel())
+        
+        
+        
+        
         
         
     }
@@ -110,6 +112,13 @@ extension FlightTicketDeptureView {
             Image(systemName: "slider.vertical.3")
                 .foregroundColor(.white)
                 .font(.title2)
+                .onTapGesture {
+                    self.isPresenterFilterView = true
+                }.sheet(isPresented: $isPresenterFilterView) {
+                    FilterView()
+                        .presentationDetents([.height(UIScreen.main.bounds.height / 2),.fraction(0.5)])
+                    
+                }
         }.padding(.horizontal)
             .padding(.bottom,5)
             .padding(.top,5)
@@ -185,11 +194,12 @@ extension FlightTicketDeptureView {
                     .onTapGesture {
                         if selectedButton == 0 {
                             self.isPresentedFlightInfoView = true
+                            
                         }else{
                             self.isPresentedFlightTicketReturn = true
                         }
                     }.navigationDestination(isPresented: $isPresentedFlightInfoView){
-                        FlightInfoView()
+                        FlightInfoView(deptureFlightTicket:result , returnFlightTicket: nil)
                     }.navigationDestination(isPresented: $isPresentedFlightTicketReturn) {
                         FlightTicketReturnView()
                     }
