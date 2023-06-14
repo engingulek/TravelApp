@@ -9,10 +9,11 @@ import Foundation
 
 protocol ServiceManagerProtocol {
     func fetch<M:Codable>(target:Network,completion:@escaping(Result<[M]?,Error>)->())
-
+    
 }
 
 final class ServiceManager : ServiceManagerProtocol {
+    
     func fetch<M>(target: Network, completion: @escaping (Result<[M]?, Error>) -> ()) where M : Decodable, M : Encodable {
         
         
@@ -20,7 +21,7 @@ final class ServiceManager : ServiceManagerProtocol {
         _ = target.headers ?? [:]
         let url = URL(string: "\(target.baseUrl)\(target.path)")!
         var request = URLRequest(url: url)
-        request.httpMethod = method       
+        request.httpMethod = method
         URLSession.shared.dataTask(with: url) { data, res, error in
             if let data = data {
                 do {
@@ -30,15 +31,12 @@ final class ServiceManager : ServiceManagerProtocol {
                 }catch{
                     completion(.failure(error))
                 }
-                
             }
         }.resume()
-        
-     
-        
     }
     
-  
+    
+   
     
     
 }

@@ -239,12 +239,13 @@ struct FlightInfoView: View {
             
             ForEach(Array(passengerList!.keys) ,id: \.self) { passenger in
                 VStack(spacing:15) {
+                    passengerList![passenger]! != 0 ?
                     HStack{
                         Text("\(passengerList![passenger]!) \(passenger) ")
                         Spacer()
                         Text("\(flightInfoViewModel.returnPricePassenger(count:passengerList![passenger]!,passenger:passenger , priceList: deptureFlightTicket!.price)) ₺")
                         
-                    }
+                    } : nil
                 }
             }
             

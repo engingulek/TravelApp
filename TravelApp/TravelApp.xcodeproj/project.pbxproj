@@ -47,6 +47,12 @@
 		7DC85BE82A2A913200AB46E3 /* Flight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC85BE72A2A913200AB46E3 /* Flight.swift */; };
 		7DC85BEB2A2A97A200AB46E3 /* FlightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC85BEA2A2A97A200AB46E3 /* FlightViewModel.swift */; };
 		7DD020D32A39EF080048AB04 /* FlightInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD020D22A39EF070048AB04 /* FlightInfoViewModel.swift */; };
+		7DD020D52A3A048A0048AB04 /* PassengerAndPayInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD020D42A3A048A0048AB04 /* PassengerAndPayInfoViewModel.swift */; };
+		7DD020DA2A3A095C0048AB04 /* countryPhoneCode.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DD020D92A3A095C0048AB04 /* countryPhoneCode.json */; };
+		7DD020DD2A3A0C970048AB04 /* FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD020DC2A3A0C970048AB04 /* FilePath.swift */; };
+		7DD020DF2A3A0D950048AB04 /* JsonTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD020DE2A3A0D950048AB04 /* JsonTargetType.swift */; };
+		7DD020E12A3A0E710048AB04 /* JsonServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD020E02A3A0E710048AB04 /* JsonServiceManager.swift */; };
+		7DD020E42A3A12160048AB04 /* CountryPhoneCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD020E32A3A12160048AB04 /* CountryPhoneCode.swift */; };
 		7DDD6D4C2A33C6260003C478 /* SelectToLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDD6D4B2A33C6260003C478 /* SelectToLocationView.swift */; };
 		7DDD6D4E2A33C6B80003C478 /* Extension+SelectToLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDD6D4D2A33C6B80003C478 /* Extension+SelectToLocationView.swift */; };
 		7DE1C6F92A2CADEB00A0DD79 /* Extension+SelectionFromToView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE1C6F82A2CADEB00A0DD79 /* Extension+SelectionFromToView.swift */; };
@@ -113,6 +119,12 @@
 		7DC85BE72A2A913200AB46E3 /* Flight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flight.swift; sourceTree = "<group>"; };
 		7DC85BEA2A2A97A200AB46E3 /* FlightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightViewModel.swift; sourceTree = "<group>"; };
 		7DD020D22A39EF070048AB04 /* FlightInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightInfoViewModel.swift; sourceTree = "<group>"; };
+		7DD020D42A3A048A0048AB04 /* PassengerAndPayInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerAndPayInfoViewModel.swift; sourceTree = "<group>"; };
+		7DD020D92A3A095C0048AB04 /* countryPhoneCode.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countryPhoneCode.json; sourceTree = "<group>"; };
+		7DD020DC2A3A0C970048AB04 /* FilePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePath.swift; sourceTree = "<group>"; };
+		7DD020DE2A3A0D950048AB04 /* JsonTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonTargetType.swift; sourceTree = "<group>"; };
+		7DD020E02A3A0E710048AB04 /* JsonServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonServiceManager.swift; sourceTree = "<group>"; };
+		7DD020E32A3A12160048AB04 /* CountryPhoneCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPhoneCode.swift; sourceTree = "<group>"; };
 		7DDD6D4B2A33C6260003C478 /* SelectToLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectToLocationView.swift; sourceTree = "<group>"; };
 		7DDD6D4D2A33C6B80003C478 /* Extension+SelectToLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+SelectToLocationView.swift"; sourceTree = "<group>"; };
 		7DE1C6F82A2CADEB00A0DD79 /* Extension+SelectionFromToView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+SelectionFromToView.swift"; sourceTree = "<group>"; };
@@ -247,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				7D3B486B2A379102002DC90C /* PassengerAndPayInfo.swift */,
+				7DD020D42A3A048A0048AB04 /* PassengerAndPayInfoViewModel.swift */,
 			);
 			path = PassengerAndPayInfo;
 			sourceTree = "<group>";
@@ -390,10 +403,8 @@
 		7D741AFF2A2E1DEB004357A4 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				7D741B002A2E1DF7004357A4 /* model */,
-				7D741B032A2E1E19004357A4 /* RequestType.swift */,
-				7D741B072A2E1E3E004357A4 /* ServiceManager.swift */,
-				7D741B052A2E1E2C004357A4 /* Network.swift */,
+				7DD020DB2A3A0A9C0048AB04 /* apiData */,
+				7DD020D82A3A094F0048AB04 /* jsonData */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -440,6 +451,29 @@
 				7D3D35F52A38AC3E001DE980 /* Extension+FlightViewModel.swift */,
 			);
 			path = viewModel;
+			sourceTree = "<group>";
+		};
+		7DD020D82A3A094F0048AB04 /* jsonData */ = {
+			isa = PBXGroup;
+			children = (
+				7DD020D92A3A095C0048AB04 /* countryPhoneCode.json */,
+				7DD020DC2A3A0C970048AB04 /* FilePath.swift */,
+				7DD020DE2A3A0D950048AB04 /* JsonTargetType.swift */,
+				7DD020E02A3A0E710048AB04 /* JsonServiceManager.swift */,
+				7DD020E32A3A12160048AB04 /* CountryPhoneCode.swift */,
+			);
+			path = jsonData;
+			sourceTree = "<group>";
+		};
+		7DD020DB2A3A0A9C0048AB04 /* apiData */ = {
+			isa = PBXGroup;
+			children = (
+				7D741B002A2E1DF7004357A4 /* model */,
+				7D741B032A2E1E19004357A4 /* RequestType.swift */,
+				7D741B072A2E1E3E004357A4 /* ServiceManager.swift */,
+				7D741B052A2E1E2C004357A4 /* Network.swift */,
+			);
+			path = apiData;
 			sourceTree = "<group>";
 		};
 		7DD404BC2A28C57E00F63A00 /* Home */ = {
@@ -573,6 +607,7 @@
 			files = (
 				7D4394402A28B3D700BDAB65 /* Preview Assets.xcassets in Resources */,
 				7D43943D2A28B3D700BDAB65 /* Assets.xcassets in Resources */,
+				7DD020DA2A3A095C0048AB04 /* countryPhoneCode.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +635,7 @@
 				7DC85BE22A2A8E3900AB46E3 /* SelectFromLocationView.swift in Sources */,
 				7D3D35FD2A38AE44001DE980 /* Extension+FlightTicketSearchViewModel.swift in Sources */,
 				7D39B5C52A292A8E006C7A96 /* FlightView.swift in Sources */,
+				7DD020E12A3A0E710048AB04 /* JsonServiceManager.swift in Sources */,
 				7D6D81692A2FABDB001FDBAF /* SelectArrvivelDate.swift in Sources */,
 				7DDD6D4E2A33C6B80003C478 /* Extension+SelectToLocationView.swift in Sources */,
 				7D2FBDC12A321DE100BB6E37 /* FlightTicketService.swift in Sources */,
@@ -607,10 +643,12 @@
 				7DC85BEB2A2A97A200AB46E3 /* FlightViewModel.swift in Sources */,
 				7D741B022A2E1E04004357A4 /* DataResult.swift in Sources */,
 				7D1228442A2F6355003FD3EE /* SelectDepartureDate.swift in Sources */,
+				7DD020DF2A3A0D950048AB04 /* JsonTargetType.swift in Sources */,
 				7D67C11A2A3105A400B6B14F /* ClassRow.swift in Sources */,
 				7D3D35F62A38AC3E001DE980 /* Extension+FlightViewModel.swift in Sources */,
 				7DDD6D4C2A33C6260003C478 /* SelectToLocationView.swift in Sources */,
 				7D4394392A28B3D600BDAB65 /* TravelAppApp.swift in Sources */,
+				7DD020D52A3A048A0048AB04 /* PassengerAndPayInfoViewModel.swift in Sources */,
 				7DD020D32A39EF080048AB04 /* FlightInfoViewModel.swift in Sources */,
 				7D741B062A2E1E2C004357A4 /* Network.swift in Sources */,
 				7D43946D2A28C44800BDAB65 /* HomeView.swift in Sources */,
@@ -626,7 +664,9 @@
 				7D2FBDBE2A321C2200BB6E37 /* FlightTicket.swift in Sources */,
 				7D741B042A2E1E19004357A4 /* RequestType.swift in Sources */,
 				7D741B082A2E1E3E004357A4 /* ServiceManager.swift in Sources */,
+				7DD020DD2A3A0C970048AB04 /* FilePath.swift in Sources */,
 				7D67C1212A31096800B6B14F /* FlightTicketSearchViewModel.swift in Sources */,
+				7DD020E42A3A12160048AB04 /* CountryPhoneCode.swift in Sources */,
 				7D1228462A2F75F3003FD3EE /* SelectDepAndArDateViewModel.swift in Sources */,
 				7D6D81672A2F9C06001FDBAF /* Extension+HomeView.swift in Sources */,
 				7D3D35F42A38A049001DE980 /* TimesOfDay.swift in Sources */,

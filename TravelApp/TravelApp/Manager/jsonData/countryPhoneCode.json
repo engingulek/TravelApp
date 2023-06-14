@@ -1,0 +1,36 @@
+[
+    {
+       "name": "United States of America",
+       "dial_code": "+1",
+       "code": "US",
+       "defaultType" : "(XXX) XXX-XXXX"
+     },
+    {
+      "name": "Türkiye",
+      "dial_code": "+90",
+      "code": "TR",
+      "defaultType" : "5XX XXX XX XX"
+    },
+    {
+       "name": "France",
+       "dial_code": "+33",
+       "code": "FR",
+       "defaultType" : "XX XX XX XX XX"
+       
+     },
+    {
+       "name": "Germany",
+       "dial_code": "+49",
+       "code": "DE",
+       "defaultType" : "XXX XXX XX XX"
+
+       
+     },
+    {
+       "name": "United Kingdom",
+       "dial_code": "+44",
+       "code": "UK",
+       "defaultType" : "XXXXX XXX XXX"
+     }
+    
+]

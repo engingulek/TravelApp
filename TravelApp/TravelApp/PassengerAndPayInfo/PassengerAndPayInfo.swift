@@ -24,105 +24,130 @@ struct PassengerAndPayInfo: View {
     @State private var cvc2 = ""
     @State private var tcCitizenNo = false
     @State private var nationality = ""
+    @EnvironmentObject var viewModel : PassengerAndPayInfoViewModel
+    @State var baseSelectedCode = "TR +90"
+    @State var defaultType = "5XX XXX XX XX"
     
     
-      @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-      var body: some View {
-          ZStack {
-              Color("backgroundTabbar")
-                  .ignoresSafeArea()
-              // ticket info
-              
-              ScrollView {
-                  VStack(spacing:10){
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    var body: some View {
+        ZStack {
+            Color("backgroundTabbar")
+                .ignoresSafeArea()
+            // ticket info
+            
+            ScrollView {
+                VStack(spacing:10){
                     
-                      ZStack(alignment:.top){
-                              contactInfo
-                              .padding(.top,20)
-                              Text("Contact Information")
-                              .padding(.vertical,5)
-                              .padding(.horizontal)
-                              .background(Color.blue)
-                              .cornerRadius(10)
-                              .fontWeight(.semibold)
-                              .foregroundColor(.white)
-                          }
-                      
-                   
-                          
-                          ZStack(alignment:.top){
-                                  passengerInformation
-                                  .padding(.top,20)
-                                  Text("Passenger Information")
-                                  .padding(.vertical,5)
-                                  .padding(.horizontal)
-                                  .background(Color.blue)
-                                  .cornerRadius(10)
-                                  .fontWeight(.semibold)
-                                  .foregroundColor(.white)
-                              }
-                      
-                      
-                      ZStack(alignment:.top){
-                              paymentInfo
-                              .padding(.top,20)
-                              Text("Payment Information")
-                              .padding(.vertical,5)
-                              .padding(.horizontal)
-                              .background(Color.blue)
-                              .cornerRadius(10)
-                              .fontWeight(.semibold)
-                              .foregroundColor(.white)
-                          }
-                      
-             
-                      Button("Pay") {
-                          self.isPresentedConfirm = true
-                      }
-                      .padding()
-                      
-                          .foregroundColor(Color.white)
-                          .font(.title2)
-                          .fontWeight(.semibold)
-                         
-                          .frame(width: UIScreen.main.bounds.width / 2)
-                          .background(Color.blue)
-                          .cornerRadius(20)
-                          .navigationDestination(isPresented: $isPresentedConfirm) {
-                              PassengerAndPayInfo()
-                          }
-                      
-                  }
-              }.padding(.top)
-                  .toolbar {
-                      ToolbarItem(placement:.navigationBarLeading) {
-                          Image(systemName: "arrowtriangle.backward")
-                              .foregroundColor(Color.white)
-                              .onTapGesture {
-                                  self.presentationMode.wrappedValue.dismiss()
-                              }
-                      }
-                  }.navigationBarBackButtonHidden(true)
-              
-
-          }
-      }
+                    ZStack(alignment:.top){
+                        contactInfo
+                            .padding(.top,20)
+                        Text("Contact Information")
+                            .padding(.vertical,5)
+                            .padding(.horizontal)
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                    }
+                    
+                    
+                    
+                    ZStack(alignment:.top){
+                        passengerInformation
+                            .padding(.top,20)
+                        Text("Passenger Information")
+                            .padding(.vertical,5)
+                            .padding(.horizontal)
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                    }
+                    
+                    
+                    ZStack(alignment:.top){
+                        paymentInfo
+                            .padding(.top,20)
+                        Text("Payment Information")
+                            .padding(.vertical,5)
+                            .padding(.horizontal)
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                    }
+                    
+                    
+                    Button("Pay") {
+                        self.isPresentedConfirm = true
+                    }
+                    .padding()
+                    
+                    .foregroundColor(Color.white)
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    
+                    .frame(width: UIScreen.main.bounds.width / 2)
+                    .background(Color.blue)
+                    .cornerRadius(20)
+                    .navigationDestination(isPresented: $isPresentedConfirm) {
+                        PassengerAndPayInfo()
+                    }
+                    
+                }
+            }.padding(.top)
+                .toolbar {
+                    ToolbarItem(placement:.navigationBarLeading) {
+                        Image(systemName: "arrowtriangle.backward")
+                            .foregroundColor(Color.white)
+                            .onTapGesture {
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                    }
+                }.navigationBarBackButtonHidden(true)
+            
+            
+        }.task {
+            viewModel.getCountryJsonData()
+        }
+    }
     
 }
 
 struct PassengerAndPayInfo_Previews: PreviewProvider {
     static var previews: some View {
         PassengerAndPayInfo()
+            .environmentObject(PassengerAndPayInfoViewModel())
     }
 }
 
 
 extension PassengerAndPayInfo {
+    
+    
     private var contactInfo : some View {
         VStack(alignment:.leading) {
             
             Text("Mobil Phone")
-            TextField("5xx xxx xx xx", text: $mobilePhone)
+            HStack {
+                Menu(baseSelectedCode)
+                 {
+                    ForEach(viewModel.countryPhoneCodeList,id: \.self) { item in
+                        Button("\(item.name) \(item.dial_code)") {
+                            viewModel.selectedCountryPhoneCode = item
+                            self.baseSelectedCode = "\(item.code) \(item.dial_code)"
+                            self.defaultType = item.defaultType
+                        }
+                        
+                    }
+                   
+                }
+                TextField(defaultType, text: $mobilePhone)
+                
+            }
+            
             VStack{
                 Divider()
                     .frame(
@@ -164,19 +189,9 @@ extension PassengerAndPayInfo {
                 
             }.padding(.top,5)
             VStack(alignment:.leading) {
-          
-                    Text("Name")
-                    TextField("It is mandatory to fill", text: $name)
-              
-                VStack{
-                    Divider()
-                        .frame(
-                            height: 1)
-                        .overlay(.black)
-                }
-          
-                    Text("Surname")
-                    TextField("It is mandatory to fill", text: $surname)
+                
+                Text("Name")
+                TextField("It is mandatory to fill", text: $name)
                 
                 VStack{
                     Divider()
@@ -184,9 +199,19 @@ extension PassengerAndPayInfo {
                             height: 1)
                         .overlay(.black)
                 }
-            
-                    Text("Date Of Birth")
-                    TextField("It is mandatory to fill", text: $dateOfBirth)
+                
+                Text("Surname")
+                TextField("It is mandatory to fill", text: $surname)
+                
+                VStack{
+                    Divider()
+                        .frame(
+                            height: 1)
+                        .overlay(.black)
+                }
+                
+                Text("Date Of Birth")
+                TextField("It is mandatory to fill", text: $dateOfBirth)
                 
                 VStack{
                     Divider()
@@ -219,12 +244,12 @@ extension PassengerAndPayInfo {
                 
             }.padding(.top,15)
         }
-       .padding(.horizontal)
-            .padding([.top,.bottom],20)
+        .padding(.horizontal)
+        .padding([.top,.bottom],20)
         
-            .background(Color.white)
-            .cornerRadius(10)
-            .padding(.horizontal)
+        .background(Color.white)
+        .cornerRadius(10)
+        .padding(.horizontal)
     }
     
     
@@ -252,7 +277,7 @@ extension PassengerAndPayInfo {
                 }
             }
             
-           
+            
             
         }.padding(.horizontal)
             .padding([.top,.bottom],20)
