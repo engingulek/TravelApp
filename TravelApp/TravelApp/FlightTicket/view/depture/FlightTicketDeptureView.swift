@@ -199,7 +199,7 @@ extension FlightTicketDeptureView {
                             self.isPresentedFlightTicketReturn = true
                         }
                     }.navigationDestination(isPresented: $isPresentedFlightInfoView){
-                        FlightInfoView(deptureFlightTicket:result , returnFlightTicket: nil)
+                        FlightInfoView(deptureFlightTicket:result , returnFlightTicket: nil,passengerList:passangerList)
                     }.navigationDestination(isPresented: $isPresentedFlightTicketReturn) {
                         FlightTicketReturnView()
                     }

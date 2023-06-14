@@ -46,6 +46,7 @@
 		7DC85BE22A2A8E3900AB46E3 /* SelectFromLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC85BE12A2A8E3900AB46E3 /* SelectFromLocationView.swift */; };
 		7DC85BE82A2A913200AB46E3 /* Flight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC85BE72A2A913200AB46E3 /* Flight.swift */; };
 		7DC85BEB2A2A97A200AB46E3 /* FlightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC85BEA2A2A97A200AB46E3 /* FlightViewModel.swift */; };
+		7DD020D32A39EF080048AB04 /* FlightInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD020D22A39EF070048AB04 /* FlightInfoViewModel.swift */; };
 		7DDD6D4C2A33C6260003C478 /* SelectToLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDD6D4B2A33C6260003C478 /* SelectToLocationView.swift */; };
 		7DDD6D4E2A33C6B80003C478 /* Extension+SelectToLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDD6D4D2A33C6B80003C478 /* Extension+SelectToLocationView.swift */; };
 		7DE1C6F92A2CADEB00A0DD79 /* Extension+SelectionFromToView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE1C6F82A2CADEB00A0DD79 /* Extension+SelectionFromToView.swift */; };
@@ -111,6 +112,7 @@
 		7DC85BE12A2A8E3900AB46E3 /* SelectFromLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFromLocationView.swift; sourceTree = "<group>"; };
 		7DC85BE72A2A913200AB46E3 /* Flight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flight.swift; sourceTree = "<group>"; };
 		7DC85BEA2A2A97A200AB46E3 /* FlightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightViewModel.swift; sourceTree = "<group>"; };
+		7DD020D22A39EF070048AB04 /* FlightInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightInfoViewModel.swift; sourceTree = "<group>"; };
 		7DDD6D4B2A33C6260003C478 /* SelectToLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectToLocationView.swift; sourceTree = "<group>"; };
 		7DDD6D4D2A33C6B80003C478 /* Extension+SelectToLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+SelectToLocationView.swift"; sourceTree = "<group>"; };
 		7DE1C6F82A2CADEB00A0DD79 /* Extension+SelectionFromToView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+SelectionFromToView.swift"; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 		7D3D35F02A388DCF001DE980 /* viewModel */ = {
 			isa = PBXGroup;
 			children = (
+				7DD020D22A39EF070048AB04 /* FlightInfoViewModel.swift */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -608,6 +611,7 @@
 				7D3D35F62A38AC3E001DE980 /* Extension+FlightViewModel.swift in Sources */,
 				7DDD6D4C2A33C6260003C478 /* SelectToLocationView.swift in Sources */,
 				7D4394392A28B3D600BDAB65 /* TravelAppApp.swift in Sources */,
+				7DD020D32A39EF080048AB04 /* FlightInfoViewModel.swift in Sources */,
 				7D741B062A2E1E2C004357A4 /* Network.swift in Sources */,
 				7D43946D2A28C44800BDAB65 /* HomeView.swift in Sources */,
 				7D4394692A28BB7300BDAB65 /* Extension.swift in Sources */,

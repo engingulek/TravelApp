@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct FlightInfoView: View {
+    @EnvironmentObject var flightInfoViewModel : FlightInfoViewModel
+    @EnvironmentObject var flightTicketSearchViewModel : FlightTicketSearchViewModel
   @State  private var isPresentedConfirm = false
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     var deptureFlightTicket : FlightTicketVM?
     var returnFlightTicket : FlightTicketVM?
+    var passengerList : [String:Int]?
     var body: some View {
         ZStack {
             Color("backgroundTabbar")
@@ -82,10 +86,7 @@ struct FlightInfoView: View {
             
 
         }.navigationBarBackButtonHidden(true)
-            .onAppear{
-              //  print("Test \(deptureTicketInfo)")
-                print("Test \(returnTicketInfo)")
-            }
+           
         
         
         
@@ -235,12 +236,14 @@ struct FlightInfoView: View {
                 Text("Price")
                 
             }.fontWeight(.semibold)
-            ForEach(0..<3) { _ in
+            
+            ForEach(Array(passengerList!.keys) ,id: \.self) { passenger in
                 VStack(spacing:15) {
                     HStack{
-                        Text("1 Adult")
+                        Text("\(passengerList![passenger]!) \(passenger) ")
                         Spacer()
-                        Text("500₺")
+                        Text("\(flightInfoViewModel.returnPricePassenger(count:passengerList![passenger]!,passenger:passenger , priceList: deptureFlightTicket!.price)) ₺")
+                        
                     }
                 }
             }
@@ -255,10 +258,11 @@ struct FlightInfoView: View {
                 HStack(spacing:2){
                     Image(systemName: "person.fill")
                         .foregroundColor(Color.blue)
-                    Text("3 Person")
+                    Text("\(flightInfoViewModel.returnPersonCount(passenger:passengerList! )) Person")
                 }
                 Spacer()
-                Text("Toral Amount : 1500 ₺")
+                Text("Total Amount : \(flightTicketSearchViewModel.calculateTotalAmount(deptureFlightTicket!.price)) ₺")
+              
             }.font(.callout)
             
         }.padding(.horizontal)
@@ -273,6 +277,9 @@ struct FlightInfoView: View {
 struct FlightInfo_Previews: PreviewProvider {
     static var previews: some View {
        FlightInfoView()
+            .environmentObject(FlightInfoViewModel())
+            .environmentObject(FlightTicketSearchViewModel())
+            
     }
 }
 
