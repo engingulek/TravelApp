@@ -50,7 +50,6 @@
 		7DD020D52A3A048A0048AB04 /* PassengerAndPayInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD020D42A3A048A0048AB04 /* PassengerAndPayInfoViewModel.swift */; };
 		7DD020DA2A3A095C0048AB04 /* countryPhoneCode.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DD020D92A3A095C0048AB04 /* countryPhoneCode.json */; };
 		7DD020DD2A3A0C970048AB04 /* FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD020DC2A3A0C970048AB04 /* FilePath.swift */; };
-		7DD020DF2A3A0D950048AB04 /* JsonTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD020DE2A3A0D950048AB04 /* JsonTargetType.swift */; };
 		7DD020E12A3A0E710048AB04 /* JsonServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD020E02A3A0E710048AB04 /* JsonServiceManager.swift */; };
 		7DD020E42A3A12160048AB04 /* CountryPhoneCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD020E32A3A12160048AB04 /* CountryPhoneCode.swift */; };
 		7DDD6D4C2A33C6260003C478 /* SelectToLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDD6D4B2A33C6260003C478 /* SelectToLocationView.swift */; };
@@ -122,7 +121,6 @@
 		7DD020D42A3A048A0048AB04 /* PassengerAndPayInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerAndPayInfoViewModel.swift; sourceTree = "<group>"; };
 		7DD020D92A3A095C0048AB04 /* countryPhoneCode.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countryPhoneCode.json; sourceTree = "<group>"; };
 		7DD020DC2A3A0C970048AB04 /* FilePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePath.swift; sourceTree = "<group>"; };
-		7DD020DE2A3A0D950048AB04 /* JsonTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonTargetType.swift; sourceTree = "<group>"; };
 		7DD020E02A3A0E710048AB04 /* JsonServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonServiceManager.swift; sourceTree = "<group>"; };
 		7DD020E32A3A12160048AB04 /* CountryPhoneCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPhoneCode.swift; sourceTree = "<group>"; };
 		7DDD6D4B2A33C6260003C478 /* SelectToLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectToLocationView.swift; sourceTree = "<group>"; };
@@ -458,7 +456,6 @@
 			children = (
 				7DD020D92A3A095C0048AB04 /* countryPhoneCode.json */,
 				7DD020DC2A3A0C970048AB04 /* FilePath.swift */,
-				7DD020DE2A3A0D950048AB04 /* JsonTargetType.swift */,
 				7DD020E02A3A0E710048AB04 /* JsonServiceManager.swift */,
 				7DD020E32A3A12160048AB04 /* CountryPhoneCode.swift */,
 			);
@@ -643,7 +640,6 @@
 				7DC85BEB2A2A97A200AB46E3 /* FlightViewModel.swift in Sources */,
 				7D741B022A2E1E04004357A4 /* DataResult.swift in Sources */,
 				7D1228442A2F6355003FD3EE /* SelectDepartureDate.swift in Sources */,
-				7DD020DF2A3A0D950048AB04 /* JsonTargetType.swift in Sources */,
 				7D67C11A2A3105A400B6B14F /* ClassRow.swift in Sources */,
 				7D3D35F62A38AC3E001DE980 /* Extension+FlightViewModel.swift in Sources */,
 				7DDD6D4C2A33C6260003C478 /* SelectToLocationView.swift in Sources */,

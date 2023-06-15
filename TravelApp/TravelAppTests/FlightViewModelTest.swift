@@ -35,8 +35,8 @@ final class FlightViewModelTest: XCTestCase {
         let url = flight.baseUrl + flight.path
 
         XCTAssertEqual(method, "GET","The method type should be GET")
-        XCTAssertEqual(path, "/flights","The path type should be /flights")
-        XCTAssertEqual(url, "http://localhost:3000/flights","The path type should be http://localhost:3000/flights")
+        XCTAssertEqual(path, "/flights.json","The path type should be /flights.json")
+        XCTAssertEqual(url, "https://traveliosapp-default-rtdb.firebaseio.com/flights.json","The path type should be https://traveliosapp-default-rtdb.firebaseio.com/flights.json")
         
     }
     
@@ -49,8 +49,8 @@ final class FlightViewModelTest: XCTestCase {
 
 
         XCTAssertEqual(method, "GET","The method type should be GET")
-        XCTAssertEqual(path, "/allPopFlights","The path type should be /allPopFlights")
-        XCTAssertEqual(url, "http://localhost:3000/allPopFlights","The path type should be http://localhost:3000/allPopFlights")
+        XCTAssertEqual(path, "/allPopFlights.json","The path type should be /allPopFlights.json")
+        XCTAssertEqual(url, "https://traveliosapp-default-rtdb.firebaseio.com/allPopFlights.json","The path type should be https://traveliosapp-default-rtdb.firebaseio.com/allPopFlights.json")
         
     }
 
@@ -59,7 +59,7 @@ final class FlightViewModelTest: XCTestCase {
 
     func test_getFlights_HTTPStatusCode200() throws {
     
-       let urlString = "http://localhost:3000/flights"
+       let urlString = "https://traveliosapp-default-rtdb.firebaseio.com/flights.json"
         let url = URL(string: urlString)!
         let promise = expectation(description: "Status code: 200")
         let dataTask = urlSession.dataTask(with: url){_,response,error in
@@ -81,7 +81,7 @@ final class FlightViewModelTest: XCTestCase {
     
     func test_getPopFlights_HTTPStatusCode200() throws {
     
-       let urlString = "http://localhost:3000/allPopFlights"
+       let urlString = "https://traveliosapp-default-rtdb.firebaseio.com/flights.json"
         let url = URL(string: urlString)!
         let promise = expectation(description: "Status code: 200")
         let dataTask = urlSession.dataTask(with: url){_,response,error in

@@ -30,8 +30,8 @@ final class FlightTicketSearchViewModelUnitTest: XCTestCase {
         let url = flightTicket.baseUrl + flightTicket.path
 
         XCTAssertEqual(method, "GET","The method type should be GET")
-        XCTAssertEqual(path, "/flightTickets","The path type should be /flightTickets ")
-        XCTAssertEqual(url, "http://localhost:3000/flightTickets","The path type should be http://localhost:3000/flightTickets")
+        XCTAssertEqual(path, "/flightTickets.json","The path type should be /flightTickets.json ")
+        XCTAssertEqual(url, "https://traveliosapp-default-rtdb.firebaseio.com/flightTickets.json","The path type should be https://traveliosapp-default-rtdb.firebaseio.com/flightTickets.json")
         
     }
     

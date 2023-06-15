@@ -15,18 +15,18 @@ enum Network {
 
 extension Network : TargetType {
     var baseUrl: String {
-        return "http://localhost:3000"
+        return "https://traveliosapp-default-rtdb.firebaseio.com"
     }
     
     var path: String {
         switch self {
             
         case .flights:
-            return "/flights"
+            return "/flights.json"
         case .popFlights:
-            return "/allPopFlights"
+            return "/allPopFlights.json"
         case .flightTickets:
-            return "/flightTickets"
+            return "/flightTickets.json"
         }
     }
     
