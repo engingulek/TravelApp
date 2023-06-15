@@ -40,7 +40,6 @@ extension String {
 
     }
     
-    
     func splitTime() -> String {
         let timeSplit = self.split(separator: ":")
         return String(timeSplit[0])
@@ -49,6 +48,7 @@ extension String {
     func time24Clockchange00() -> String {
         self == "00" ? "24" : self
     }
+
 
 }
 

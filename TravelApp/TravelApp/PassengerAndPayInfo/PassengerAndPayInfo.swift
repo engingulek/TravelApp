@@ -11,9 +11,7 @@ import SwiftUI
 
 
 struct PassengerAndPayInfo: View {
-    @State  private var isPresentedConfirm = false
-    @State private var mobilePhone = ""
-    @State private var email = ""
+    
     @State private var name = ""
     @State private var surname = ""
     @State private var dateOfBirth = ""
@@ -26,7 +24,10 @@ struct PassengerAndPayInfo: View {
     @State private var nationality = ""
     @EnvironmentObject var viewModel : PassengerAndPayInfoViewModel
     @State var baseSelectedCode = "TR +90"
-    @State var defaultType = "5XX XXX XX XX"
+    @State var defaultType = "XXX XXX XX XX"
+    
+    @State var phoneNumberEmmtyError  : Bool = false
+    @State var phoneNumberErrorMessage: String = ""
     
     
     
@@ -81,7 +82,22 @@ struct PassengerAndPayInfo: View {
                     
                     
                     Button("Pay") {
-                        self.isPresentedConfirm = true
+                        print("\(viewModel.mobilePhone.count)")
+                        print("\(viewModel.selectedCountryPhoneCode.defaultType.count)")
+                        do {
+                            try viewModel.phoneNumberEmptyError()
+                            try viewModel.phoneNumberMissing()
+                            self.phoneNumberEmmtyError = false
+                            
+                        }catch PassengerInfoAndPayError.EmptyPhoneNumberNullError{
+                            self.phoneNumberEmmtyError = true
+                            self.phoneNumberErrorMessage = PassengerInfoAndPayError.EmptyPhoneNumberNullError.errorDescription!
+                        }catch PassengerInfoAndPayError.MissingNumberError{
+                            self.phoneNumberEmmtyError = true
+                            self.phoneNumberErrorMessage = PassengerInfoAndPayError.MissingNumberError.errorDescription!
+                        }catch{
+                            print(error.localizedDescription)
+                        }
                     }
                     .padding()
                     
@@ -92,9 +108,7 @@ struct PassengerAndPayInfo: View {
                     .frame(width: UIScreen.main.bounds.width / 2)
                     .background(Color.blue)
                     .cornerRadius(20)
-                    .navigationDestination(isPresented: $isPresentedConfirm) {
-                        PassengerAndPayInfo()
-                    }
+                 
                     
                 }
             }.padding(.top)
@@ -136,17 +150,25 @@ extension PassengerAndPayInfo {
                  {
                     ForEach(viewModel.countryPhoneCodeList,id: \.self) { item in
                         Button("\(item.name) \(item.dial_code)") {
+                            viewModel.mobilePhone = ""
                             viewModel.selectedCountryPhoneCode = item
                             self.baseSelectedCode = "\(item.code) \(item.dial_code)"
                             self.defaultType = item.defaultType
                         }
                         
                     }
-                   
+
                 }
-                TextField(defaultType, text: $mobilePhone)
-                
+     
+                    TextField(defaultType, text: $viewModel.mobilePhone)
+                        .keyboardType(.namePhonePad)
+                        .onChange(of: viewModel.mobilePhone) { newValue in
+                          
+                        viewModel.mobilePhone = viewModel.phoneNumberFormatter(format:  viewModel.selectedCountryPhoneCode.defaultType, phoneNumber: newValue)
+                        }
             }
+            self.phoneNumberEmmtyError ? Text(self.phoneNumberErrorMessage).foregroundColor(.red)
+                .font(.callout): nil
             
             VStack{
                 Divider()
@@ -155,8 +177,12 @@ extension PassengerAndPayInfo {
                     .overlay(.black.opacity(0.4))
             }
             
+            
             Text("E-Mail")
-            TextField("Enter email", text: $email)
+            TextField("Enter email", text: $viewModel.email)
+                .textInputAutocapitalization(.never)
+            viewModel.formanterErrorEmail ? Text("Email format error").foregroundColor(.red)  :  nil
+            
             
         }.padding(.horizontal)
             .padding([.top,.bottom],20)
@@ -257,7 +283,7 @@ extension PassengerAndPayInfo {
         VStack(alignment:.leading) {
             
             Text("Cart Number")
-            TextField("xxxx xxxx xxxx xxxx", text: $mobilePhone)
+            TextField("xxxx xxxx xxxx xxxx", text: $cartNo)
             VStack{
                 Divider()
                     .frame(

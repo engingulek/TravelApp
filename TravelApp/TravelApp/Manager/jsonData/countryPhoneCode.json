@@ -9,7 +9,7 @@
       "name": "Türkiye",
       "dial_code": "+90",
       "code": "TR",
-      "defaultType" : "5XX XXX XX XX"
+      "defaultType" : "XXX XXX XX XX"
     },
     {
        "name": "France",
