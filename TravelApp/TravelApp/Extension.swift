@@ -24,6 +24,11 @@ extension Date  {
         let month = self.formatted(.dateTime.month())
         return (day,month)
     }
+    func dateToString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        return dateFormatter.string(from: self)
+    }
     
     
 }
@@ -40,6 +45,17 @@ extension String {
 
     }
     
+    func stringToDatePartTwo() -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = NSTimeZone(name: "UTC")! as TimeZone
+        let getDate = self
+        let a = getDate.split(separator: " ")
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let date = dateFormatter.date(from: "\( a[0])")
+        return date ?? Date.now
+
+    }
+    
     func splitTime() -> String {
         let timeSplit = self.split(separator: ":")
         return String(timeSplit[0])
@@ -48,8 +64,37 @@ extension String {
     func time24Clockchange00() -> String {
         self == "00" ? "24" : self
     }
+    
+    subscript (bounds: CountableRange<Int>) -> String {
+        let start = index(startIndex, offsetBy: bounds.lowerBound)
+        let end = index(startIndex, offsetBy: bounds.upperBound)
+        return String(self[start..<end])
+    }
+}
+
+extension Dictionary {
+    func dictionaryToArray() -> [String] {
+        let dic:[String:Int] = self as! [String:Int]
+        var passengerListArray = [String]()
+        for a in dic{
+            for _ in 0..<dic[a.key]!{
+                passengerListArray.append(a.key)
+            }
+        }
+        return passengerListArray
+    }
+}
 
 
+extension Binding where Value == String {
+    func max(_ limit: Int) -> Self {
+        if self.wrappedValue.count > limit {
+            DispatchQueue.main.async {
+                self.wrappedValue = String(self.wrappedValue.dropLast())
+            }
+        }
+        return self
+    }
 }
 
 

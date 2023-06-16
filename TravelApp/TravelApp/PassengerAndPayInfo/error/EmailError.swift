@@ -34,4 +34,16 @@ extension PassengerAndPayInfoViewModel {
         )
         guard result != nil else {throw EmailError.EmailFormaterError}
     }
+    
+    internal  func controlEmail() {
+          // MARK: - Email Error
+          do{
+              try emptyEmailError()
+              try formaterEmailError()
+              self.errorEmail = false
+          }catch{
+              self.errorEmail = true
+              self.emailErrorMessage = error.localizedDescription
+          }
+      }
 }

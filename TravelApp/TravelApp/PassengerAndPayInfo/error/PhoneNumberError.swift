@@ -42,4 +42,19 @@ extension PassengerAndPayInfoViewModel {
             guard mobilePhone.first == "5" else { throw PhoneNumberError.FirstNumberIsFive}
         }
     }
+    
+    
+    internal func controlPhoneNumber(){
+          // MARK: - Phone Number Error
+          do {
+              try phoneNumberEmptyError()
+              try phoneNumberMissing()
+              try firstNumberFive()
+              self.phoneNumberEmmtyError = false
+              
+          }catch{
+              self.phoneNumberEmmtyError = true
+              self.phoneNumberErrorMessage = error.localizedDescription
+          }
+      }
 }

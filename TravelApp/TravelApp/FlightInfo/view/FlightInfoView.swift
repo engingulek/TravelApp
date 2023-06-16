@@ -69,7 +69,7 @@ struct FlightInfoView: View {
                         .background(Color.blue)
                         .cornerRadius(20)
                         .navigationDestination(isPresented: $isPresentedConfirm) {
-                            PassengerAndPayInfo()
+                            PassengerAndPayInfo(passengerList: (passengerList?.dictionaryToArray())!)
                         }
                     
                 }

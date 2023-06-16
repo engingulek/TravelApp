@@ -12,23 +12,16 @@ import SwiftUI
 
 struct PassengerAndPayInfo: View {
     
-    @State private var name = ""
-    @State private var surname = ""
-    @State private var dateOfBirth = ""
-    @State private var idNo = ""
-    @State private var passportNo = ""
+
     @State private var cartNo = ""
     @State private var expirationDate = ""
     @State private var cvc2 = ""
-    @State private var tcCitizenNo = false
-    @State private var nationality = ""
+    
+    
+    
     @EnvironmentObject var viewModel : PassengerAndPayInfoViewModel
-    @State var baseSelectedCode = "TR +90"
-    @State var defaultType = "XXX XXX XX XX"
-    
-    
-    
-    
+    var passengerList = [String]()
+    @State var selectedPassenger = 0
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var body: some View {
@@ -93,7 +86,7 @@ struct PassengerAndPayInfo: View {
                     .frame(width: UIScreen.main.bounds.width / 2)
                     .background(Color.blue)
                     .cornerRadius(20)
-                 
+                    
                     
                 }
             }.padding(.top)
@@ -131,26 +124,25 @@ extension PassengerAndPayInfo {
             
             Text("Mobil Phone")
             HStack {
-                Menu(baseSelectedCode)
-                 {
+                Menu("\(viewModel.selectedCountryPhoneCode.code) \(viewModel.selectedCountryPhoneCode.dial_code)")
+                {
                     ForEach(viewModel.countryPhoneCodeList,id: \.self) { item in
                         Button("\(item.name) \(item.dial_code)") {
                             viewModel.mobilePhone = ""
                             viewModel.selectedCountryPhoneCode = item
-                            self.baseSelectedCode = "\(item.code) \(item.dial_code)"
-                            self.defaultType = item.defaultType
+                            
                         }
                         
                     }
-
+                    
                 }
-     
-                    TextField(defaultType, text: $viewModel.mobilePhone)
-                        .keyboardType(.namePhonePad)
-                        .onChange(of: viewModel.mobilePhone) { newValue in
-                          
+                
+                TextField(viewModel.selectedCountryPhoneCode.defaultType, text: $viewModel.mobilePhone)
+                    .keyboardType(.namePhonePad)
+                    .onChange(of: viewModel.mobilePhone) { newValue in
+                        
                         viewModel.mobilePhone = viewModel.phoneNumberFormatter(format:  viewModel.selectedCountryPhoneCode.defaultType, phoneNumber: newValue)
-                        }
+                    }
             }
             viewModel.phoneNumberEmmtyError ? Text(viewModel.phoneNumberErrorMessage).foregroundColor(.red)
                 .font(.callout): nil
@@ -179,88 +171,89 @@ extension PassengerAndPayInfo {
     
     
     private var passengerInformation : some View {
-        
         VStack {
-            ScrollView(.horizontal,showsIndicators: false){
-                HStack {
-                    ForEach(PassagersType.allCases,id:\.self) { passenger in
-                        Text(passenger.description.0)
-                            .font(.caption2)
-                            .padding(.horizontal,15)
-                            .padding(.vertical,10)
-                            .background(Color.white)
-                            .foregroundColor(Color.red)
-                            .border(Color.red,width: 2)
-                            .cornerRadius(6)
+                  ScrollView(.horizontal,showsIndicators: false){
+                      HStack {
+                          ForEach(0..<passengerList.count,id:\.self) { index in
+                              Text(passengerList[index])
+                                  .font(.caption2)
+                                  .padding(.horizontal,15)
+                                  .padding(.vertical,10)
+                                  .background(self.selectedPassenger == index ? .blue : .white)
+                                  .foregroundColor(self.selectedPassenger == index ? .white : .blue)
+                                  .border(.blue,width: 2)
+                                  .cornerRadius(6)
+                                  .onTapGesture {
+                                      self.selectedPassenger = index
+                                  }
+                          }
+                      }.padding(.horizontal)
+                      
+                  }.padding(.top,5)
+                  VStack(alignment:.leading) {
+                      
+                      viewModel.passengerInfoError ?  Text(viewModel.passengerInfoErrorMessage).foregroundColor(.red)
+                          .font(.callout): nil
+                      
+                      VStack(alignment:.leading) {
+                          Text("Name")
+                          TextField("It is mandatory to fill", text: $viewModel.name)
                         
-                        
-                        
-                    }
-                }.padding(.horizontal)
-                
-            }.padding(.top,5)
-            VStack(alignment:.leading) {
-                
-                Text("Name")
-                TextField("It is mandatory to fill", text: $name)
-                
-                VStack{
-                    Divider()
-                        .frame(
-                            height: 1)
-                        .overlay(.black)
-                }
-                
-                Text("Surname")
-                TextField("It is mandatory to fill", text: $surname)
-                
-                VStack{
-                    Divider()
-                        .frame(
-                            height: 1)
-                        .overlay(.black)
-                }
-                
-                Text("Date Of Birth")
-                TextField("It is mandatory to fill", text: $dateOfBirth)
-                
-                VStack{
-                    Divider()
-                        .frame(
-                            height: 1)
-                        .overlay(.black)
-                }
-                VStack(alignment:.leading) {
-                    HStack {
-                        Text(tcCitizenNo ? "Passport No" : "T.C ID No")
-                        Spacer()
-                        Text("T.C I am not a citizen")
-                            .font(.caption)
-                            .foregroundColor(Color.gray.opacity(0.6))
-                            .onTapGesture {
-                                self.tcCitizenNo.toggle()
-                                self.passportNo = ""
-                                self.idNo = ""
-                            }
-                    }
-                    TextField("It is mandatory to fill", text: tcCitizenNo  ? $passportNo : $idNo)
+                      }
+                  
+                      
+                      VStack{
+                          Divider()
+                              .frame(
+                                  height: 1)
+                              .overlay(.black)
+                      }
+                      
+                      Text("Surname")
+                      TextField("It is mandatory to fill", text: $viewModel.surname)
+                     
+                      
+                      VStack{
+                          Divider()
+                              .frame(
+                                  height: 1)
+                              .overlay(.black)
+                      }
+                      VStack(alignment:.leading) {
+                          Text("Date Of Birth")
+                          TextField("It is mandatory to fill - GG/AA/YYYY", text: $viewModel.dateOfBirth)
+                              .onChange(of: viewModel.dateOfBirth) { newValue in
+                                      viewModel.dateOfBirth = viewModel.dateOfBirthFormater(birth: newValue)
+                              }.keyboardType(.numberPad)
+                         
+                      }
                     
-                    tcCitizenNo ?
-                    VStack(alignment:.leading){
-                        Text("Nationality")
-                        TextField("It is mandatory to fill", text: $surname)
-                    }
-                    : nil
-                }
-                
-            }.padding(.top,15)
-        }
-        .padding(.horizontal)
-        .padding([.top,.bottom],20)
-        
-        .background(Color.white)
-        .cornerRadius(10)
-        .padding(.horizontal)
+                      
+                      VStack{
+                          Divider()
+                              .frame(
+                                  height: 1)
+                              .overlay(.black)
+                      }
+                      VStack(alignment:.leading) {
+                          HStack {
+                              Text( "T.C ID No")
+                              Spacer()
+                                
+                          }
+                          TextField("It is mandatory to fill", text: $viewModel.idNo.max(11))
+                                                      
+                       
+                      }
+                      
+                  }.padding(.top,15)
+              }
+              .padding(.horizontal)
+              .padding([.top,.bottom],20)
+              
+              .background(Color.white)
+              .cornerRadius(10)
+              .padding(.horizontal)
     }
     
     
