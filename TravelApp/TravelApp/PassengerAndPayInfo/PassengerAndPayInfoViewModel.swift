@@ -14,6 +14,8 @@ class PassengerAndPayInfoViewModel : ObservableObject {
     @Published var mobilePhone = ""
     @Published  var email = ""
     @Published var formanterErrorEmail : Bool = false
+    @Published var phoneNumberEmmtyError  : Bool = false
+    @Published var phoneNumberErrorMessage: String = ""
     
     func getCountryJsonData(){
         jsonServiceManager.fetchLocalJsonData(target: .countryPhonecode) { (response:Result<[CountryPhoneCode]?,Error>) in
@@ -44,41 +46,18 @@ class PassengerAndPayInfoViewModel : ObservableObject {
     }
     
     func payButtonAction(){
-        let emailPattern = #"^\S+@\S+\.\S+$"#
-        let result = email.range(
-            of: emailPattern,
-            options: .regularExpression
-        )
-        let validEmail = (result == nil)
-        self.formanterErrorEmail = validEmail
-        
-       
-    }
-}
-
-
-enum PassengerInfoAndPayError : LocalizedError {
-    case EmptyPhoneNumberNullError
-    case MissingNumberError
-    
-    var errorDescription: String? {
-        switch self {
+        do {
+            try phoneNumberEmptyError()
+            try phoneNumberMissing()
+            try firstNumberFive()
+            self.phoneNumberEmmtyError = false
             
-        case .EmptyPhoneNumberNullError:
-            return "This field is required"
-        case .MissingNumberError:
-            return "Enter the full number"
+        }catch{
+            self.phoneNumberEmmtyError = true
+            self.phoneNumberErrorMessage = error.localizedDescription
         }
     }
 }
 
-extension PassengerAndPayInfoViewModel {
-    func phoneNumberEmptyError() throws {
-        
-        guard  mobilePhone.count != 0  || mobilePhone.count == selectedCountryPhoneCode.defaultType.count  else { throw PassengerInfoAndPayError.EmptyPhoneNumberNullError}
-    }
-    
-    func phoneNumberMissing() throws {
-        guard  mobilePhone.count == selectedCountryPhoneCode.defaultType.count else {throw PassengerInfoAndPayError.MissingNumberError}
-    }
-}
+
+

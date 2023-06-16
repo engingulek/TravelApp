@@ -26,8 +26,7 @@ struct PassengerAndPayInfo: View {
     @State var baseSelectedCode = "TR +90"
     @State var defaultType = "XXX XXX XX XX"
     
-    @State var phoneNumberEmmtyError  : Bool = false
-    @State var phoneNumberErrorMessage: String = ""
+    
     
     
     
@@ -84,20 +83,8 @@ struct PassengerAndPayInfo: View {
                     Button("Pay") {
                         print("\(viewModel.mobilePhone.count)")
                         print("\(viewModel.selectedCountryPhoneCode.defaultType.count)")
-                        do {
-                            try viewModel.phoneNumberEmptyError()
-                            try viewModel.phoneNumberMissing()
-                            self.phoneNumberEmmtyError = false
-                            
-                        }catch PassengerInfoAndPayError.EmptyPhoneNumberNullError{
-                            self.phoneNumberEmmtyError = true
-                            self.phoneNumberErrorMessage = PassengerInfoAndPayError.EmptyPhoneNumberNullError.errorDescription!
-                        }catch PassengerInfoAndPayError.MissingNumberError{
-                            self.phoneNumberEmmtyError = true
-                            self.phoneNumberErrorMessage = PassengerInfoAndPayError.MissingNumberError.errorDescription!
-                        }catch{
-                            print(error.localizedDescription)
-                        }
+                        viewModel.payButtonAction()
+                        
                     }
                     .padding()
                     
@@ -167,7 +154,7 @@ extension PassengerAndPayInfo {
                         viewModel.mobilePhone = viewModel.phoneNumberFormatter(format:  viewModel.selectedCountryPhoneCode.defaultType, phoneNumber: newValue)
                         }
             }
-            self.phoneNumberEmmtyError ? Text(self.phoneNumberErrorMessage).foregroundColor(.red)
+            viewModel.phoneNumberEmmtyError ? Text(viewModel.phoneNumberErrorMessage).foregroundColor(.red)
                 .font(.callout): nil
             
             VStack{
