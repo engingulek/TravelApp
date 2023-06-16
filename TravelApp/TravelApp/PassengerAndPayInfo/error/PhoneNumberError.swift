@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PassengerInfoAndPayError : LocalizedError {
+enum PhoneNumberError : LocalizedError {
     case EmptyPhoneNumberNullError
     case MissingNumberError
     case FirstNumberIsFive
@@ -30,17 +30,16 @@ enum PassengerInfoAndPayError : LocalizedError {
 extension PassengerAndPayInfoViewModel {
     func phoneNumberEmptyError() throws {
         
-        guard  mobilePhone.count != 0  || mobilePhone.count == selectedCountryPhoneCode.defaultType.count  else { throw PassengerInfoAndPayError.EmptyPhoneNumberNullError}
+        guard  mobilePhone.count != 0  || mobilePhone.count == selectedCountryPhoneCode.defaultType.count  else { throw PhoneNumberError.EmptyPhoneNumberNullError}
     }
     
     func phoneNumberMissing() throws {
-        guard  mobilePhone.count == selectedCountryPhoneCode.defaultType.count else {throw PassengerInfoAndPayError.MissingNumberError}
+        guard  mobilePhone.count == selectedCountryPhoneCode.defaultType.count else {throw PhoneNumberError.MissingNumberError}
     }
     
     func firstNumberFive() throws {
         if selectedCountryPhoneCode.code == "TR" {
-            guard mobilePhone.first == "5" else { throw PassengerInfoAndPayError.FirstNumberIsFive}
+            guard mobilePhone.first == "5" else { throw PhoneNumberError.FirstNumberIsFive}
         }
-        
     }
 }

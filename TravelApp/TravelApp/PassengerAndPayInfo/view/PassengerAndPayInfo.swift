@@ -81,8 +81,6 @@ struct PassengerAndPayInfo: View {
                     
                     
                     Button("Pay") {
-                        print("\(viewModel.mobilePhone.count)")
-                        print("\(viewModel.selectedCountryPhoneCode.defaultType.count)")
                         viewModel.payButtonAction()
                         
                     }
@@ -168,7 +166,7 @@ extension PassengerAndPayInfo {
             Text("E-Mail")
             TextField("Enter email", text: $viewModel.email)
                 .textInputAutocapitalization(.never)
-            viewModel.formanterErrorEmail ? Text("Email format error").foregroundColor(.red)  :  nil
+            viewModel.errorEmail ? Text(viewModel.emailErrorMessage).foregroundColor(.red)  :  nil
             
             
         }.padding(.horizontal)

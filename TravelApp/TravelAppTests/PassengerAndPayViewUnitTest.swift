@@ -25,7 +25,7 @@ final class PassengerAndPayInfoViewModelTest: XCTestCase {
       
         viewModel.mobilePhone = ""
         XCTAssertThrowsError(try viewModel.phoneNumberEmptyError()) { error in
-            XCTAssertEqual(error as! PassengerInfoAndPayError, PassengerInfoAndPayError.EmptyPhoneNumberNullError)
+            XCTAssertEqual(error as! PhoneNumberError, PhoneNumberError.EmptyPhoneNumberNullError)
             
         }
     }
@@ -33,7 +33,7 @@ final class PassengerAndPayInfoViewModelTest: XCTestCase {
     func test_mobilPhoneError_MissingNumberError()  {
         viewModel.mobilePhone = "532 3"
         XCTAssertThrowsError(try viewModel.phoneNumberMissing()) { error in
-            XCTAssertEqual(error as! PassengerInfoAndPayError, PassengerInfoAndPayError.MissingNumberError)
+            XCTAssertEqual(error as! PhoneNumberError, PhoneNumberError.MissingNumberError)
         }
     }
     
@@ -41,7 +41,7 @@ final class PassengerAndPayInfoViewModelTest: XCTestCase {
         viewModel.selectedCountryPhoneCode = CountryPhoneCode(name: "Türkiye", dial_code: "+90", code: "TR", defaultType: "XXX XXX XX XX")
         viewModel.mobilePhone = "444 44 44"
         XCTAssertThrowsError(try viewModel.firstNumberFive()) { error in
-            XCTAssertEqual(error as! PassengerInfoAndPayError, PassengerInfoAndPayError.FirstNumberIsFive)
+            XCTAssertEqual(error as! PhoneNumberError, PhoneNumberError.FirstNumberIsFive)
         }
     }
 

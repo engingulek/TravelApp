@@ -13,9 +13,12 @@ class PassengerAndPayInfoViewModel : ObservableObject {
     @Published var selectedCountryPhoneCode : CountryPhoneCode = CountryPhoneCode(name: "Türkiye", dial_code: "+90", code: "TR", defaultType: "XXX XXX XX XX")
     @Published var mobilePhone = ""
     @Published  var email = ""
-    @Published var formanterErrorEmail : Bool = false
+    
     @Published var phoneNumberEmmtyError  : Bool = false
     @Published var phoneNumberErrorMessage: String = ""
+    
+    @Published var errorEmail : Bool = false
+    @Published var emailErrorMessage : String = ""
     
     func getCountryJsonData(){
         jsonServiceManager.fetchLocalJsonData(target: .countryPhonecode) { (response:Result<[CountryPhoneCode]?,Error>) in
@@ -46,6 +49,7 @@ class PassengerAndPayInfoViewModel : ObservableObject {
     }
     
     func payButtonAction(){
+        // MARK: - Phone Number Error
         do {
             try phoneNumberEmptyError()
             try phoneNumberMissing()
@@ -55,6 +59,16 @@ class PassengerAndPayInfoViewModel : ObservableObject {
         }catch{
             self.phoneNumberEmmtyError = true
             self.phoneNumberErrorMessage = error.localizedDescription
+        }
+        
+        // MARK: - Email Error
+        do{
+            try emptyEmailError()
+            try formaterEmailError()
+            self.errorEmail = false
+        }catch{
+            self.errorEmail = true
+            self.emailErrorMessage = error.localizedDescription
         }
     }
 }
