@@ -44,6 +44,22 @@ final class PassengerAndPayInfoViewModelTest: XCTestCase {
             XCTAssertEqual(error as! PhoneNumberError, PhoneNumberError.FirstNumberIsFive)
         }
     }
+    
+    func test_emailError_EmptyEmail() {
+        viewModel.email = ""
+        XCTAssertThrowsError(try viewModel.emptyEmailError()){ error in
+            XCTAssertEqual(error as! EmailError, EmailError.EmptyEmail)
+            
+        }
+    }
+    
+    func test_formaterEmail_EmailFormaterError() {
+        viewModel.email = "test@testcom"
+        XCTAssertThrowsError(try viewModel.formaterEmailError()){ error in
+            XCTAssertEqual(error as! EmailError, EmailError.EmailFormaterError)
+            
+        }
+    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
