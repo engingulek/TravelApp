@@ -179,8 +179,22 @@ extension PassengerAndPayInfo {
                                   .foregroundColor(self.selectedPassenger == index ? .white : .blue)
                                   .border(.blue,width: 2)
                                   .cornerRadius(6)
+                                 
                                   .onTapGesture {
-                                      self.selectedPassenger = index
+                                      viewModel.controlPassengerInfo()
+                                      if  viewModel.passengerInfoError == false {
+                                          
+                                          print(self.selectedPassenger)
+                                          viewModel.passengerInfoList.append(
+                                            PassengerInfo(index: selectedPassenger,
+                                                          name:viewModel.name,
+                                                          surname: viewModel.surname,
+                                                          dateOfBirth: viewModel.dateOfBirth,
+                                                          tcidNo: viewModel.idNo,
+                                                          passengerType: passengerList[selectedPassenger]))
+                                          viewModel.passengerInfoListWrite(index: index)
+                                          self.selectedPassenger = index
+                                      }
                                   }
                           }
                       }.padding(.horizontal)

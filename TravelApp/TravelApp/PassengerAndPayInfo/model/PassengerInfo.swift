@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+struct PassengerInfo {
+    var index : Int
+    var name:String
+    var surname:String
+    var dateOfBirth:String
+    var tcidNo:String
+    var passengerType:String
+}

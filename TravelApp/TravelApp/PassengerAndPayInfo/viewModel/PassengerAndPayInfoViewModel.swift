@@ -37,6 +37,8 @@ final class PassengerAndPayInfoViewModel : ObservableObject {
     @Published  var cardNo = ""
     @Published  var expirationDate = ""
     @Published  var cvc2 = ""
+    @Published var passengerInfoList = [PassengerInfo]()
+    
     
     
     func getCountryJsonData(){
@@ -55,6 +57,22 @@ final class PassengerAndPayInfoViewModel : ObservableObject {
         controlPassengerInfo()*/
         controlCardInfo()
     }
+    
+    func passengerInfoListWrite(index:Int){
+        name = ""
+        surname = ""
+        dateOfBirth = ""
+        idNo = ""
+        if passengerInfoList.count > index {
+            name = passengerInfoList[index].name
+            surname = passengerInfoList[index].surname
+            dateOfBirth = passengerInfoList[index].dateOfBirth
+            idNo = passengerInfoList[index].tcidNo
+       
+        }
+        
+    }
+    
     
     func infoFormatter(info:String,format:String) -> String{
         let value = info.replacingOccurrences(of: "[^0-9]", with: "",options: .regularExpression)
