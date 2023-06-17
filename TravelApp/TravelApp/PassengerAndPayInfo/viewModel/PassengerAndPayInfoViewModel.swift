@@ -26,8 +26,18 @@ final class PassengerAndPayInfoViewModel : ObservableObject {
     @Published  var idNo = ""
     @Published  var passportNo = ""
     @Published  var nationality = ""
+    
     @Published var passengerInfoError : Bool = false
     @Published var passengerInfoErrorMessage = ""
+    
+    @Published var cardInfoError : Bool = false
+    @Published var cardInfoErrorMessage = ""
+    
+    
+    @Published  var cardNo = ""
+    @Published  var expirationDate = ""
+    @Published  var cvc2 = ""
+    
     
     func getCountryJsonData(){
         jsonServiceManager.fetchLocalJsonData(target: .countryPhonecode) { (response:Result<[CountryPhoneCode]?,Error>) in
@@ -39,17 +49,22 @@ final class PassengerAndPayInfoViewModel : ObservableObject {
             }
         }
     }
+    func payButtonAction(){
+       /* controlPhoneNumber()
+        controlEmail()
+        controlPassengerInfo()*/
+        controlCardInfo()
+    }
     
-    
-    func phoneNumberFormatter(format:String,phoneNumber:String) -> String {
-        let number = phoneNumber.replacingOccurrences(of: "[^0-9]", with: "",options: .regularExpression)
-        var result:String = ""
-        var index = number.startIndex
+    func infoFormatter(info:String,format:String) -> String{
+        let value = info.replacingOccurrences(of: "[^0-9]", with: "",options: .regularExpression)
+        var result : String = ""
+        var index = value.startIndex
         
-        for character in format where index < number.endIndex {
+        for character in format where index < value.endIndex{
             if character == "X"{
-                result.append(number[index])
-                index = number.index(after: index)
+                result.append(value[index])
+                index = value.index(after: index)
             }else{
                 result.append(character)
             }
@@ -57,22 +72,26 @@ final class PassengerAndPayInfoViewModel : ObservableObject {
         return result
     }
     
-    func dateOfBirthFormater(birth:String) -> String {
-        let birth = birth.replacingOccurrences(of: "[^0-9]", with: "",options: .regularExpression)
-        var result:String = ""
-        var index = birth.startIndex
-        let formnat = "XX/XX/XXXX"
+    func cvc2Format(info:String) -> String {
+        let value = info.replacingOccurrences(of: "[^0-9]", with: "",options: .regularExpression)
+        var result : String = ""
+        var index = value.startIndex
+        let format = "N**"
         
-        for character in formnat where index < birth.endIndex {
-            if character == "X" {
-                result.append(birth[index])
-                index = birth.index(after: index)
+        for char in format where index < value.endIndex {
+            if char == "N" {
+                result.append(value[index])
+                index = value.index(after: index)
             }else{
-                result.append(character)
+                result.append(char)
+                index = value.index(after: index)
             }
         }
         return result
     }
+
+    
+    // MARK: - Validation TC Citizien ID
     
     func validateCitizenshipID(ID: Int) -> Bool {
         let digits = ID.description.compactMap({ $0.wholeNumberValue })
@@ -91,11 +110,67 @@ final class PassengerAndPayInfoViewModel : ObservableObject {
         return false
     }
     
-    func payButtonAction(){
-        controlPhoneNumber()
-        controlEmail()
-        controlPassengerInfo()
+}
+
+
+extension PassengerAndPayInfoViewModel {
+    
+ 
+    
+    
+    // MARK: - Phone Number Formantter
+    /*func phoneNumberFormatter(format:String,phoneNumber:String) -> String {
+        let number = phoneNumber.replacingOccurrences(of: "[^0-9]", with: "",options: .regularExpression)
+        var result:String = ""
+        var index = number.startIndex
+        
+        for character in format where index < number.endIndex {
+            if character == "X"{
+                result.append(number[index])
+                index = number.index(after: index)
+            }else{
+                result.append(character)
+            }
+        }
+        return result
     }
+    
+    // MARK: - Date Of Birth Formatter
+    func dateOfBirthFormater(birth:String) -> String {
+        let birth = birth.replacingOccurrences(of: "[^0-9]", with: "",options: .regularExpression)
+        var result:String = ""
+        var index = birth.startIndex
+        let formnat = "XX/XX/XXXX"
+        
+        for character in formnat where index < birth.endIndex {
+            if character == "X" {
+                result.append(birth[index])
+                index = birth.index(after: index)
+            }else{
+                result.append(character)
+            }
+        }
+        return result
+    }
+    
+  
+    
+    // MARK: - Cart Number Formatter
+    func cartNumberFormatter(cartNumber:String) -> String {
+        let cartNumber = cartNumber.replacingOccurrences(of: "[^0-9]", with: "",options: .regularExpression)
+        var result:String = ""
+        var index = cartNumber.startIndex
+        let format = "XXXX XXXX XXXX XXXX"
+        for character in format where index < cartNumber.endIndex{
+            if character == "X"{
+                result.append(cartNumber[index])
+            }else{
+                result.append(character)
+            }
+                
+        }
+        return result
+    }*/
 }
 
 

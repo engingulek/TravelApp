@@ -13,10 +13,6 @@ import SwiftUI
 struct PassengerAndPayInfo: View {
     
 
-    @State private var cartNo = ""
-    @State private var expirationDate = ""
-    @State private var cvc2 = ""
-    
     
     
     @EnvironmentObject var viewModel : PassengerAndPayInfoViewModel
@@ -141,7 +137,7 @@ extension PassengerAndPayInfo {
                     .keyboardType(.namePhonePad)
                     .onChange(of: viewModel.mobilePhone) { newValue in
                         
-                        viewModel.mobilePhone = viewModel.phoneNumberFormatter(format:  viewModel.selectedCountryPhoneCode.defaultType, phoneNumber: newValue)
+                        viewModel.mobilePhone = viewModel.infoFormatter(info: newValue, format: viewModel.selectedCountryPhoneCode.defaultType)
                     }
             }
             viewModel.phoneNumberEmmtyError ? Text(viewModel.phoneNumberErrorMessage).foregroundColor(.red)
@@ -223,7 +219,7 @@ extension PassengerAndPayInfo {
                           Text("Date Of Birth")
                           TextField("It is mandatory to fill - GG/AA/YYYY", text: $viewModel.dateOfBirth)
                               .onChange(of: viewModel.dateOfBirth) { newValue in
-                                      viewModel.dateOfBirth = viewModel.dateOfBirthFormater(birth: newValue)
+                                  viewModel.dateOfBirth = viewModel.infoFormatter(info: newValue, format: "XX/XX/XXXX")
                               }.keyboardType(.numberPad)
                          
                       }
@@ -259,9 +255,13 @@ extension PassengerAndPayInfo {
     
     private var paymentInfo : some View {
         VStack(alignment:.leading) {
-            
-            Text("Cart Number")
-            TextField("xxxx xxxx xxxx xxxx", text: $cartNo)
+            viewModel.cardInfoError ?  Text(viewModel.cardInfoErrorMessage).foregroundColor(.red)
+                .font(.callout): nil
+            Text("Card Number")
+            TextField("xxxx xxxx xxxx xxxx", text: $viewModel.cardNo)
+                .onChange(of: viewModel.cardNo) { newValue in
+                    viewModel.cardNo = viewModel.infoFormatter(info: newValue, format: "XXXX XXXX XXXX XXXX")
+                }
             VStack{
                 Divider()
                     .frame(
@@ -272,12 +272,15 @@ extension PassengerAndPayInfo {
             HStack {
                 VStack(alignment:.leading) {
                     Text("Expiration Date")
-                    TextField("MM/YY", text: $expirationDate)
+                    TextField("MM/YY", text: $viewModel.expirationDate)
+                        .onChange(of: viewModel.expirationDate) { newValue in
+                            viewModel.expirationDate =  viewModel.infoFormatter(info: newValue, format: "XX/XX")
+                        }
                 }
                 
                 VStack(alignment:.leading){
                     Text("CVC2")
-                    TextField("***", text: $expirationDate)
+                    TextField("***", text: $viewModel.cvc2.max(3))
                 }
             }
             

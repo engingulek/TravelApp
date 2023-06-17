@@ -20,6 +20,7 @@ enum PassengerInfoError : LocalizedError {
     case TcCitizienCountCountrol
     case TcCitizenFormatControl
     
+    
     var errorDescription: String?{
         switch self {
         case .NameEmptyError,.SurnameEmptyError,.DateOfBirtEmptyError,.TCidNoEmptyError:
@@ -40,21 +41,24 @@ enum PassengerInfoError : LocalizedError {
             return "Should be 11 characters"
         case .TcCitizenFormatControl:
             return "Tc Citizien format error"
+            
+    
         }
+        
         
     }
 }
 
 extension PassengerAndPayInfoViewModel {
     
-    func emptyError() throws{
+   private func emptyError() throws{
         guard name.count != 0 else {throw PassengerInfoError.NameEmptyError}
         guard surname.count != 0 else {throw PassengerInfoError.SurnameEmptyError}
         guard dateOfBirth.count != 0 else {throw PassengerInfoError.DateOfBirtEmptyError}
         guard idNo.count != 0 else {throw PassengerInfoError.TCidNoEmptyError}
     }
     
-    func dateOfBirhtControl() throws {
+   private func dateOfBirhtControl() throws {
         guard dateOfBirth.count == 10 else { throw PassengerInfoError.DateOfBirthCountControl}
         
         guard 1 <= Int(dateOfBirth[0..<2])! && Int(dateOfBirth[0..<2])! <= 31 else {
@@ -67,12 +71,14 @@ extension PassengerAndPayInfoViewModel {
             throw PassengerInfoError.DateOfBirthYearControl
         }
         
-        guard dateOfBirth.stringToDatePartTwo() <= Date.now.dateToString().stringToDatePartTwo() else {
+        guard dateOfBirth.stringToDatePartTwo(format: "dd/MM/yyyy") <= Date.now.dateToString().stringToDatePartTwo(format: "dd/MM/yyyy") else {
             throw PassengerInfoError.DateBirthDateControl
         }
     }
     
-    func tcCitizienIDControl() throws {
+  
+    
+    private func tcCitizienIDControl() throws {
         guard idNo.count == 11 else { throw PassengerInfoError.TcCitizienCountCountrol}
         guard validateCitizenshipID(ID: Int(idNo)!) == true else {throw PassengerInfoError.TcCitizenFormatControl}
     }

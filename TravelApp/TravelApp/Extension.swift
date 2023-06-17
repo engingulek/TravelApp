@@ -34,7 +34,7 @@ extension Date  {
 }
 
 extension String {
-
+/// to be reviewed
     func stringToDate() -> Date {
         let dateFormatter = DateFormatter()
         let getDate = self
@@ -45,16 +45,17 @@ extension String {
 
     }
     
-    func stringToDatePartTwo() -> Date {
+    func stringToDatePartTwo(format : String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = NSTimeZone(name: "UTC")! as TimeZone
         let getDate = self
         let a = getDate.split(separator: " ")
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.dateFormat = format
         let date = dateFormatter.date(from: "\( a[0])")
         return date ?? Date.now
 
     }
+    
     
     func splitTime() -> String {
         let timeSplit = self.split(separator: ":")
