@@ -7,16 +7,17 @@
 
 import Foundation
 
-
-
-
  class FlightTicketSearchViewModel : ObservableObject {
     private var flightTicketService = FlightTicketService()
     @Published var flightTicketsDepture : [FlightTicketVM] = []
-     @Published var tempFligjtTicDepList : [FlightTicketVM] = []
+     @Published var flightTicketReturn : [FlightTicketVM] = []
+    @Published var tempFligjtTicDepList : [FlightTicketVM] = []
    
     @Published var getDeptureDate : Date?
-    @Published var dateList = [Date]()
+     @Published var getReturnDate : Date?
+   // @Published var deptureDateList = [Date]()
+   // @Published var returnDateList = [Date]()
+     @Published var dateList = [Date]()
     @Published var selectedClassType : ClassType?
     @Published var selectedTimesOfDay : TimesOfDay?
    
@@ -56,6 +57,10 @@ import Foundation
             })
         }
     }
+     
+     func getDataReturnFlightTickets() async{
+         
+     }
     
     //MARK: - Calculate total amount
     func calculateTotalAmount(_ priceInfo:[PriceInfo]) -> String {
@@ -66,10 +71,28 @@ import Foundation
         }
         return String(format: "%.1f", totalAmount)
     }
+     
+     
+     func listDateLater30(forCurrentDate date : Date) {
+         dateList = []
+         let currentDate = date
+         print("List Date Later \(currentDate)")
+         print(Date.now)
+         
+         
+         var datecomponent = DateComponents()
+         for addDate in 0..<30 {
+             datecomponent.day = addDate
+             let futureCalender = Calendar.current.date(byAdding: datecomponent, to: currentDate)
+             guard let futureDate = futureCalender else {return}
+             dateList.append(futureDate)
+             
+         }
+     }
     
     
-    func listDateLater20(){
-        
+     /*func listDateLater30DeptureTicket(){
+        deptureDateList = []
         let currentDate = Date.now
         print("List Date Later \(currentDate)")
         print(Date.now)
@@ -80,10 +103,24 @@ import Foundation
             datecomponent.day = addDate
             let futureCalender = Calendar.current.date(byAdding: datecomponent, to: currentDate)
             guard let futureDate = futureCalender else {return}
-            dateList.append(futureDate)
+            deptureDateList.append(futureDate)
             
         }
     }
+     
+     
+     func listDateLater30ForReturnTicket(){
+         returnDateList = []
+         let currentDate = getDeptureDate
+         var dateComponent = DateComponents()
+         for addDate in 0..<30{
+             dateComponent.day = addDate
+             let futureCalender = Calendar.current.date(byAdding: dateComponent, to: currentDate!)
+             guard let futureDate = futureCalender else {return}
+            
+             returnDateList.append(futureDate)
+         }
+     }*/
     
     
     

@@ -12,6 +12,7 @@ struct FlightView: View {
     @EnvironmentObject var flightViewModel : FlightViewModel
     @EnvironmentObject var selectDepAndArViewModel : SelectDepAndArDateViewModel
     @EnvironmentObject var selectPassangerViewModel : SelectPassengerViewModel
+    
 
     
     
@@ -228,6 +229,8 @@ struct FlightView: View {
     
     var searchButton : some View {
         Button {
+            
+       
             do {
                  try flightViewModel.fromLocationControl(flightViewModel.textSelectedDepature)
                  try flightViewModel.toLocationControl(flightViewModel.textSelectedArrivel)
@@ -258,11 +261,10 @@ struct FlightView: View {
                        dismissButton: .default(Text("Cancel"))
                            )
             }.fullScreenCover(isPresented: $isPresentedFlightTickerSearcView) {
-                FlightTicketDeptureView(deptureDate: selectDepAndArViewModel.selectedArrivelDate,
-                                       returnDate: selectDepAndArViewModel.selectedDepatureDate,
+                FlightTicketDeptureView(deptureDate: selectDepAndArViewModel.selectedDepatureDate,
+                                       returnDate: selectDepAndArViewModel.selectedArrivelDate,
                                        deptureCity: flightViewModel.selectedDepature,
                                        arrivelCity: flightViewModel.selectedArrivel,
-                                       
                                        passangerList: selectPassangerViewModel.passengerList,
                                         selectedButton : self.selectedButton
                 )
@@ -277,6 +279,7 @@ struct FlightView_Previews: PreviewProvider {
         FlightView().environmentObject(FlightViewModel())
             .environmentObject(SelectDepAndArDateViewModel())
             .environmentObject(SelectPassengerViewModel())
+            
          
             
     }

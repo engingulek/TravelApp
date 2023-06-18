@@ -33,6 +33,7 @@ struct FlightTicketDeptureView: View {
                     /// dateList
                     
                     dateList
+                 
                     
                 }.frame(width: UIScreen.main.bounds.width,
                         height: UIScreen.main.bounds.height / 3)
@@ -67,9 +68,11 @@ struct FlightTicketDeptureView: View {
             }.background(Color("backgroundTabbar"))
                 .onAppear{
                     flightTicketSearchViewModel.getDeptureDate = deptureDate
-                    flightTicketSearchViewModel.listDateLater20()
+                    flightTicketSearchViewModel.getReturnDate = returnDate
+                    flightTicketSearchViewModel.listDateLater30(forCurrentDate: Date.now)
                     flightTicketSearchViewModel.returnDate = returnDate
                     flightTicketSearchViewModel.deptureCity = deptureCity
+                    flightTicketSearchViewModel.deptureDate = deptureDate
                     flightTicketSearchViewModel.arrivelCity = arrivelCity
                     flightTicketSearchViewModel.passangerList = passangerList
                     
@@ -176,6 +179,7 @@ extension FlightTicketDeptureView {
                         .onTapGesture {
                             flightTicketSearchViewModel.getDeptureDate = futureDate
                             selectDepAndArViewModel.selectedDepatureDate = futureDate
+                            print(futureDate)
                             Task {
                                 await self.flightTicketSearchViewModel.getDataDeptureFlightTickets()
                             }
@@ -201,7 +205,7 @@ extension FlightTicketDeptureView {
                     }.navigationDestination(isPresented: $isPresentedFlightInfoView){
                         FlightInfoView(deptureFlightTicket:result , returnFlightTicket: nil,passengerList:passangerList)
                     }.navigationDestination(isPresented: $isPresentedFlightTicketReturn) {
-                        FlightTicketReturnView()
+                        FlightTicketReturnView(deptureResult:result,passengerList: passangerList)
                     }
             }
         }

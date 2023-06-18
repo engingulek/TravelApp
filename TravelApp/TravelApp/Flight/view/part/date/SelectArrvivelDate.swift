@@ -26,6 +26,7 @@ struct SelectArrvivelDate: View {
                            selection: $selectedDepAndArViewModel.selectedArrivelDate, in: arrivelDateRange,displayedComponents: [.date])
                 .datePickerStyle(.graphical)
                 .onChange(of: selectedDepAndArViewModel.selectedArrivelDate) { newValue in
+                     
                     self.dismiss()
                 }
             }
