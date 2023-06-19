@@ -14,64 +14,36 @@ protocol FlightServiceProtocol {
 
 
 class FlightService : FlightServiceProtocol {
-    
     private var serviceManager = ServiceManager()
     
-    
-    func getCityOrAirport(completion: @escaping (Result<[Flight], Error>) -> ()) {
-        Task{
-            do{
-                let result = try await getCityOrAirport()
-                completion(.success(result))
-            }catch{
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    func getPopCity(completion: @escaping (Result<[Flight], Error>) -> ()) {
-        Task{
-            do{
-                let result = try await getPopCity()
-                completion(.success(result))
-            }catch{
-                completion(.failure(error))
-            }
-        }
-    }
-    
     // MARK: - GetFlights
-   private func getCityOrAirport() async throws -> [Flight] {
-        return try await withCheckedThrowingContinuation{ continuation in
-            DispatchQueue.main.async {
-                self.serviceManager.fetch(target: .flights) { (response:Result<[Flight]?,Error>) in
-                    switch response {
-                    
-                    case .success(let list):
-                        continuation.resume(returning: list!)
-                    case .failure(let error):
-                        continuation.resume(throwing: error)
-                    }
+    func getCityOrAirport(completion: @escaping (Result<[Flight], Error>) -> ()) async {
+        do{
+            serviceManager.fetch(target: .flights) { (response:Result<[Flight]?,Error>) in
+                switch response {
+                
+                case .success(let list):
+                    completion(.success(list!))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
             }
         }
     }
     
     // MARK: GetPopFlight
-   private func getPopCity() async throws -> [Flight] {
-       return try await withCheckedThrowingContinuation{ continuation in
-           DispatchQueue.main.async {
-               self.serviceManager.fetch(target: .popFlights) { (response:Result<[Flight]?,Error>) in
-                   switch response {
-                   
-                   case .success(let list):
-                       continuation.resume(returning: list!)
-                   case .failure(let error):
-                       continuation.resume(throwing: error)
-                   }
-               }
-           }
-       }
+    func getPopCity(completion: @escaping (Result<[Flight], Error>) -> ()) async {
+        do{
+            serviceManager.fetch(target: .popFlights) { (response:Result<[Flight]?,Error>) in
+                switch response {
+                
+                case .success(let list):
+                    completion(.success(list!))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        }
     }
     
     

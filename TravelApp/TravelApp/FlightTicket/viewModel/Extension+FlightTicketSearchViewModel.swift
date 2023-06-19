@@ -29,7 +29,7 @@ extension FlightTicketSearchViewModel   {
     
     func filterFlightList() {
     
-        let list = self.tempFligjtTicDepList
+        let list = self.tempFlightTicDepList
         if self.selectedTimesOfDay == nil {
             self.flightTicketsDepture = list.filter{$0.classType == self.selectedClassType!.rawValue}
         }else if self.selectedClassType == nil {
@@ -40,13 +40,5 @@ extension FlightTicketSearchViewModel   {
                 $0.timesOfDay == self.selectedTimesOfDay
             }
         }
-        
-        
-        
-        
-        
-      
-        
-
     }
 }

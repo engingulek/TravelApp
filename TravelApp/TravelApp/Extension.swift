@@ -31,6 +31,14 @@ extension Date  {
     }
     
     
+    func add30MinuteClock() -> Date{
+        let clock = self
+        let calender  = Calendar.current
+        let returnClock = calender.date(byAdding: .minute,value: 20,to: clock)
+        return returnClock ?? Date.now
+    }
+    
+    
 }
 
 extension String {
@@ -53,8 +61,19 @@ extension String {
         dateFormatter.dateFormat = format
         let date = dateFormatter.date(from: "\( a[0])")
         return date ?? Date.now
-
     }
+    
+    func stringToClock() -> Date{
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = NSTimeZone(name: "UTC")! as TimeZone
+        dateFormatter.dateFormat = "HH:mm"
+        let getClock = self
+        let clock = dateFormatter.date(from: getClock)
+        return clock ?? Date.now
+    }
+ 
+    
+   
     
     
     func splitTime() -> String {

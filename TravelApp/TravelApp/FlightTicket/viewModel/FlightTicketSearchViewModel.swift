@@ -7,19 +7,21 @@
 
 import Foundation
 
- class FlightTicketSearchViewModel : ObservableObject {
+class FlightTicketSearchViewModel : ObservableObject {
     private var flightTicketService = FlightTicketService()
     @Published var flightTicketsDepture : [FlightTicketVM] = []
-     @Published var flightTicketReturn : [FlightTicketVM] = []
-    @Published var tempFligjtTicDepList : [FlightTicketVM] = []
-   
+    @Published var flightTicketReturn : [FlightTicketVM] = []
+    @Published var tempFlightTicDepList : [FlightTicketVM] = []
+    @Published var tempFlightTicRetrunList : [FlightTicketVM] = []
+    
     @Published var getDeptureDate : Date?
-     @Published var getReturnDate : Date?
-   // @Published var deptureDateList = [Date]()
-   // @Published var returnDateList = [Date]()
-     @Published var dateList = [Date]()
+    @Published var getReturnDate : Date?
+    // @Published var deptureDateList = [Date]()
+    // @Published var returnDateList = [Date]()
+    @Published var dateList = [Date]()
     @Published var selectedClassType : ClassType?
     @Published var selectedTimesOfDay : TimesOfDay?
+    @Published var selectedDeptureTicket : FlightTicketVM?
    
     
     var deptureDate:Date?
@@ -30,36 +32,64 @@ import Foundation
     var flightList = [FlightVM]()
 
     
-     func getDataDeptureFlightTickets()   {
+     func getDataDeptureFlightTickets() async   {
       
-            flightTicketService.getFlightTickets(completion: { (response:Result<[FlightTicket],Error>) in
-                switch response {
-                case .success(let list):
-                    DispatchQueue.main.async {
-                        let flightList =  list.map(FlightTicketVM.init)
-                        let resultList =  flightList.filter{ result in
-                            self.deptureCity!.airport.contains(where: {$0.code == result.from.airport.code})
-                            &&   self.arrivelCity!.airport.contains(where: {$0.code == result.to.airport.code})
-                            && self.getDeptureDate!.dateFormatted() == result.date.stringToDate().dateFormatted()
-                        }
-                        
-                        self.flightTicketsDepture = resultList
-                        self.tempFligjtTicDepList = resultList
-                       
-                        
-                        
-                    }
-                case .failure(_):
-                    DispatchQueue.main.async {
-                        self.flightTicketsDepture = []
-                    }
-                }
-            })
+         do{
+             await flightTicketService.getFlightTickets(completion: { (response:Result<[FlightTicket],Error>) in
+                  switch response {
+                  case .success(let list):
+                      DispatchQueue.main.async {
+                          let flightList =  list.map(FlightTicketVM.init)
+                          let resultList =  flightList.filter{ result in
+                              self.deptureCity!.airport.contains(where: {$0.code == result.from.airport.code})
+                              &&   self.arrivelCity!.airport.contains(where: {$0.code == result.to.airport.code})
+                              && self.getDeptureDate!.dateFormatted() == result.date.stringToDate().dateFormatted()
+                          }
+                          
+                          self.flightTicketsDepture = resultList
+                          self.tempFlightTicDepList = resultList
+                         
+                          
+                          
+                      }
+                  case .failure(_):
+                      DispatchQueue.main.async {
+                          self.flightTicketsDepture = []
+                      }
+                  }
+              })
+         }
         
     }
      
      func getDataReturnFlightTickets() async{
-         
+        
+         do{
+             await flightTicketService.getFlightTickets(completion: { (response:Result<[FlightTicket],Error>) in
+                  switch response {
+                  case .success(let list):
+                      DispatchQueue.main.async {
+                          let flightList =  list.map(FlightTicketVM.init)
+                          let resultList =  flightList.filter{ result in
+                              self.arrivelCity!.airport.contains(where: {$0.code == result.from.airport.code})
+                              &&   self.deptureCity!.airport.contains(where: {$0.code == result.to.airport.code})
+                              && self.getReturnDate!.dateFormatted() == result.date.stringToDate().dateFormatted()
+                              && self.selectedDeptureTicket!.arrivelClock.stringToClock().add30MinuteClock() < result.deptureClock.stringToClock()
+                          }
+                          
+                          self.flightTicketReturn = resultList
+                          self.tempFlightTicRetrunList = resultList
+                         
+                          
+                          
+                      }
+                  case .failure(_):
+                      DispatchQueue.main.async {
+                          self.flightTicketsDepture = []
+                      }
+                  }
+              })
+         }
      }
     
     //MARK: - Calculate total amount
@@ -89,43 +119,6 @@ import Foundation
              
          }
      }
-    
-    
-     /*func listDateLater30DeptureTicket(){
-        deptureDateList = []
-        let currentDate = Date.now
-        print("List Date Later \(currentDate)")
-        print(Date.now)
-        
-        
-        var datecomponent = DateComponents()
-        for addDate in 0..<30 {
-            datecomponent.day = addDate
-            let futureCalender = Calendar.current.date(byAdding: datecomponent, to: currentDate)
-            guard let futureDate = futureCalender else {return}
-            deptureDateList.append(futureDate)
-            
-        }
-    }
-     
-     
-     func listDateLater30ForReturnTicket(){
-         returnDateList = []
-         let currentDate = getDeptureDate
-         var dateComponent = DateComponents()
-         for addDate in 0..<30{
-             dateComponent.day = addDate
-             let futureCalender = Calendar.current.date(byAdding: dateComponent, to: currentDate!)
-             guard let futureDate = futureCalender else {return}
-            
-             returnDateList.append(futureDate)
-         }
-     }*/
-    
-    
-    
-    
-    
 }
 
 struct FlightTicketVM: Identifiable {

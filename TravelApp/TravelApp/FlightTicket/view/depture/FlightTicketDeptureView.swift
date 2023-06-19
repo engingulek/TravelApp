@@ -79,7 +79,7 @@ struct FlightTicketDeptureView: View {
                     
                 }
                 .task {
-                     flightTicketSearchViewModel.getDataDeptureFlightTickets()
+                    await flightTicketSearchViewModel.getDataDeptureFlightTickets()
                     
                 }
             
@@ -180,7 +180,10 @@ extension FlightTicketDeptureView {
                             flightTicketSearchViewModel.getDeptureDate = futureDate
                             selectDepAndArViewModel.selectedDepatureDate = futureDate
                             print(futureDate)
-                            self.flightTicketSearchViewModel.getDataDeptureFlightTickets()
+                            Task{
+                                await self.flightTicketSearchViewModel.getDataDeptureFlightTickets()
+                            }
+                           
                             
                         }
                     }
@@ -198,8 +201,10 @@ extension FlightTicketDeptureView {
                         if selectedButton == 0 {
                             self.isPresentedFlightInfoView = true
                             
+                            
                         }else{
                             self.isPresentedFlightTicketReturn = true
+                            self.flightTicketSearchViewModel.selectedDeptureTicket = result
                         }
                     }.navigationDestination(isPresented: $isPresentedFlightInfoView){
                         FlightInfoView(deptureFlightTicket:result , returnFlightTicket: nil,passengerList:passangerList)

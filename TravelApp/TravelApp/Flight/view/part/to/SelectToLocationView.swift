@@ -113,8 +113,8 @@ struct SelectToLocationView: View {
                 resultNil
             }
         }.task {
-             flightViewModel.getDataAirport()
-             flightViewModel.getPopulerCities()
+             await flightViewModel.getDataAirport()
+            await flightViewModel.getPopulerCities()
         }
     }
 }

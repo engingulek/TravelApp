@@ -56,8 +56,8 @@ struct FlightTicketReturnView: View {
                     flightTicketSearchViewModel.listDateLater30(forCurrentDate: flightTicketSearchViewModel.getDeptureDate!)
                     //print(selectDepAndArViewModel.selectedDepatureDate)
                   //  print("getDeptureDate \(flightTicketSearchViewModel.getDeptureDate)")
-                  
-                  
+                }.task {
+                    await flightTicketSearchViewModel.getDataReturnFlightTickets()
                 }
         }
     }
