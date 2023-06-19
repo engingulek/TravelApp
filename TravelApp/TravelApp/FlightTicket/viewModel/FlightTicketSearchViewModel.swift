@@ -30,9 +30,9 @@ import Foundation
     var flightList = [FlightVM]()
 
     
-    func getDataDeptureFlightTickets() async {
-        do {
-            await flightTicketService.getFlightTickets(completion: { (response:Result<[FlightTicket],Error>) in
+     func getDataDeptureFlightTickets()   {
+      
+            flightTicketService.getFlightTickets(completion: { (response:Result<[FlightTicket],Error>) in
                 switch response {
                 case .success(let list):
                     DispatchQueue.main.async {
@@ -55,7 +55,7 @@ import Foundation
                     }
                 }
             })
-        }
+        
     }
      
      func getDataReturnFlightTickets() async{

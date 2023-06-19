@@ -49,9 +49,9 @@
 		7D741B132A2E2EB4004357A4 /* FlightViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D741B122A2E2EB4004357A4 /* FlightViewModelTest.swift */; };
 		7DA1505E2A3C580C002307D9 /* PassengerAndPayViewUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA1505D2A3C580C002307D9 /* PassengerAndPayViewUnitTest.swift */; };
 		7DA150632A3C6228002307D9 /* EmailError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA150622A3C6228002307D9 /* EmailError.swift */; };
+		7DACB3962A4094810019A0A1 /* FlightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC85BEA2A2A97A200AB46E3 /* FlightViewModel.swift */; };
 		7DC85BE22A2A8E3900AB46E3 /* SelectFromLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC85BE12A2A8E3900AB46E3 /* SelectFromLocationView.swift */; };
 		7DC85BE82A2A913200AB46E3 /* Flight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC85BE72A2A913200AB46E3 /* Flight.swift */; };
-		7DC85BEB2A2A97A200AB46E3 /* FlightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC85BEA2A2A97A200AB46E3 /* FlightViewModel.swift */; };
 		7DD020D32A39EF080048AB04 /* FlightInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD020D22A39EF070048AB04 /* FlightInfoViewModel.swift */; };
 		7DD020D52A3A048A0048AB04 /* PassengerAndPayInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD020D42A3A048A0048AB04 /* PassengerAndPayInfoViewModel.swift */; };
 		7DD020DA2A3A095C0048AB04 /* countryPhoneCode.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DD020D92A3A095C0048AB04 /* countryPhoneCode.json */; };
@@ -493,9 +493,9 @@
 		7DC85BE92A2A979400AB46E3 /* viewModel */ = {
 			isa = PBXGroup;
 			children = (
-				7DC85BEA2A2A97A200AB46E3 /* FlightViewModel.swift */,
 				7D1228452A2F75F3003FD3EE /* SelectDepAndArDateViewModel.swift */,
 				7D168C9A2A307F8D0063A7C8 /* SelectPasangerViewModel.swift */,
+				7DC85BEA2A2A97A200AB46E3 /* FlightViewModel.swift */,
 				7D3D35F52A38AC3E001DE980 /* Extension+FlightViewModel.swift */,
 			);
 			path = viewModel;
@@ -681,6 +681,7 @@
 			files = (
 				7DC85BE22A2A8E3900AB46E3 /* SelectFromLocationView.swift in Sources */,
 				7D3D35FD2A38AE44001DE980 /* Extension+FlightTicketSearchViewModel.swift in Sources */,
+				7DACB3962A4094810019A0A1 /* FlightViewModel.swift in Sources */,
 				7D24BA2A2A3CCD9000C99F49 /* PassengerInfo.swift in Sources */,
 				7D39B5C52A292A8E006C7A96 /* FlightView.swift in Sources */,
 				7DD020E12A3A0E710048AB04 /* JsonServiceManager.swift in Sources */,
@@ -691,7 +692,6 @@
 				7D24BA2C2A3CCDEE00C99F49 /* PassengerInfoError.swift in Sources */,
 				7DA150632A3C6228002307D9 /* EmailError.swift in Sources */,
 				7D3B486C2A379102002DC90C /* PassengerAndPayInfo.swift in Sources */,
-				7DC85BEB2A2A97A200AB46E3 /* FlightViewModel.swift in Sources */,
 				7D741B022A2E1E04004357A4 /* DataResult.swift in Sources */,
 				7D1228442A2F6355003FD3EE /* SelectDepartureDate.swift in Sources */,
 				7D67C11A2A3105A400B6B14F /* ClassRow.swift in Sources */,

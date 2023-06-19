@@ -79,7 +79,7 @@ struct FlightTicketDeptureView: View {
                     
                 }
                 .task {
-                    await flightTicketSearchViewModel.getDataDeptureFlightTickets()
+                     flightTicketSearchViewModel.getDataDeptureFlightTickets()
                     
                 }
             
@@ -180,9 +180,8 @@ extension FlightTicketDeptureView {
                             flightTicketSearchViewModel.getDeptureDate = futureDate
                             selectDepAndArViewModel.selectedDepatureDate = futureDate
                             print(futureDate)
-                            Task {
-                                await self.flightTicketSearchViewModel.getDataDeptureFlightTickets()
-                            }
+                            self.flightTicketSearchViewModel.getDataDeptureFlightTickets()
+                            
                         }
                     }
                 }
