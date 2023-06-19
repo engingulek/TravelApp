@@ -82,16 +82,7 @@ extension FlightTicketReturnView {
                     self.dismiss()
                 }
             Spacer()
-            Image(systemName: "slider.vertical.3")
-                .foregroundColor(.white)
-                .font(.title2)
-                .onTapGesture {
-                    self.isPresenterFilterView = true
-                }.sheet(isPresented: $isPresenterFilterView) {
-                    FilterView()
-                        .presentationDetents([.height(UIScreen.main.bounds.height / 2),.fraction(0.5)])
-                    
-                }
+           
         }.padding(.horizontal)
             .padding(.bottom,5)
             .padding(.top,5)

@@ -10,8 +10,8 @@ import SwiftUI
 struct FlightInfoView: View {
     @EnvironmentObject var flightInfoViewModel : FlightInfoViewModel
     @EnvironmentObject var flightTicketSearchViewModel : FlightTicketSearchViewModel
-  @State  private var isPresentedConfirm = false
-  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State  private var isPresentedConfirm = false
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var deptureFlightTicket : FlightTicketVM?
     var returnFlightTicket : FlightTicketVM?
@@ -43,34 +43,34 @@ struct FlightInfoView: View {
                     if returnFlightTicket != nil {
                         returnTicketInfo
                     }
-                
+                    
                     ZStack(alignment:.top){
-                            priceInfo
+                        priceInfo
                             .padding(.top)
-                            Text("Price Info")
+                        Text("Price Info")
                             .padding(.vertical,5)
                             .padding(.horizontal)
                             .background(Color.blue)
                             .cornerRadius(10)
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
-                        }
+                    }
                     Spacer()
                     Button("Confirm") {
                         self.isPresentedConfirm = true
                     }
                     .padding()
                     
-                        .foregroundColor(Color.white)
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                       
-                        .frame(width: UIScreen.main.bounds.width / 2)
-                        .background(Color.blue)
-                        .cornerRadius(20)
-                        .navigationDestination(isPresented: $isPresentedConfirm) {
-                            PassengerAndPayInfo(passengerList: (passengerList?.dictionaryToArray())!)
-                        }
+                    .foregroundColor(Color.white)
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    
+                    .frame(width: UIScreen.main.bounds.width / 2)
+                    .background(Color.blue)
+                    .cornerRadius(20)
+                    .navigationDestination(isPresented: $isPresentedConfirm) {
+                        PassengerAndPayInfo(passengerList: (passengerList?.dictionaryToArray())!)
+                    }
                     
                 }
             }.padding(.top,80)
@@ -84,9 +84,9 @@ struct FlightInfoView: View {
                     }
                 }
             
-
+            
         }.navigationBarBackButtonHidden(true)
-           
+        
         
         
         
@@ -132,7 +132,7 @@ struct FlightInfoView: View {
                 HStack {
                     Image(systemName: "clock")
                         .foregroundColor(Color.blue)
-                    Text("40 dk")
+                    Text(flightInfoViewModel.calculateTravelTime(deptureClock: deptureFlightTicket!.deptureClock.stringToClock(), arrivelClock: deptureFlightTicket!.arrivelClock.stringToClock()))
                         .foregroundColor(Color.black.opacity(0.7))
                 }.font(.footnote)
                 
@@ -164,7 +164,7 @@ struct FlightInfoView: View {
         VStack(spacing:10){
             /// date
             HStack{
-                Text("Jun 13 2023")
+                Text(returnFlightTicket!.date)
                 
                 Spacer()
             }.font(.caption2)
@@ -185,7 +185,7 @@ struct FlightInfoView: View {
                 }
                 
                 Spacer()
-                Text("Economy")
+                Text(returnFlightTicket!.classType)
                     .padding(8)
                     .background(Color.blue)
                     .cornerRadius(10)
@@ -195,7 +195,7 @@ struct FlightInfoView: View {
             
             // code clock
             HStack {
-                Text("SAW 14:50")
+                Text("\(returnFlightTicket!.from.airport.code) \(returnFlightTicket!.deptureClock)")
                 Spacer()
                 HStack {
                     Image(systemName: "clock")
@@ -205,18 +205,18 @@ struct FlightInfoView: View {
                 }.font(.footnote)
                 
                 Spacer()
-                Text("ESB 15:30")
+                Text("\(returnFlightTicket!.to.airport.code) \(returnFlightTicket!.arrivelClock)")
             }
             
             HStack {
-                Text("İstanbul/Sabiha Gökçen")
+                Text("\(returnFlightTicket!.from.city)/\(returnFlightTicket!.from.airport.name)")
                 Spacer()
-                Text("Ankara/Esenboğa")
+                Text("\(returnFlightTicket!.to.city)/\(returnFlightTicket!.to.airport.name)")
             }
             .font(.caption)
             
             HStack{
-                Text("Bag:15 kg")
+                Text("Bag:\(returnFlightTicket!.bagWeight) kg")
                     .font(.caption)
                 Spacer()
             }
@@ -262,8 +262,13 @@ struct FlightInfoView: View {
                     Text("\(flightInfoViewModel.returnPersonCount(passenger:passengerList! )) Person")
                 }
                 Spacer()
-                Text("Total Amount : \(flightTicketSearchViewModel.calculateTotalAmount(deptureFlightTicket!.price)) ₺")
+                if returnFlightTicket != nil{
+                    Text("Total Amount : \(String(format : "%.1f",2 * Double(flightTicketSearchViewModel.calculateTotalAmount(deptureFlightTicket!.price))!)) ₺")
+                }else{
+                    Text("Total Amount : \(flightTicketSearchViewModel.calculateTotalAmount(deptureFlightTicket!.price)) ₺")
+                }
               
+                
             }.font(.callout)
             
         }.padding(.horizontal)
@@ -277,10 +282,10 @@ struct FlightInfoView: View {
 
 struct FlightInfo_Previews: PreviewProvider {
     static var previews: some View {
-       FlightInfoView()
+        FlightInfoView()
             .environmentObject(FlightInfoViewModel())
             .environmentObject(FlightTicketSearchViewModel())
-            
+        
     }
 }
 

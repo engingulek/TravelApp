@@ -10,7 +10,9 @@ class FlightInfoViewModel : ObservableObject {
 
     func returnPricePassenger(count:Int,passenger:String,priceList:[PriceInfo]) -> String{
         let passengerList = priceList.filter { $0.person.lowercased() == passenger.lowercased() }
-        let price = Double(passengerList[0].price) * Double(count)   
+        let price = Double(passengerList[0].price) * Double(count)
+       
+         
         return String(format: "%.1f", price)
     }
     
@@ -21,6 +23,19 @@ class FlightInfoViewModel : ObservableObject {
             
         }
         return totalCount
+    }
+    
+    func calculateTravelTime(deptureClock:Date,arrivelClock:Date) -> String {
+       let minute = Calendar.current.dateComponents([.minute], from: deptureClock,to: arrivelClock).minute
+        let hours = minute! / 60
+        let min = minute! % 60
+        
+        if hours == 0{
+            return "\(min) min"
+        }else{
+            return "\(hours):\(min) hr"
+        }
+        
     }
     
    

@@ -22,6 +22,8 @@ class FlightTicketSearchViewModel : ObservableObject {
     @Published var selectedClassType : ClassType?
     @Published var selectedTimesOfDay : TimesOfDay?
     @Published var selectedDeptureTicket : FlightTicketVM?
+    
+
    
     
     var deptureDate:Date?
@@ -100,6 +102,7 @@ class FlightTicketSearchViewModel : ObservableObject {
             totalAmount += Double(info.price) * Double(passangerList![info.person.capitalized] ?? 0)
         }
         return String(format: "%.1f", totalAmount)
+        
     }
      
      

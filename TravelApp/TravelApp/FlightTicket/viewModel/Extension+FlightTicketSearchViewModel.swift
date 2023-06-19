@@ -24,10 +24,7 @@ enum TimesOfDay : String,CaseIterable {
 
 
 extension FlightTicketSearchViewModel   {
-    
-  
-    
-    func filterFlightList() {
+    func filterFlightList(){
     
         let list = self.tempFlightTicDepList
         if self.selectedTimesOfDay == nil {
@@ -41,4 +38,6 @@ extension FlightTicketSearchViewModel   {
             }
         }
     }
+    
+  
 }

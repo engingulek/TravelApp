@@ -39,6 +39,7 @@ struct FlightTicketCell: View {
             }
             HStack {
                 Spacer()
+                
                 Text("Total Amount \(flightTicketSearchViewModel.calculateTotalAmount(result!.price)) ₺")
             } .font(.caption)
             HStack{
