@@ -52,9 +52,9 @@ final class PassengerAndPayInfoViewModel : ObservableObject {
         }
     }
     func payButtonAction(){
-       /* controlPhoneNumber()
+       controlPhoneNumber()
         controlEmail()
-        controlPassengerInfo()*/
+        controlPassengerInfo()
         controlCardInfo()
     }
     

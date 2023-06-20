@@ -200,7 +200,7 @@ struct FlightInfoView: View {
                 HStack {
                     Image(systemName: "clock")
                         .foregroundColor(Color.blue)
-                    Text("40 dk")
+                    Text(flightInfoViewModel.calculateTravelTime(deptureClock: returnFlightTicket!.deptureClock.stringToClock(), arrivelClock: returnFlightTicket!.arrivelClock.stringToClock()))
                         .foregroundColor(Color.black.opacity(0.7))
                 }.font(.footnote)
                 
@@ -236,18 +236,53 @@ struct FlightInfoView: View {
                 Text("Price")
                 
             }.fontWeight(.semibold)
-            
-            ForEach(Array(passengerList!.keys) ,id: \.self) { passenger in
-                VStack(spacing:15) {
-                    passengerList![passenger]! != 0 ?
-                    HStack{
-                        Text("\(passengerList![passenger]!) \(passenger) ")
-                        Spacer()
-                        Text("\(flightInfoViewModel.returnPricePassenger(count:passengerList![passenger]!,passenger:passenger , priceList: deptureFlightTicket!.price)) ₺")
+            VStack{
+                Text("Depture")
+                    .fontWeight(.bold)
+                ForEach(Array(passengerList!.keys) ,id: \.self) { passenger in
+                    VStack(spacing:15) {
+                        passengerList![passenger]! != 0 ?
                         
-                    } : nil
+                        HStack{
+                            Text("\(passengerList![passenger]!) \(passenger) ")
+                            Spacer()
+                            Text("\(flightInfoViewModel.returnPricePassenger(count:passengerList![passenger]!,passenger:passenger , priceList: deptureFlightTicket!.price)) ₺")
+                            
+                        } : nil
+                    }
                 }
+                HStack(spacing:2){
+                    Spacer()
+                    Text("Total:")
+                    Text("\(flightInfoViewModel.totalAmount(passengerList!, deptureFlightTicket!.price, returnFlightTicket?.price).0) ₺")
+                }.font(.callout)
+                    .fontWeight(.semibold)
             }
+            
+            returnFlightTicket != nil ? VStack {
+                VStack{
+                    Text("Return")
+                        .fontWeight(.bold)
+                    ForEach(Array(passengerList!.keys) ,id: \.self) { passenger in
+                        VStack(spacing:15) {
+                            passengerList![passenger]! != 0 ?
+                            
+                            HStack{
+                                Text("\(passengerList![passenger]!) \(passenger) ")
+                                Spacer()
+                                Text("\(flightInfoViewModel.returnPricePassenger(count:passengerList![passenger]!,passenger:passenger , priceList: returnFlightTicket!.price)) ₺")
+                                
+                            } : nil
+                        }
+                    }
+                    HStack(spacing:2){
+                        Spacer()
+                        Text("Total:")
+                        Text("\(flightInfoViewModel.totalAmount(passengerList!, deptureFlightTicket!.price, returnFlightTicket?.price).1) ₺")
+                    }.font(.callout)
+                        .fontWeight(.semibold)
+                }
+            } : nil
             
             VStack{
                 Divider()
@@ -262,11 +297,16 @@ struct FlightInfoView: View {
                     Text("\(flightInfoViewModel.returnPersonCount(passenger:passengerList! )) Person")
                 }
                 Spacer()
-                if returnFlightTicket != nil{
-                    Text("Total Amount : \(String(format : "%.1f",2 * Double(flightTicketSearchViewModel.calculateTotalAmount(deptureFlightTicket!.price))!)) ₺")
-                }else{
-                    Text("Total Amount : \(flightTicketSearchViewModel.calculateTotalAmount(deptureFlightTicket!.price)) ₺")
+                
+                HStack(spacing:3){
+                    Spacer()
+                    Text("Total Amount:")
+                    Text("\(flightInfoViewModel.totalAmount(passengerList!, deptureFlightTicket!.price, returnFlightTicket?.price).2) ₺")
                 }
+              
+                
+
+                 
               
                 
             }.font(.callout)
