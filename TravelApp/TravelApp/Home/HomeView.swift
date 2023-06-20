@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SlidingTabView
 struct HomeView: View {
     @State private var tabIndex = 0
     var body: some View {
@@ -22,23 +21,12 @@ struct HomeView: View {
             VStack {
                 title
                 VStack(alignment: .center) {
-                          SlidingTabView(selection: self.$tabIndex,
-                                         tabs: ["Flight", "Bus"])
-                          .background(Color.white)
-                          .cornerRadius(20)
-                          .padding(.horizontal,5)
-                    
-                    if tabIndex == 0 {
-                        VStack {
-                         FlightView()
-                            
-                        }.background(Color.white)
-                            .cornerRadius(15)
-                            .padding()
-                    }else {
+                    VStack {
+                     FlightView()
                         
-                    }
-                    Spacer()
+                    }.background(Color.white)
+                        .cornerRadius(15)
+                        .padding()
                 }.ignoresSafeArea()
             }
         }.background(Color("backgroundTabbar"))
