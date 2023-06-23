@@ -22,11 +22,11 @@ enum EmailError : LocalizedError {
 }
 
 extension PassengerAndPayInfoViewModel {
-   private func emptyEmailError() throws {
+    func emptyEmailError() throws {
         guard email.count != 0 else {throw EmailError.EmptyEmail }
     }
     
-   private func formaterEmailError() throws {
+    func formaterEmailError() throws {
         let emailPattern = #"^\S+@\S+\.\S+$"#
         let result = email.range(
             of: emailPattern,

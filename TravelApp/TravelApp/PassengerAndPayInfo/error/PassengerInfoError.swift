@@ -51,14 +51,14 @@ enum PassengerInfoError : LocalizedError {
 
 extension PassengerAndPayInfoViewModel {
     
-   private func emptyError() throws{
+    func emptyError() throws{
         guard name.count != 0 else {throw PassengerInfoError.NameEmptyError}
         guard surname.count != 0 else {throw PassengerInfoError.SurnameEmptyError}
         guard dateOfBirth.count != 0 else {throw PassengerInfoError.DateOfBirtEmptyError}
         guard idNo.count != 0 else {throw PassengerInfoError.TCidNoEmptyError}
     }
     
-   private func dateOfBirhtControl() throws {
+    func dateOfBirhtControl() throws {
         guard dateOfBirth.count == 10 else { throw PassengerInfoError.DateOfBirthCountControl}
         
         guard 1 <= Int(dateOfBirth[0..<2])! && Int(dateOfBirth[0..<2])! <= 31 else {

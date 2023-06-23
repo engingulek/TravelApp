@@ -339,15 +339,15 @@
 		7D4394372A28B3D600BDAB65 /* TravelApp */ = {
 			isa = PBXGroup;
 			children = (
-				7D3B48682A378F19002DC90C /* PassengerAndPayInfo */,
-				7D3B48652A373EF8002DC90C /* FlightInfo */,
 				7D741B0C2A2E2195004357A4 /* Info.plist */,
 				7D4394682A28BB7300BDAB65 /* Extension.swift */,
-				7D67C11B2A31092700B6B14F /* FlightTicket */,
+				7D4394382A28B3D600BDAB65 /* TravelAppApp.swift */,
 				7D741AFF2A2E1DEB004357A4 /* Manager */,
+				7D3B48682A378F19002DC90C /* PassengerAndPayInfo */,
+				7D3B48652A373EF8002DC90C /* FlightInfo */,
+				7D67C11B2A31092700B6B14F /* FlightTicket */,
 				7D39B5C32A292A77006C7A96 /* Flight */,
 				7DD404BC2A28C57E00F63A00 /* Home */,
-				7D4394382A28B3D600BDAB65 /* TravelAppApp.swift */,
 				7D43943C2A28B3D700BDAB65 /* Assets.xcassets */,
 				7D43943E2A28B3D700BDAB65 /* Preview Content */,
 			);

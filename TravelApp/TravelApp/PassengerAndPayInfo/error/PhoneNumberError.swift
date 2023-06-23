@@ -28,16 +28,16 @@ enum PhoneNumberError : LocalizedError {
 }
 
 extension PassengerAndPayInfoViewModel {
-  private  func phoneNumberEmptyError() throws {
+    func phoneNumberEmptyError() throws {
         
         guard  mobilePhone.count != 0  || mobilePhone.count == selectedCountryPhoneCode.defaultType.count  else { throw PhoneNumberError.EmptyPhoneNumberNullError}
     }
     
-  private  func phoneNumberMissing() throws {
+    func phoneNumberMissing() throws {
         guard  mobilePhone.count == selectedCountryPhoneCode.defaultType.count else {throw PhoneNumberError.MissingNumberError}
     }
     
-   private func firstNumberFive() throws {
+ func firstNumberFive() throws {
         if selectedCountryPhoneCode.code == "TR" {
             guard mobilePhone.first == "5" else { throw PhoneNumberError.FirstNumberIsFive}
         }

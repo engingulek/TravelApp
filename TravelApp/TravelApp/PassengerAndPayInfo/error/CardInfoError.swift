@@ -23,7 +23,7 @@ enum CardInfoError : LocalizedError {
 
 
 extension PassengerAndPayInfoViewModel {
-   private func passengerCardControl() throws {
+    func passengerCardControl() throws {
        
        guard expirationDate.count == 5 else {throw CardInfoError.CardInfoEmptyError}
        guard cvc2.count == 3 else {throw CardInfoError.CardInfoEmptyError}
