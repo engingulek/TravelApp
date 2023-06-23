@@ -88,7 +88,7 @@ struct PassengerAndPayInfo: View {
                 .toolbar {
                     ToolbarItem(placement:.navigationBarLeading) {
                         Image(systemName: "arrowtriangle.backward")
-                            .foregroundColor(Color.white)
+                            .foregroundColor(Color.blue)
                             .onTapGesture {
                                 self.presentationMode.wrappedValue.dismiss()
                             }

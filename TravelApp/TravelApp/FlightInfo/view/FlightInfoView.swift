@@ -303,12 +303,6 @@ struct FlightInfoView: View {
                     Text("Total Amount:")
                     Text("\(flightInfoViewModel.totalAmount(passengerList!, deptureFlightTicket!.price, returnFlightTicket?.price).2) ₺")
                 }
-              
-                
-
-                 
-              
-                
             }.font(.callout)
             
         }.padding(.horizontal)
@@ -329,22 +323,3 @@ struct FlightInfo_Previews: PreviewProvider {
     }
 }
 
-
-/*extension FlightInfoView {
- private var header:some View {
- VStack {
- VStack{
- Text("Travell App")
- .font(.title)
- .fontWeight(.bold)
- .foregroundColor(Color.white)
- }.padding(.horizontal)
- .padding(.bottom,5)
- .padding(.top,5)
- }.frame(width: UIScreen.main.bounds.width,
- height: UIScreen.main.bounds.height / 6)
- .background(Color.blue)
- 
- .edgesIgnoringSafeArea(.top)
- }
- }*/

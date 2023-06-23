@@ -80,10 +80,6 @@ extension SelectToLocationView {
                         Divider()
                     }.padding(.trailing)
                         .onTapGesture {
-                            print(result.city.name)
-                            print(result.country)
-                            print(airport.name)
-                            print(airport.code)
                             flightViewModel.selectedArrivel = City(id: result.city.id,
                                                                    name: result.city.name,
                                                                    code: result.city.code,

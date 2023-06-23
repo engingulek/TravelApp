@@ -70,9 +70,9 @@ struct FlightTicketDeptureView: View {
                     flightTicketSearchViewModel.getDeptureDate = deptureDate
                     flightTicketSearchViewModel.getReturnDate = returnDate
                     flightTicketSearchViewModel.listDateLater30(forCurrentDate: Date.now)
-                    flightTicketSearchViewModel.returnDate = returnDate
+                    //flightTicketSearchViewModel.returnDate = returnDate
                     flightTicketSearchViewModel.deptureCity = deptureCity
-                    flightTicketSearchViewModel.deptureDate = deptureDate
+                    //flightTicketSearchViewModel.deptureDate = deptureDate
                     flightTicketSearchViewModel.arrivelCity = arrivelCity
                     flightTicketSearchViewModel.passangerList = passangerList
                     

@@ -15,8 +15,6 @@ protocol ServiceManagerProtocol {
 final class ServiceManager : ServiceManagerProtocol {
     
     func fetch<M>(target: Network, completion: @escaping (Result<[M]?, Error>) -> ()) where M : Decodable, M : Encodable {
-        
-        
         let method = target.method.rawValue
         _ = target.headers ?? [:]
         let url = URL(string: "\(target.baseUrl)\(target.path)")!

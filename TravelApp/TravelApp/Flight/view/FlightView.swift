@@ -82,8 +82,6 @@ struct FlightView: View {
             }
             .padding(.bottom)
             
-        }.onAppear{
-            print("FlightView \(selectDepAndArViewModel.selectedArrivelDate)")
         }
         
       
@@ -159,8 +157,6 @@ struct FlightView: View {
     }
     
     
-    
-    
     var depatureDate : some View {
         VStack(alignment: .leading) {
             HStack {
@@ -174,7 +170,7 @@ struct FlightView: View {
                 Spacer()
             }.padding(.all,10)
  
-                .overlay( /// apply a rounded border
+                .overlay( 
                 RoundedRectangle(cornerRadius: 20)
                     .stroke(.blue, lineWidth: 1)
             )
@@ -194,7 +190,7 @@ struct FlightView: View {
                 Spacer()
             }.padding(.all,10)
  
-                .overlay( /// apply a rounded border
+                .overlay(
                 RoundedRectangle(cornerRadius: 20)
                     .stroke(.blue, lineWidth: 1)
             )
@@ -225,18 +221,11 @@ struct FlightView: View {
     
     var searchButton : some View {
         Button {
-            
-       
             do {
                  try flightViewModel.fromLocationControl(flightViewModel.textSelectedDepature)
                  try flightViewModel.toLocationControl(flightViewModel.textSelectedArrivel)
                 try flightViewModel.fromToLocationCompare(flightViewModel.selectedDepature!, flightViewModel.selectedArrivel!)
-           
                 self.isPresentedFlightTickerSearcView = true
-                if selectedButton == 0{
-                  //  selectDepAndArViewModel.selectedArrivelDate = nil
-                }
-
             }catch{
                 self.showingAlert = true
                 self.alertMessage = error.localizedDescription

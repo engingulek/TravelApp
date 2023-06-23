@@ -17,9 +17,6 @@ enum RequestType {
     case requestPlain
 }
 
-
-
-
 protocol TargetType {
     var baseUrl : String {get}
     var path : String {get}

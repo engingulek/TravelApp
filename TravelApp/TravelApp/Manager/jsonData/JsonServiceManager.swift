@@ -16,7 +16,6 @@ class JsonServiceManager : JsonServiceManagerProtocol {
         let jsonData = readLocalJsonFile(forName: target.filePath)
         do {
             let resultData = try JSONDecoder().decode([CountryPhoneCode].self, from: jsonData!)
-            print(resultData)
             completion(.success(resultData))
         }catch{
             completion(.failure(error))

@@ -53,18 +53,9 @@ extension Date  {
 }
 
 extension String {
-/// to be reviewed
-    func stringToDate() -> Date {
-        let dateFormatter = DateFormatter()
-        let getDate = self
-        let a = getDate.split(separator: " ")
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        let date = dateFormatter.date(from: "\( a[0])")
-        return date ?? Date.now
 
-    }
     
-    func stringToDatePartTwo(format : String) -> Date {
+    func stringToDate(format : String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = NSTimeZone(name: "UTC")! as TimeZone
         let getDate = self
@@ -82,11 +73,8 @@ extension String {
         let clock = dateFormatter.date(from: getClock)
         return clock ?? Date.now
     }
- 
-    
-   
-    
-    
+
+    // For TimesOfDay
     func splitTime() -> String {
         let timeSplit = self.split(separator: ":")
         return String(timeSplit[0])

@@ -29,14 +29,14 @@ enum PhoneNumberError : LocalizedError {
 
 extension PassengerAndPayInfoViewModel {
     func phoneNumberEmptyError() throws {
-        
+        // Leaving the phone number field blank
         guard  mobilePhone.count != 0  || mobilePhone.count == selectedCountryPhoneCode.defaultType.count  else { throw PhoneNumberError.EmptyPhoneNumberNullError}
     }
-    
+    // Not filling in the phone number part completely
     func phoneNumberMissing() throws {
         guard  mobilePhone.count == selectedCountryPhoneCode.defaultType.count else {throw PhoneNumberError.MissingNumberError}
     }
-    
+    // The first character of the Turkey phone number is not 5
  func firstNumberFive() throws {
         if selectedCountryPhoneCode.code == "TR" {
             guard mobilePhone.first == "5" else { throw PhoneNumberError.FirstNumberIsFive}

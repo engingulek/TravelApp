@@ -8,8 +8,6 @@
 import Foundation
 import SwiftUI
 
-
-
 extension HomeView {
 // MARK: - Title Design
      var title : some View {

@@ -31,7 +31,6 @@ class FlightInfoViewModel : ObservableObject {
         var depTotalAmount = 0.0
         var reTotalAmount = 0.0
         for info in depPriceInfo {
-            print(info)
             depTotalAmount += Double(info.price) * Double(passengerList[info.person.capitalized] ?? 0)
         }
         

@@ -23,7 +23,7 @@
 		7D3B48672A373F0E002DC90C /* FlightInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B48662A373F0E002DC90C /* FlightInfoView.swift */; };
 		7D3B486C2A379102002DC90C /* PassengerAndPayInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B486B2A379102002DC90C /* PassengerAndPayInfo.swift */; };
 		7D3D35F42A38A049001DE980 /* TimesOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D35F32A38A049001DE980 /* TimesOfDay.swift */; };
-		7D3D35F62A38AC3E001DE980 /* Extension+FlightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D35F52A38AC3E001DE980 /* Extension+FlightViewModel.swift */; };
+		7D3D35F62A38AC3E001DE980 /* SearchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D35F52A38AC3E001DE980 /* SearchError.swift */; };
 		7D3D35FD2A38AE44001DE980 /* Extension+FlightTicketSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D35FC2A38AE44001DE980 /* Extension+FlightTicketSearchViewModel.swift */; };
 		7D4394392A28B3D600BDAB65 /* TravelAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4394382A28B3D600BDAB65 /* TravelAppApp.swift */; };
 		7D43943D2A28B3D700BDAB65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D43943C2A28B3D700BDAB65 /* Assets.xcassets */; };
@@ -46,7 +46,7 @@
 		7D741B082A2E1E3E004357A4 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D741B072A2E1E3E004357A4 /* ServiceManager.swift */; };
 		7D741B0B2A2E1E6B004357A4 /* FlightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D741B0A2A2E1E6B004357A4 /* FlightService.swift */; };
 		7D741B132A2E2EB4004357A4 /* FlightViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D741B122A2E2EB4004357A4 /* FlightViewModelTest.swift */; };
-		7DA1505E2A3C580C002307D9 /* PassengerAndPayViewUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA1505D2A3C580C002307D9 /* PassengerAndPayViewUnitTest.swift */; };
+		7DA1505E2A3C580C002307D9 /* PassengerAndPayViewModelUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA1505D2A3C580C002307D9 /* PassengerAndPayViewModelUnitTest.swift */; };
 		7DA150632A3C6228002307D9 /* EmailError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA150622A3C6228002307D9 /* EmailError.swift */; };
 		7DACB3962A4094810019A0A1 /* FlightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC85BEA2A2A97A200AB46E3 /* FlightViewModel.swift */; };
 		7DC85BE22A2A8E3900AB46E3 /* SelectFromLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC85BE12A2A8E3900AB46E3 /* SelectFromLocationView.swift */; };
@@ -96,7 +96,7 @@
 		7D3B48662A373F0E002DC90C /* FlightInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightInfoView.swift; sourceTree = "<group>"; };
 		7D3B486B2A379102002DC90C /* PassengerAndPayInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerAndPayInfo.swift; sourceTree = "<group>"; };
 		7D3D35F32A38A049001DE980 /* TimesOfDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesOfDay.swift; sourceTree = "<group>"; };
-		7D3D35F52A38AC3E001DE980 /* Extension+FlightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+FlightViewModel.swift"; sourceTree = "<group>"; };
+		7D3D35F52A38AC3E001DE980 /* SearchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchError.swift; sourceTree = "<group>"; };
 		7D3D35FC2A38AE44001DE980 /* Extension+FlightTicketSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+FlightTicketSearchViewModel.swift"; sourceTree = "<group>"; };
 		7D4394352A28B3D600BDAB65 /* TravelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4394382A28B3D600BDAB65 /* TravelAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelAppApp.swift; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 		7D741B0A2A2E1E6B004357A4 /* FlightService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightService.swift; sourceTree = "<group>"; };
 		7D741B0C2A2E2195004357A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7D741B122A2E2EB4004357A4 /* FlightViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightViewModelTest.swift; sourceTree = "<group>"; };
-		7DA1505D2A3C580C002307D9 /* PassengerAndPayViewUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerAndPayViewUnitTest.swift; sourceTree = "<group>"; };
+		7DA1505D2A3C580C002307D9 /* PassengerAndPayViewModelUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerAndPayViewModelUnitTest.swift; sourceTree = "<group>"; };
 		7DA150622A3C6228002307D9 /* EmailError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailError.swift; sourceTree = "<group>"; };
 		7DC85BE12A2A8E3900AB46E3 /* SelectFromLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFromLocationView.swift; sourceTree = "<group>"; };
 		7DC85BE72A2A913200AB46E3 /* Flight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flight.swift; sourceTree = "<group>"; };
@@ -168,7 +168,6 @@
 			isa = PBXGroup;
 			children = (
 				7DDD6D4A2A33C5F30003C478 /* to */,
-				7D67C1122A30FDA300B6B14F /* filter */,
 				7D168C972A3068850063A7C8 /* passenger */,
 				7D168C962A3064B00063A7C8 /* date */,
 				7D168C952A30649E0063A7C8 /* from */,
@@ -210,6 +209,14 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		7D2E77B32A45CCFA0069B882 /* error */ = {
+			isa = PBXGroup;
+			children = (
+				7D3D35F52A38AC3E001DE980 /* SearchError.swift */,
+			);
+			path = error;
+			sourceTree = "<group>";
+		};
 		7D2FBDBC2A321C0E00BB6E37 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +236,7 @@
 		7D39B5C32A292A77006C7A96 /* Flight */ = {
 			isa = PBXGroup;
 			children = (
+				7D2E77B32A45CCFA0069B882 /* error */,
 				7D741B092A2E1E57004357A4 /* service */,
 				7DC85BE92A2A979400AB46E3 /* viewModel */,
 				7DC85BE62A2A911200AB46E3 /* model */,
@@ -368,7 +376,7 @@
 				7D741B122A2E2EB4004357A4 /* FlightViewModelTest.swift */,
 				7D45E4FB2A30C414001D388A /* SelectedPassengerViewModelTest.swift */,
 				7D67C1242A3117F400B6B14F /* FlightTicketSearchViewModelUnitTest.swift */,
-				7DA1505D2A3C580C002307D9 /* PassengerAndPayViewUnitTest.swift */,
+				7DA1505D2A3C580C002307D9 /* PassengerAndPayViewModelUnitTest.swift */,
 			);
 			path = TravelAppTests;
 			sourceTree = "<group>";
@@ -380,13 +388,6 @@
 				7D4394552A28B3D700BDAB65 /* TravelAppUITestsLaunchTests.swift */,
 			);
 			path = TravelAppUITests;
-			sourceTree = "<group>";
-		};
-		7D67C1122A30FDA300B6B14F /* filter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = filter;
 			sourceTree = "<group>";
 		};
 		7D67C11B2A31092700B6B14F /* FlightTicket */ = {
@@ -494,7 +495,6 @@
 				7D1228452A2F75F3003FD3EE /* SelectDepAndArDateViewModel.swift */,
 				7D168C9A2A307F8D0063A7C8 /* SelectPasangerViewModel.swift */,
 				7DC85BEA2A2A97A200AB46E3 /* FlightViewModel.swift */,
-				7D3D35F52A38AC3E001DE980 /* Extension+FlightViewModel.swift */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -691,7 +691,7 @@
 				7D741B022A2E1E04004357A4 /* DataResult.swift in Sources */,
 				7D1228442A2F6355003FD3EE /* SelectDepartureDate.swift in Sources */,
 				7D67C11A2A3105A400B6B14F /* ClassRow.swift in Sources */,
-				7D3D35F62A38AC3E001DE980 /* Extension+FlightViewModel.swift in Sources */,
+				7D3D35F62A38AC3E001DE980 /* SearchError.swift in Sources */,
 				7DDD6D4C2A33C6260003C478 /* SelectToLocationView.swift in Sources */,
 				7D4394392A28B3D600BDAB65 /* TravelAppApp.swift in Sources */,
 				7DD020D52A3A048A0048AB04 /* PassengerAndPayInfoViewModel.swift in Sources */,
@@ -726,7 +726,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DA1505E2A3C580C002307D9 /* PassengerAndPayViewUnitTest.swift in Sources */,
+				7DA1505E2A3C580C002307D9 /* PassengerAndPayViewModelUnitTest.swift in Sources */,
 				7D45E4FC2A30C414001D388A /* SelectedPassengerViewModelTest.swift in Sources */,
 				7D741B132A2E2EB4004357A4 /* FlightViewModelTest.swift in Sources */,
 				7D67C1252A3117F400B6B14F /* FlightTicketSearchViewModelUnitTest.swift in Sources */,
@@ -884,14 +884,14 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TravelApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_CFBundleDisplayName = "Travell App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -900,9 +900,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.engingulek.TravelApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -918,14 +921,14 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TravelApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_CFBundleDisplayName = "Travell App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -934,9 +937,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.engingulek.TravelApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

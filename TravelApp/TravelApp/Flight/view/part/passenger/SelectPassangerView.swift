@@ -36,9 +36,6 @@ struct SelectPassangerView: View {
                                         .font(.footnote)
                                 }
                                 Spacer()
-                                
-                               
-                                
                                 HStack{
                                     Button("-") {
                                         selectPassangerViewModel.toDecreasePassengerCount(passenger: passanger)
@@ -60,28 +57,17 @@ struct SelectPassangerView: View {
                                     .foregroundColor(.white)
                                     .cornerRadius(20)
                                 }
-                                
-                               
-                                
                             }
                    
                                 Divider()
                                 .frame(height: 2)
                                 .overlay(.blue)
-
-                            
-                            
                         }
                     }.padding(.horizontal)
                 }
             
         }.padding(.top)
     }
-    
-   
-   
-    
-    
 }
 
 struct SelectPassangerView_Previews: PreviewProvider {

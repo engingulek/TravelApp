@@ -60,16 +60,12 @@ class SelectPassengerViewModel : ObservableObject {
             
         case .adult:
             self.adultCount += 1
-            print(adultCount)
         case .kind:
             self.kindCount += 1
-            print(kindCount)
         case .baby:
             self.babyCount += 1
-            print(babyCount)
         case .student:
             self.studentCount += 1
-            print(studentCount)
         }
         totalCountCalculate()
     }
@@ -81,25 +77,22 @@ class SelectPassengerViewModel : ObservableObject {
         case .adult:
             if self.totalCount > 1 {
                 self.adultCount -= 1
-                print(adultCount)
             }
            
         case .kind:
             if self.kindCount > 0 {
                 self.kindCount -= 1
-                print(kindCount)
             }
            
         case .baby:
             if self.babyCount > 0 {
                 self.babyCount -= 1
-                print(babyCount)
+                
             }
            
         case .student:
             if self.studentCount > 0 {
                 self.studentCount -= 1
-                print(studentCount)
             }
         }
         totalCountCalculate()

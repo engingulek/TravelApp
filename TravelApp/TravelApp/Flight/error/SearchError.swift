@@ -30,15 +30,17 @@ enum SearchError : LocalizedError {
 
 extension FlightViewModel {
     func fromLocationControl(_ from:String) throws  {
+        // Departure location not selected
         guard from != "City/Airport" else {throw SearchError.emptyFromLocation}
         
     }
-    
+    // Arrivel location not selected
     func toLocationControl(_ to:String) throws  {
         guard to != "City/Airport" else {throw SearchError.emptyToLocation}
         
     }
     
+    // Same departure and arrivel
     func fromToLocationCompare(_ from:City,_ to:City) throws {
         guard from.id != to.id else {throw SearchError.fromToLoctionCompare}
     }

@@ -71,7 +71,7 @@ extension PassengerAndPayInfoViewModel {
             throw PassengerInfoError.DateOfBirthYearControl
         }
         
-        guard dateOfBirth.stringToDatePartTwo(format: "dd/MM/yyyy") <= Date.now.dateToString().stringToDatePartTwo(format: "dd/MM/yyyy") else {
+        guard dateOfBirth.stringToDate(format: "dd/MM/yyyy") <= Date.now.dateToString().stringToDate(format: "dd/MM/yyyy") else {
             throw PassengerInfoError.DateBirthDateControl
         }
     }

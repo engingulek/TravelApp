@@ -21,16 +21,12 @@ class FlightTicketSearchViewModel : ObservableObject {
     @Published var selectedDeptureTicket : FlightTicketVM?
     
 
-   
-    
-    var deptureDate:Date?
-    var returnDate:Date?
     var deptureCity : City?
     var arrivelCity: City?
     var passangerList: [String:Int]?
     var flightList = [FlightVM]()
 
-    
+    // MARK: Get depture flight List
      func getDataDeptureFlightTickets() async   {
          do{
              await flightTicketService.getFlightTickets(completion: { (response:Result<[FlightTicket],Error>) in
@@ -41,7 +37,7 @@ class FlightTicketSearchViewModel : ObservableObject {
                           let resultList =  flightList.filter{ result in
                               self.deptureCity!.airport.contains(where: {$0.code == result.from.airport.code})
                               && self.arrivelCity!.airport.contains(where: {$0.code == result.to.airport.code})
-                              && self.getDeptureDate!.dateFormatted() == result.date.stringToDate().dateFormatted()
+                              && self.getDeptureDate!.dateFormatted() == result.date.stringToDate(format: "dd/MM/yyyy").dateFormatted()
                               && Date.now.formatted(.dateTime.hour().minute()).stringToClock().add30MinuteClock() <
                                 result.deptureClock.stringToClock()
                             
@@ -58,9 +54,8 @@ class FlightTicketSearchViewModel : ObservableObject {
               })
          }
     }
-     
+     // MARK: Get return flight List
      func getDataReturnFlightTickets() async{
-        
          do{
              await flightTicketService.getFlightTickets(completion: { (response:Result<[FlightTicket],Error>) in
                   switch response {
@@ -70,15 +65,12 @@ class FlightTicketSearchViewModel : ObservableObject {
                           let resultList =  flightList.filter{ result in
                               self.arrivelCity!.airport.contains(where: {$0.code == result.from.airport.code})
                               &&   self.deptureCity!.airport.contains(where: {$0.code == result.to.airport.code})
-                              && self.getReturnDate!.dateFormatted() == result.date.stringToDate().dateFormatted()
+                              && self.getReturnDate!.dateFormatted() == result.date.stringToDate(format: "dd/MM/yyyy" ).dateFormatted()
                               && self.selectedDeptureTicket!.arrivelClock.stringToClock().add30MinuteClock() < result.deptureClock.stringToClock()
                           }
                           
                           self.flightTicketReturn = resultList
                           self.tempFlightTicRetrunList = resultList
-                         
-                          
-                          
                       }
                   case .failure(_):
                       DispatchQueue.main.async {
@@ -100,14 +92,10 @@ class FlightTicketSearchViewModel : ObservableObject {
         
     }
      
-     
+     // MARK: Listing 30 days after the selected day
      func listDateLater30(forCurrentDate date : Date) {
          dateList = []
          let currentDate = date
-         print("List Date Later \(currentDate)")
-         print(Date.now)
-         
-         
          var datecomponent = DateComponents()
          for addDate in 0..<30 {
              datecomponent.day = addDate
@@ -152,6 +140,8 @@ struct FlightTicketVM: Identifiable {
     var bagWeight: Int {
         flightTicket.bagWeight
     }
+    
+    //MARK: - For Filter
     var timesOfDay : TimesOfDay {
         if 5 <= Int(flightTicket.deptureClock.splitTime())! && Int(flightTicket.deptureClock.splitTime())! < 12 {
             return .morning

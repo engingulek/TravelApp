@@ -75,10 +75,7 @@ struct SelectFromLocationView: View {
                                     Divider()
                                         .padding(.trailing)
                                 } .onTapGesture {
-                                    print(result.city.name)
-                                    print(result.country)
-                                    print("All airports")
-                                    print(result.city.code)
+                                
                                     flightViewModel.selectedDepature = City(id: result.city.id,
                                                                            name: result.city.name,
                                                                            code: result.city.code,

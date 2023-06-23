@@ -28,7 +28,7 @@ extension PassengerAndPayInfoViewModel {
        guard expirationDate.count == 5 else {throw CardInfoError.CardInfoEmptyError}
        guard cvc2.count == 3 else {throw CardInfoError.CardInfoEmptyError}
        guard cardNo.count == 19 else {throw CardInfoError.CardInfoEmptyError}
-        guard expirationDate.stringToDatePartTwo(format: "MM/yy") > Date.now.dateToString().stringToDatePartTwo(format: "MM/yy") else {
+        guard expirationDate.stringToDate(format: "MM/yy") > Date.now.dateToString().stringToDate(format: "MM/yy") else {
             throw CardInfoError.CardExpirationDateControl
         }
        

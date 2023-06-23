@@ -114,7 +114,7 @@ extension FlightTicketReturnView {
                 Text(flightTicketSearchViewModel.deptureCity!.airport.count >= 2 ? flightTicketSearchViewModel.deptureCity!.code : flightTicketSearchViewModel.deptureCity!.airport[0].code)
                 
             }.foregroundColor(Color.white)
-                .fontWeight(.semibold)
+                .font(Font.headline.bold())
             
         }.padding(.horizontal)
     }

@@ -22,7 +22,7 @@ struct SelectArrvivelDate: View {
             VStack {
                 Text("Select Arrivel Date")
                     .fontWeight(.bold)
-                DatePicker("Select Depature Date",
+                DatePicker("Select Arrivel Date",
                            selection: $selectedDepAndArViewModel.selectedArrivelDate, in: arrivelDateRange,displayedComponents: [.date])
                 .datePickerStyle(.graphical)
                 .onChange(of: selectedDepAndArViewModel.selectedArrivelDate) { newValue in

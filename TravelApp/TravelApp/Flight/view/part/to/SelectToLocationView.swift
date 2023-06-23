@@ -75,10 +75,6 @@ struct SelectToLocationView: View {
                                     Divider()
                                         .padding(.trailing)
                                 } .onTapGesture {
-                                    print(result.city.name)
-                                    print(result.country)
-                                    print("All airports")
-                                    print(result.city.code)
                                     flightViewModel.selectedArrivel = City(id: result.city.id,
                                                                            name: result.city.name,
                                                                            code: result.city.code,
@@ -113,17 +109,11 @@ struct SelectToLocationView: View {
                 resultNil
             }
         }.task {
-             await flightViewModel.getDataAirport()
+            await flightViewModel.getDataAirport()
             await flightViewModel.getPopulerCities()
         }
     }
 }
-
-
-
-
-
-
 
 struct SelectToLocationView_Previews: PreviewProvider {
     static var previews: some View {

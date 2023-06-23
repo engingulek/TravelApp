@@ -25,9 +25,6 @@ struct SelectDepartureDate: View {
                     }
                     selectedDepAndArViewModel.selectedDepatureDate = newValue
                     flightTicketSearchViewModel.getDeptureDate = newValue
-                   
-                    
-
                     self.dismiss()
                 }
             }
