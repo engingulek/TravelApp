@@ -1,11 +1,65 @@
 # TravelApp
-Flight, Bus and Car Rent app
 
-Last Update
+## Screens
+<table style"float:right;">
+<tr>
+  <td> <img src ="https://github.com/engingulek/TravelApp/assets/74055938/ec830281-398a-4831-ab76-1a41ba96604a">  </td>
+  <td>  <img  src= "https://github.com/engingulek/TravelApp/assets/74055938/e4d74551-86cd-421c-ac1b-26ef534d5f2f" >  </td>
+  <td>  <img src ="https://github.com/engingulek/TravelApp/assets/74055938/03b8606d-9d1a-4cc6-8fc5-8f345606c6bd"> </td>
+</tr>
+</table>
+
+<br/>
+<br/>
 
 
+### Home Page
+<p>
+Ana Sayfa ilk ekran olarak karşımıza çıkmaktadır. Bu sayfada kalkış yerini,varış yerini, kalkış tarihini eğer gidiş dönüş olacaksa dönüş tarihini ve yolcu sayısı seçilebilinmetedir. 
+Örnek olarak işlemin yapıldığı tarih 23 Haziran 2023 olarak alınsın. Gidiş tarihi 27 Haziran seçilip Dönüş tarihi yanlışlıkla yada bilerek 25 Haziran seçilir ise gidiş tarihi 25 Haziran olarak güncellenecekir.
+</p>
+
+### Bilet Seçimi
+<p>
+  Bilet seçim ekranında eğer sadece tek yön seçilmiş ise burada sadece tek yön için bilet seçimi yapılacaktır. Ancak çift yön seçilmiş ise gidiş bileti seçildilten sonra dönüş biletinin seçilmesi için başka bir bilet ekranı karşımıza çıkacaktır.
 
 
+#### Uygun Biletlerin Getirilmesi
+Biletlerin listelenmesiden ise seçilen şehirler ve tarihin yanında başka bir filterleme işlemi dahada gerçekleşmektedir. Bu işlem gidiş için olanı işlem yapılan saatten en erken yarım saat sonrası için bilet seçimi yapılabilmesidir. Dönüş bileri için ise en erken gidiş biletinin varış saatinden yarım saat sonrası için bilet seçimi yapılabilmektedir.
 
-<img width="243" alt="Ekran Resmi 2023-06-12 22 09 52" src="https://github.com/engingulek/TravelApp/assets/74055938/25cb30f8-1eda-47e6-812e-fda47e569c3e">
-<img width="243" alt="Ekran Resmi 2023-06-12 22 10 06" src="https://github.com/engingulek/TravelApp/assets/74055938/b74d7922-f73f-47dd-9c4a-1bc7c8e7557e">
+#### Tarih Seçimi ve Bilet Filtrelenmesi
+Bilet seçim erkranında seçilen tarihden 30 gün sonrası içinde seçim yapılabilmesi için bir adet gün listesi bulunmaktadır. Ayrıca sınıf tipini ve günün herhangi bir vaktine göre seçim yapılabilmesi için bir filtreleme işlemi bulunmaktadır.
+</p>
+
+### Bilgi
+<p>Bu sayfada seçilen bilet ve belirlene yolcu sayısına göre hem gidiş eğer dönüş bileti seçiminde yapılmıi ise dönüş biletinin fiyat listesinide alarak bize bir özet vermektedir. Bilgiler onaylandıktan sonra kredi kartı bilgileri ve kişisel bilgilerin girileceği ekrana geçilecektir.</p>
+
+### Kredi Kartı ve Yolcu Bilgilerin Girilmesi.
+<p>
+  
+  #### Telefon ve Email Girişi
+  Bu alanda seçilen ülkenin telefon formatına göre girilen rakamlar o formatta yazılacaktır. Eğer boş bırakılır yada eksik girilir ise uyarı mesajı verilecektir.
+
+  #### Yolcu Bilgilerinin Girilmesi 
+  Burada yolcu bilgileri girilmesi gerekmektedir. Yine burda boş bırakılır ise uyarı mesajı verilecektir.Doğum tarigi gün ay ve yıl olarak yazıldıkça örnek olarak 20/06/2023 şeklinde formatlanacaktır. Doğum tarihi eğer 100 yaşını geçer ise uyarı mesajı verilecektir. Gelecekten bir tarih seçilir ise yine uyarı mesajı verilecektir. TC kimlik numarsı formatına uygun değil ise yani sonu çift rakam olması gibi yine hata verecektir
+
+  #### Kart Bilgileri 
+  Kart numarası ise görüldüğü 4'lü gruplar şelinde forlanacaktır. Son kullanım tarihide doğum tarihinde olduğu gibi kendine özel formatlama işlemi gerçekleşecektir. Her
+
+Her şey doğru ise ödeme işlemi gerçekleşecektir.
+</p>
+
+
+## Databaase
+Firebase Realtime Database kullanılmaktadır
+<list>
+<li>https://traveliosapp-default-rtdb.firebaseio.com/flights.json</li>
+<li>https://traveliosapp-default-rtdb.firebaseio.com/flightTickets.json</li>
+</list>
+
+## Architectural Pattern
+<li>MVVVM</li>
+
+## Test
+<li>Unit Test</li>
+
