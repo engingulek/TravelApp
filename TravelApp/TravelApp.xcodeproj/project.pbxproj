@@ -30,11 +30,9 @@
 		7D4394402A28B3D700BDAB65 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D43943F2A28B3D700BDAB65 /* Preview Assets.xcassets */; };
 		7D4394542A28B3D700BDAB65 /* TravelAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4394532A28B3D700BDAB65 /* TravelAppUITests.swift */; };
 		7D4394562A28B3D700BDAB65 /* TravelAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4394552A28B3D700BDAB65 /* TravelAppUITestsLaunchTests.swift */; };
-		7D4394672A28BB5300BDAB65 /* SlidingTabView in Frameworks */ = {isa = PBXBuildFile; productRef = 7D4394662A28BB5300BDAB65 /* SlidingTabView */; };
 		7D4394692A28BB7300BDAB65 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4394682A28BB7300BDAB65 /* Extension.swift */; };
 		7D43946D2A28C44800BDAB65 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D43946C2A28C44800BDAB65 /* HomeView.swift */; };
 		7D45E4FC2A30C414001D388A /* SelectedPassengerViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D45E4FB2A30C414001D388A /* SelectedPassengerViewModelTest.swift */; };
-		7D66FD5F2A41D9F300E912D0 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D66FD5E2A41D9F300E912D0 /* VerificationView.swift */; };
 		7D67C1142A30FDB300B6B14F /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67C1132A30FDB300B6B14F /* FilterView.swift */; };
 		7D67C11A2A3105A400B6B14F /* ClassRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67C1192A3105A400B6B14F /* ClassRow.swift */; };
 		7D67C11D2A31093B00B6B14F /* FlightTicketDeptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67C11C2A31093B00B6B14F /* FlightTicketDeptureView.swift */; };
@@ -111,7 +109,6 @@
 		7D4394682A28BB7300BDAB65 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		7D43946C2A28C44800BDAB65 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7D45E4FB2A30C414001D388A /* SelectedPassengerViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPassengerViewModelTest.swift; sourceTree = "<group>"; };
-		7D66FD5E2A41D9F300E912D0 /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
 		7D67C1132A30FDB300B6B14F /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		7D67C1192A3105A400B6B14F /* ClassRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassRow.swift; sourceTree = "<group>"; };
 		7D67C11C2A31093B00B6B14F /* FlightTicketDeptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightTicketDeptureView.swift; sourceTree = "<group>"; };
@@ -147,7 +144,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D4394672A28BB5300BDAB65 /* SlidingTabView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,7 +339,6 @@
 		7D4394372A28B3D600BDAB65 /* TravelApp */ = {
 			isa = PBXGroup;
 			children = (
-				7D66FD5D2A41D9DB00E912D0 /* VerifcationView */,
 				7D3B48682A378F19002DC90C /* PassengerAndPayInfo */,
 				7D3B48652A373EF8002DC90C /* FlightInfo */,
 				7D741B0C2A2E2195004357A4 /* Info.plist */,
@@ -385,14 +380,6 @@
 				7D4394552A28B3D700BDAB65 /* TravelAppUITestsLaunchTests.swift */,
 			);
 			path = TravelAppUITests;
-			sourceTree = "<group>";
-		};
-		7D66FD5D2A41D9DB00E912D0 /* VerifcationView */ = {
-			isa = PBXGroup;
-			children = (
-				7D66FD5E2A41D9F300E912D0 /* VerificationView.swift */,
-			);
-			path = VerifcationView;
 			sourceTree = "<group>";
 		};
 		7D67C1122A30FDA300B6B14F /* filter */ = {
@@ -569,7 +556,6 @@
 			);
 			name = TravelApp;
 			packageProductDependencies = (
-				7D4394662A28BB5300BDAB65 /* SlidingTabView */,
 			);
 			productName = TravelApp;
 			productReference = 7D4394352A28B3D600BDAB65 /* TravelApp.app */;
@@ -645,7 +631,6 @@
 			);
 			mainGroup = 7D43942C2A28B3D500BDAB65;
 			packageReferences = (
-				7D4394652A28BB5300BDAB65 /* XCRemoteSwiftPackageReference "SlidingTabView" */,
 			);
 			productRefGroup = 7D4394362A28B3D600BDAB65 /* Products */;
 			projectDirPath = "";
@@ -705,7 +690,6 @@
 				7D3B486C2A379102002DC90C /* PassengerAndPayInfo.swift in Sources */,
 				7D741B022A2E1E04004357A4 /* DataResult.swift in Sources */,
 				7D1228442A2F6355003FD3EE /* SelectDepartureDate.swift in Sources */,
-				7D66FD5F2A41D9F300E912D0 /* VerificationView.swift in Sources */,
 				7D67C11A2A3105A400B6B14F /* ClassRow.swift in Sources */,
 				7D3D35F62A38AC3E001DE980 /* Extension+FlightViewModel.swift in Sources */,
 				7DDD6D4C2A33C6260003C478 /* SelectToLocationView.swift in Sources */,
@@ -1085,25 +1069,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		7D4394652A28BB5300BDAB65 /* XCRemoteSwiftPackageReference "SlidingTabView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/QuynhNguyen/SlidingTabView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		7D4394662A28BB5300BDAB65 /* SlidingTabView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7D4394652A28BB5300BDAB65 /* XCRemoteSwiftPackageReference "SlidingTabView" */;
-			productName = SlidingTabView;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7D43942D2A28B3D500BDAB65 /* Project object */;
 }

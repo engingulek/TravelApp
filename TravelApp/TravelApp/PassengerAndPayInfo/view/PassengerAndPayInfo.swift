@@ -71,7 +71,6 @@ struct PassengerAndPayInfo: View {
                     
                     Button("Pay") {
                         viewModel.payButtonAction()
-                        
                     }
                     .padding()
                     

@@ -13,16 +13,12 @@ struct FlightView: View {
     @EnvironmentObject var selectDepAndArViewModel : SelectDepAndArDateViewModel
     @EnvironmentObject var selectPassangerViewModel : SelectPassengerViewModel
     
-
-    
-    
     @State private var selectedButton = 0
     @State private var isPresentedFrom = false
     @State private var isPresentedTo = false
     @State private var isPresentedDateDepature = false
     @State private var isPresentedDateArrivel = false
     @State private var isPresentedPassanger = false
-    
     @State private var showingAlert = false
     @State private var isPresentedFlightTickerSearcView = false
     @State private var alertMessage = ""

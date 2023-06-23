@@ -10,7 +10,6 @@ struct HomeView: View {
     @State private var tabIndex = 0
     var body: some View {
         ZStack {
-          
             VStack {
                 Color.blue
               .frame(height: UIScreen.main.bounds.height / 3)
@@ -40,7 +39,6 @@ struct HomeView_Previews: PreviewProvider {
             .environmentObject(FlightViewModel())
                 .environmentObject(SelectDepAndArDateViewModel())
                 .environmentObject(SelectPassengerViewModel())
-               
                 .environmentObject(FlightTicketSearchViewModel())
             
     }

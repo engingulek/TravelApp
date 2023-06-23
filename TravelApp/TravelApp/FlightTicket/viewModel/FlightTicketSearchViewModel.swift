@@ -13,11 +13,8 @@ class FlightTicketSearchViewModel : ObservableObject {
     @Published var flightTicketReturn : [FlightTicketVM] = []
     @Published var tempFlightTicDepList : [FlightTicketVM] = []
     @Published var tempFlightTicRetrunList : [FlightTicketVM] = []
-    
     @Published var getDeptureDate : Date?
     @Published var getReturnDate : Date?
-    // @Published var deptureDateList = [Date]()
-    // @Published var returnDateList = [Date]()
     @Published var dateList = [Date]()
     @Published var selectedClassType : ClassType?
     @Published var selectedTimesOfDay : TimesOfDay?
@@ -35,7 +32,6 @@ class FlightTicketSearchViewModel : ObservableObject {
 
     
      func getDataDeptureFlightTickets() async   {
-      
          do{
              await flightTicketService.getFlightTickets(completion: { (response:Result<[FlightTicket],Error>) in
                   switch response {
@@ -44,15 +40,15 @@ class FlightTicketSearchViewModel : ObservableObject {
                           let flightList =  list.map(FlightTicketVM.init)
                           let resultList =  flightList.filter{ result in
                               self.deptureCity!.airport.contains(where: {$0.code == result.from.airport.code})
-                              &&   self.arrivelCity!.airport.contains(where: {$0.code == result.to.airport.code})
+                              && self.arrivelCity!.airport.contains(where: {$0.code == result.to.airport.code})
                               && self.getDeptureDate!.dateFormatted() == result.date.stringToDate().dateFormatted()
+                              && Date.now.formatted(.dateTime.hour().minute()).stringToClock().add30MinuteClock() <
+                                result.deptureClock.stringToClock()
+                            
                           }
-                          
                           self.flightTicketsDepture = resultList
                           self.tempFlightTicDepList = resultList
-                         
-                          
-                          
+
                       }
                   case .failure(_):
                       DispatchQueue.main.async {
@@ -61,7 +57,6 @@ class FlightTicketSearchViewModel : ObservableObject {
                   }
               })
          }
-        
     }
      
      func getDataReturnFlightTickets() async{
