@@ -58,7 +58,7 @@ Firebase Realtime Database kullanılmaktadır
 </list>
 
 ## Architectural Pattern
-<li>MVVVM</li>
+<li>MVVM</li>
 
 ## Test
 <li>Unit Test</li>
