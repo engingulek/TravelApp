@@ -1,15 +1,21 @@
 # TravelApp
 
 ## Screens
-<table style"float:right;">
 
-<tr>
-  <td>  <img src ="https://github.com/engingulek/TravelApp/assets/74055938/aa0e179b-18a4-4dc0-8534-dffe7cc0c5c7"> </td>
-</tr>
-</table>
 
-<br/>
-<br/>
+
+
+https://github.com/engingulek/TravelApp/assets/74055938/b0a703b6-267b-4f76-9380-1edf84fcb4d7
+
+
+https://github.com/engingulek/TravelApp/assets/74055938/03438b1a-bfed-4a9b-98b6-3cfc03f13a22
+
+
+
+
+https://github.com/engingulek/TravelApp/assets/74055938/917b4beb-4fcd-49a2-9958-85c73b785234
+
+
 
 
 ### Home Page
