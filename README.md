@@ -4,10 +4,7 @@
 <table style"float:right;">
 
 <tr>
-  <td>  <img src ="https://github.com/engingulek/TravelApp/assets/74055938/7c0cfa93-d5c4-4907-bf82-f5270e82d280"> </td>
-  <td>  <img  src= "https://github.com/engingulek/TravelApp/assets/74055938/a638bcb3-c80e-402f-8a65-b9692ece4e29" >  </td>
-  <td> <img src ="https://github.com/engingulek/TravelApp/assets/74055938/6d2b0e1d-9c80-4cd9-b761-d0618ef90c87">  </td>
-  
+  <td>  <img src ="https://github.com/engingulek/TravelApp/assets/74055938/aa0e179b-18a4-4dc0-8534-dffe7cc0c5c7"> </td>
 </tr>
 </table>
 
