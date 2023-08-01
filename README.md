@@ -2,10 +2,12 @@
 
 ## Screens
 <table style"float:right;">
+
 <tr>
-  <td> <img src ="https://github.com/engingulek/TravelApp/assets/74055938/ec830281-398a-4831-ab76-1a41ba96604a">  </td>
-  <td>  <img  src= "https://github.com/engingulek/TravelApp/assets/74055938/e4d74551-86cd-421c-ac1b-26ef534d5f2f" >  </td>
-  <td>  <img src ="https://github.com/engingulek/TravelApp/assets/74055938/03b8606d-9d1a-4cc6-8fc5-8f345606c6bd"> </td>
+  <td>  <img src ="https://github.com/engingulek/TravelApp/assets/74055938/7c0cfa93-d5c4-4907-bf82-f5270e82d280"> </td>
+  <td>  <img  src= "https://github.com/engingulek/TravelApp/assets/74055938/a638bcb3-c80e-402f-8a65-b9692ece4e29" >  </td>
+  <td> <img src ="https://github.com/engingulek/TravelApp/assets/74055938/6d2b0e1d-9c80-4cd9-b761-d0618ef90c87">  </td>
+  
 </tr>
 </table>
 
